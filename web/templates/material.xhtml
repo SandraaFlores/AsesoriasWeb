@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title><ui:insert name="title" /></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- Cascading Style Sheet -->
+        <ui:include src="/templates/global_css.xhtml"></ui:include>
+
+        <ui:insert name="head" />
+    </h:head>
+
+    <h:body>
+        <!-- Navbar -->
+        <ui:include src="/components/navbar.xhtml"></ui:include>
+
+        <!-- Content -->
+        <div class="container-fluid">
+            <ui:insert name="body" />
+            <nav class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="../images/bulb-icon-png_265253.jpg" width="30" height="30" class="d-inline-block align-top" alt=""></img>
+                    Cálculo Integral
+                </a>
+            </nav>
+
+            <div class="row p-3" style="min-height: 75vh">
+
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../images/calculus.png" class="card-img-top" alt="..."></img>
+                        <div class="card-body">
+                            <h5 class="card-title">1. Teorema fundamental del cálculo.</h5>
+                            <p class="card-text">Comprende los dos teoremas fundamentales
+                                del cálculo para establecer la relación entre
+                                cálculo diferencial y cálculo integral.</p>
+                            <a href="#" class="btn btn-primary">Ir al contenido</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../images/calculo14.jpg" class="card-img-top" alt="..."></img>
+                        <div class="card-body">
+                            <h5 class="card-title">2. Métodos de integración e integral
+                                indefinida</h5>
+                            <p class="card-text">Identifica el método de integración más
+                                adecuado para resolver una integral
+                                indefinida.</p>
+                            <a href="#" class="btn btn-primary">Ir al contenido</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../images/calc.jpg" class="card-img-top"></img>
+
+                        <div class="card-body">
+                            <h5 class="card-title">3. Aplicaciones de la integral</h5>
+                            <p class="card-text">Utiliza las definiciones de integral y las
+                                técnicas de integración para la solución de
+                                problemas geométricos y aplicados en la
+                                ingeniería.</p>
+                            <a href="#" class="btn btn-primary">Ir al contenido</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../images/descarga.jpg" class="card-img-top" alt="..."></img>
+                        <div class="card-body">
+                            <h5 class="card-title">4. Series</h5>
+                            <p class="card-text">Aplica series para aproximar la solución de
+                                integrales especiales.</p>
+                            <a href="#" class="btn btn-primary">Ir al contenido</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container col-12">
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" href="#">
+                            <img src="../images/user-avatar-placeholder.png" width="30" height="30" class="d-inline-block align-top" alt=""></img>
+                            Asesores Disponibles
+                        </a>
+                    </nav>
+                </div> 
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../images/foto-persona.jpg" class="card-img-top rounded-circle" alt="..."></img>
+                        <div class="card-body">
+                            <h5 class="card-title">Mario Alberto Cortés Serrano</h5>
+                            <p class="card-text">
+                                <h5>Carrera: Ing. Electrónica</h5>
+                                <p>Horario:</p>
+                                <p>WhatsApp: 5589036748</p>
+                                <p>Correo: mcortess@toluca.tecnm.mx</p>
+                                <p>Profesor de Cálculo Diferencial: Joel Ibarra</p>
+                                Semestre: 7
+
+                            </p>
+                            <a href="#" class="btn btn-success">Ponerme en contacto</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Footer -->
+            <ui:include src="/components/footer.xhtml"></ui:include>
+        </div>
+
+        <!-- JavaScript -->
+        <ui:include src="/templates/global_js.xhtml"></ui:include>
+
+
+    </h:body>
+
+</html>
