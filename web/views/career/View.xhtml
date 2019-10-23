@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCareerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCareerLabel_id}"/>
+                    <h:outputText value="#{careerController.selected.id}" title="#{bundle.ViewCareerTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCareerLabel_name}"/>
+                    <h:outputText value="#{careerController.selected.name}" title="#{bundle.ViewCareerTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewCareerLabel_acronym}"/>
+                    <h:outputText value="#{careerController.selected.acronym}" title="#{bundle.ViewCareerTitle_acronym}"/>
+                    <h:outputText value="#{bundle.ViewCareerLabel_active}"/>
+                    <h:outputText value="#{careerController.selected.active}" title="#{bundle.ViewCareerTitle_active}"/>
+                    <h:outputText value="#{bundle.ViewCareerLabel_createTime}"/>
+                    <h:outputText value="#{careerController.selected.createTime}" title="#{bundle.ViewCareerTitle_createTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCareerLabel_updateTime}"/>
+                    <h:outputText value="#{careerController.selected.updateTime}" title="#{bundle.ViewCareerTitle_updateTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{careerController.destroyAndView}" value="#{bundle.ViewCareerDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCareerEditLink}"/>
+                <br />
+                <h:commandLink action="#{careerController.prepareCreate}" value="#{bundle.ViewCareerCreateLink}" />
+                <br />
+                <h:commandLink action="#{careerController.prepareList}" value="#{bundle.ViewCareerShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCareerIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

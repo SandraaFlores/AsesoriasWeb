@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTypeMaterialTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTypeMaterialLabel_id}"/>
+                    <h:outputText value="#{typeMaterialController.selected.id}" title="#{bundle.ViewTypeMaterialTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTypeMaterialLabel_name}"/>
+                    <h:outputText value="#{typeMaterialController.selected.name}" title="#{bundle.ViewTypeMaterialTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewTypeMaterialLabel_active}"/>
+                    <h:outputText value="#{typeMaterialController.selected.active}" title="#{bundle.ViewTypeMaterialTitle_active}"/>
+                    <h:outputText value="#{bundle.ViewTypeMaterialLabel_createTime}"/>
+                    <h:outputText value="#{typeMaterialController.selected.createTime}" title="#{bundle.ViewTypeMaterialTitle_createTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTypeMaterialLabel_updateTime}"/>
+                    <h:outputText value="#{typeMaterialController.selected.updateTime}" title="#{bundle.ViewTypeMaterialTitle_updateTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{typeMaterialController.destroyAndView}" value="#{bundle.ViewTypeMaterialDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTypeMaterialEditLink}"/>
+                <br />
+                <h:commandLink action="#{typeMaterialController.prepareCreate}" value="#{bundle.ViewTypeMaterialCreateLink}" />
+                <br />
+                <h:commandLink action="#{typeMaterialController.prepareList}" value="#{bundle.ViewTypeMaterialShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTypeMaterialIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

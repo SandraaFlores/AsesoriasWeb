@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewStudentHasTopicTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewStudentHasTopicLabel_id}"/>
+                    <h:outputText value="#{studentHasTopicController.selected.id}" title="#{bundle.ViewStudentHasTopicTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewStudentHasTopicLabel_teacher}"/>
+                    <h:outputText value="#{studentHasTopicController.selected.teacher}" title="#{bundle.ViewStudentHasTopicTitle_teacher}"/>
+                    <h:outputText value="#{bundle.ViewStudentHasTopicLabel_active}"/>
+                    <h:outputText value="#{studentHasTopicController.selected.active}" title="#{bundle.ViewStudentHasTopicTitle_active}"/>
+                    <h:outputText value="#{bundle.ViewStudentHasTopicLabel_createTime}"/>
+                    <h:outputText value="#{studentHasTopicController.selected.createTime}" title="#{bundle.ViewStudentHasTopicTitle_createTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewStudentHasTopicLabel_updateTime}"/>
+                    <h:outputText value="#{studentHasTopicController.selected.updateTime}" title="#{bundle.ViewStudentHasTopicTitle_updateTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewStudentHasTopicLabel_studentId}"/>
+                    <h:outputText value="#{studentHasTopicController.selected.studentId}" title="#{bundle.ViewStudentHasTopicTitle_studentId}"/>
+                    <h:outputText value="#{bundle.ViewStudentHasTopicLabel_topicId}"/>
+                    <h:outputText value="#{studentHasTopicController.selected.topicId}" title="#{bundle.ViewStudentHasTopicTitle_topicId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studentHasTopicController.destroyAndView}" value="#{bundle.ViewStudentHasTopicDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewStudentHasTopicEditLink}"/>
+                <br />
+                <h:commandLink action="#{studentHasTopicController.prepareCreate}" value="#{bundle.ViewStudentHasTopicCreateLink}" />
+                <br />
+                <h:commandLink action="#{studentHasTopicController.prepareList}" value="#{bundle.ViewStudentHasTopicShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewStudentHasTopicIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

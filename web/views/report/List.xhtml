@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListReportTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListReportEmpty}" rendered="#{reportController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{reportController.items.rowCount > 0}">
+                    <h:outputText value="#{reportController.pagination.pageFirstItem + 1}..#{reportController.pagination.pageLastItem + 1}/#{reportController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{reportController.previous}" value="#{bundle.Previous} #{reportController.pagination.pageSize}" rendered="#{reportController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{reportController.next}" value="#{bundle.Next} #{reportController.pagination.pageSize}" rendered="#{reportController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{reportController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_place}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.place}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_comment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.comment}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_createTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_updateTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updateTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_statusAdviceId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statusAdviceId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_studentAssistantId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.studentAssistantId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_studentLearnerId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.studentLearnerId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_scheduleId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.scheduleId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportTitle_topicId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.topicId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{reportController.prepareView}" value="#{bundle.ListReportViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reportController.prepareEdit}" value="#{bundle.ListReportEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reportController.destroy}" value="#{bundle.ListReportDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{reportController.prepareCreate}" value="#{bundle.ListReportCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListReportIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

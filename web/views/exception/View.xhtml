@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewExceptionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewExceptionLabel_id}"/>
+                    <h:outputText value="#{exceptionController.selected.id}" title="#{bundle.ViewExceptionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewExceptionLabel_year}"/>
+                    <h:outputText value="#{exceptionController.selected.year}" title="#{bundle.ViewExceptionTitle_year}"/>
+                    <h:outputText value="#{bundle.ViewExceptionLabel_month}"/>
+                    <h:outputText value="#{exceptionController.selected.month}" title="#{bundle.ViewExceptionTitle_month}"/>
+                    <h:outputText value="#{bundle.ViewExceptionLabel_day}"/>
+                    <h:outputText value="#{exceptionController.selected.day}" title="#{bundle.ViewExceptionTitle_day}"/>
+                    <h:outputText value="#{bundle.ViewExceptionLabel_hourStart}"/>
+                    <h:outputText value="#{exceptionController.selected.hourStart}" title="#{bundle.ViewExceptionTitle_hourStart}"/>
+                    <h:outputText value="#{bundle.ViewExceptionLabel_hourEnd}"/>
+                    <h:outputText value="#{exceptionController.selected.hourEnd}" title="#{bundle.ViewExceptionTitle_hourEnd}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{exceptionController.destroyAndView}" value="#{bundle.ViewExceptionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewExceptionEditLink}"/>
+                <br />
+                <h:commandLink action="#{exceptionController.prepareCreate}" value="#{bundle.ViewExceptionCreateLink}" />
+                <br />
+                <h:commandLink action="#{exceptionController.prepareList}" value="#{bundle.ViewExceptionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewExceptionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

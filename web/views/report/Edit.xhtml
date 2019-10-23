@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditReportTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditReportLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{reportController.selected.id}" title="#{bundle.EditReportTitle_id}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditReportLabel_place}" for="place" />
+                    <h:inputText id="place" value="#{reportController.selected.place}" title="#{bundle.EditReportTitle_place}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_place}"/>
+                    <h:outputLabel value="#{bundle.EditReportLabel_comment}" for="comment" />
+                    <h:inputTextarea rows="4" cols="30" id="comment" value="#{reportController.selected.comment}" title="#{bundle.EditReportTitle_comment}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_comment}"/>
+                    <h:outputLabel value="#{bundle.EditReportLabel_createTime}" for="createTime" />
+                    <h:inputText id="createTime" value="#{reportController.selected.createTime}" title="#{bundle.EditReportTitle_createTime}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_createTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditReportLabel_updateTime}" for="updateTime" />
+                    <h:inputText id="updateTime" value="#{reportController.selected.updateTime}" title="#{bundle.EditReportTitle_updateTime}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_updateTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditReportLabel_statusAdviceId}" for="statusAdviceId" />
+                    <h:selectOneMenu id="statusAdviceId" value="#{reportController.selected.statusAdviceId}" title="#{bundle.EditReportTitle_statusAdviceId}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_statusAdviceId}">
+                        <f:selectItems value="#{reportStatusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditReportLabel_studentAssistantId}" for="studentAssistantId" />
+                    <h:selectOneMenu id="studentAssistantId" value="#{reportController.selected.studentAssistantId}" title="#{bundle.EditReportTitle_studentAssistantId}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_studentAssistantId}">
+                        <f:selectItems value="#{studentController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditReportLabel_studentLearnerId}" for="studentLearnerId" />
+                    <h:selectOneMenu id="studentLearnerId" value="#{reportController.selected.studentLearnerId}" title="#{bundle.EditReportTitle_studentLearnerId}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_studentLearnerId}">
+                        <f:selectItems value="#{studentController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditReportLabel_scheduleId}" for="scheduleId" />
+                    <h:selectOneMenu id="scheduleId" value="#{reportController.selected.scheduleId}" title="#{bundle.EditReportTitle_scheduleId}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_scheduleId}">
+                        <f:selectItems value="#{scheduleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditReportLabel_topicId}" for="topicId" />
+                    <h:selectOneMenu id="topicId" value="#{reportController.selected.topicId}" title="#{bundle.EditReportTitle_topicId}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_topicId}">
+                        <f:selectItems value="#{topicController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{reportController.update}" value="#{bundle.EditReportSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditReportViewLink}"/>
+                <br />
+                <h:commandLink action="#{reportController.prepareList}" value="#{bundle.EditReportShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditReportIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

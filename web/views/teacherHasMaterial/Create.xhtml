@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTeacherHasMaterialTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTeacherHasMaterialLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{teacherHasMaterialController.selected.id}" title="#{bundle.CreateTeacherHasMaterialTitle_id}" required="true" requiredMessage="#{bundle.CreateTeacherHasMaterialRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateTeacherHasMaterialLabel_approval}" for="approval" />
+                    <h:inputText id="approval" value="#{teacherHasMaterialController.selected.approval}" title="#{bundle.CreateTeacherHasMaterialTitle_approval}" required="true" requiredMessage="#{bundle.CreateTeacherHasMaterialRequiredMessage_approval}"/>
+                    <h:outputLabel value="#{bundle.CreateTeacherHasMaterialLabel_createTime}" for="createTime" />
+                    <h:inputText id="createTime" value="#{teacherHasMaterialController.selected.createTime}" title="#{bundle.CreateTeacherHasMaterialTitle_createTime}" required="true" requiredMessage="#{bundle.CreateTeacherHasMaterialRequiredMessage_createTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTeacherHasMaterialLabel_updateTime}" for="updateTime" />
+                    <h:inputText id="updateTime" value="#{teacherHasMaterialController.selected.updateTime}" title="#{bundle.CreateTeacherHasMaterialTitle_updateTime}" required="true" requiredMessage="#{bundle.CreateTeacherHasMaterialRequiredMessage_updateTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTeacherHasMaterialLabel_materialId}" for="materialId" />
+                    <h:selectOneMenu id="materialId" value="#{teacherHasMaterialController.selected.materialId}" title="#{bundle.CreateTeacherHasMaterialTitle_materialId}" required="true" requiredMessage="#{bundle.CreateTeacherHasMaterialRequiredMessage_materialId}">
+                        <f:selectItems value="#{materialController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTeacherHasMaterialLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{teacherHasMaterialController.selected.userId}" title="#{bundle.CreateTeacherHasMaterialTitle_userId}" required="true" requiredMessage="#{bundle.CreateTeacherHasMaterialRequiredMessage_userId}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{teacherHasMaterialController.create}" value="#{bundle.CreateTeacherHasMaterialSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{teacherHasMaterialController.prepareList}" value="#{bundle.CreateTeacherHasMaterialShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTeacherHasMaterialIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

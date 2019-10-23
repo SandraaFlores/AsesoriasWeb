@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListReportStatusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListReportStatusEmpty}" rendered="#{reportStatusController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{reportStatusController.items.rowCount > 0}">
+                    <h:outputText value="#{reportStatusController.pagination.pageFirstItem + 1}..#{reportStatusController.pagination.pageLastItem + 1}/#{reportStatusController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{reportStatusController.previous}" value="#{bundle.Previous} #{reportStatusController.pagination.pageSize}" rendered="#{reportStatusController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{reportStatusController.next}" value="#{bundle.Next} #{reportStatusController.pagination.pageSize}" rendered="#{reportStatusController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{reportStatusController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportStatusTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportStatusTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportStatusTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportStatusTitle_active}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.active}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportStatusTitle_createTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReportStatusTitle_updateTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updateTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{reportStatusController.prepareView}" value="#{bundle.ListReportStatusViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reportStatusController.prepareEdit}" value="#{bundle.ListReportStatusEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reportStatusController.destroy}" value="#{bundle.ListReportStatusDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{reportStatusController.prepareCreate}" value="#{bundle.ListReportStatusCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListReportStatusIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
