@@ -10,47 +10,89 @@
             <h:outputText value="#{bundle.CreateMaterialTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages styleClass="alert" errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{materialController.selected.id}" title="#{bundle.CreateMaterialTitle_id}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{materialController.selected.name}" title="#{bundle.CreateMaterialTitle_name}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_url}" for="url" />
-                    <h:inputText id="url" value="#{materialController.selected.url}" title="#{bundle.CreateMaterialTitle_url}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_url}"/>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_check}" for="check" />
-                    <h:inputText id="check" value="#{materialController.selected.check}" title="#{bundle.CreateMaterialTitle_check}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_check}"/>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_active}" for="active" />
-                    <h:inputText id="active" value="#{materialController.selected.active}" title="#{bundle.CreateMaterialTitle_active}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_active}"/>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_createTime}" for="createTime" />
-                    <h:inputText id="createTime" value="#{materialController.selected.createTime}" title="#{bundle.CreateMaterialTitle_createTime}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_createTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_updateTime}" for="updateTime" />
-                    <h:inputText id="updateTime" value="#{materialController.selected.updateTime}" title="#{bundle.CreateMaterialTitle_updateTime}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_updateTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_topicId}" for="topicId" />
-                    <h:selectOneMenu id="topicId" value="#{materialController.selected.topicId}" title="#{bundle.CreateMaterialTitle_topicId}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_topicId}">
-                        <f:selectItems value="#{topicController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateMaterialLabel_typeMaterialId}" for="typeMaterialId" />
-                    <h:selectOneMenu id="typeMaterialId" value="#{materialController.selected.typeMaterialId}" title="#{bundle.CreateMaterialTitle_typeMaterialId}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_typeMaterialId}">
-                        <f:selectItems value="#{typeMaterialController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{materialController.create}" value="#{bundle.CreateMaterialSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{materialController.prepareList}" value="#{bundle.CreateMaterialShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateMaterialIndexLink}"/>
-            </h:form>
+            <div class="row">
+                <div class="col-sm-12 mx-auto mt-2">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages styleClass="alert" errorStyle="color: red" infoStyle="color: green" layout="div"/>
+                    </h:panelGroup>
+                </div>
+                <div class="mx-auto col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0" align="text-center">Crear Material</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form class="form" role="form" >
+                                <!--
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateMaterialLabel_id}" for="id" />
+                                    <h:inputText id="id" class="form-control col-lg-6" value="#{materialController.selected.id}" title="#{bundle.CreateMaterialTitle_id}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_id}"/>
+                                </div>-->
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Nombre:" for="name" />
+                                    <h:inputText id="name" class="form-control col-lg-6" value="#{materialController.selected.name}" title="#{bundle.CreateMaterialTitle_name}" required="true" requiredMessage="El campo Nombre es obligatorio."/>
+                                </div>
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Url:" for="url" />
+                                    <h:inputText id="url" class="form-control col-lg-6" value="#{materialController.selected.url}" title="#{bundle.CreateMaterialTitle_url}" required="true" requiredMessage="El campo Url es obligatorio."/>
+                                </div>
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Verificar:" for="check" />
+                                    <h:inputText id="check" class="form-control col-lg-6" value="#{materialController.selected.check}" title="#{bundle.CreateMaterialTitle_check}" required="true" requiredMessage="El campo Verificar es obligatorio."/>
+                                </div>
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Active:" for="active" />
+                                    <h:inputText id="active" class="form-control col-lg-6" value="#{materialController.selected.active}" title="#{bundle.CreateMaterialTitle_active}" required="true" requiredMessage="El campo Activo es obligatorio."/>
+                                </div>
+                                <!--
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateMaterialLabel_createTime}" for="createTime" />
+                                    <h:inputText id="createTime" class="form-control col-lg-6" value="#{materialController.selected.createTime}" title="#{bundle.CreateMaterialTitle_createTime}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_createTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateMaterialLabel_updateTime}" for="updateTime" />
+                                    <h:inputText id="updateTime" class="form-control col-lg-6" value="#{materialController.selected.updateTime}" title="#{bundle.CreateMaterialTitle_updateTime}" required="true" requiredMessage="#{bundle.CreateMaterialRequiredMessage_updateTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>-->
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Id Tema:" for="topicId" />
+                                    <h:selectOneMenu id="topicId" class="form-control col-lg-6" value="#{materialController.selected.topicId}" title="#{bundle.CreateMaterialTitle_topicId}" required="false" >
+                                        <f:selectItems value="#{topicController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Id Tipo Material" for="typeMaterialId" />
+                                    <h:selectOneMenu id="typeMaterialId" class="form-control col-lg-6" value="#{materialController.selected.typeMaterialId}" title="#{bundle.CreateMaterialTitle_typeMaterialId}" required="true" requiredMessage="El campo Id Tipo Material es obligatorio.">
+                                        <f:selectItems value="#{typeMaterialController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <h:commandLink class="btn btn-secondary glyphicon glyphicon-floppy-save" action="#{materialController.create}" value="Guardar" />  
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <h:commandLink class="btn btn-secondary" action="#{materialController.prepareList}" value="Ver Materiales" immediate="true"/>  
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <h:link class="btn btn-success" outcome="/index" value="Inicio"/>  
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
