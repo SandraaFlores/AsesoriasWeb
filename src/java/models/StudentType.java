@@ -116,8 +116,12 @@ public class StudentType implements Serializable {
         this.description = description;
     }
 
-    public short getActive() {
-        return active;
+    public String getActive() {
+        if(active == 0) {
+            return "Desactivado";
+        } else {
+            return "Activado";
+        }
     }
 
     public void setActive(short active) {

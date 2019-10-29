@@ -40,7 +40,7 @@ public class Level implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -49,7 +49,6 @@ public class Level implements Serializable {
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "active")
     private short active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelId")
@@ -84,8 +83,12 @@ public class Level implements Serializable {
         this.name = name;
     }
 
-    public short getActive() {
-        return active;
+    public String getActive() {
+        if(active == 0) {
+            return "Desactivado";
+        } else {
+            return "Activado";
+        }
     }
 
     public void setActive(short active) {

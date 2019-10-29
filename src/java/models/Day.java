@@ -51,7 +51,7 @@ public class Day implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
-    private short active;
+    private boolean active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dayId")
     private Collection<Schedule> scheduleCollection;
 
@@ -62,7 +62,7 @@ public class Day implements Serializable {
         this.id = id;
     }
 
-    public Day(Integer id, String name, short active) {
+    public Day(Integer id, String name, boolean active) {
         this.id = id;
         this.name = name;
         this.active = active;
@@ -84,12 +84,16 @@ public class Day implements Serializable {
         this.name = name;
     }
 
-    public short getActive() {
-        return active;
+    public String getActive() {
+        if(active == false) {
+            return "Desactivado";
+        } else {
+            return "Activado";
+        }
     }
 
-    public void setActive(short active) {
-        this.active = active;
+    public void setActive(String active) {
+        this.active = !active.equals("false");
     }
 
     @XmlTransient
@@ -123,7 +127,7 @@ public class Day implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Day[ id=" + id + " ]";
+        return name;
     }
     
 }

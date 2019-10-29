@@ -46,7 +46,7 @@ public class Career implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -60,16 +60,13 @@ public class Career implements Serializable {
     @Column(name = "acronym")
     private String acronym;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "active")
-    private short active;
-    @Basic(optional = false)
-    @NotNull
+    private boolean active;
+    @Basic(optional = true)
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = true)
     @Column(name = "update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
@@ -83,7 +80,7 @@ public class Career implements Serializable {
         this.id = id;
     }
 
-    public Career(Integer id, String name, String acronym, short active, Date createTime, Date updateTime) {
+    public Career(Integer id, String name, String acronym, boolean active, Date createTime, Date updateTime) {
         this.id = id;
         this.name = name;
         this.acronym = acronym;
@@ -116,12 +113,16 @@ public class Career implements Serializable {
         this.acronym = acronym;
     }
 
-    public short getActive() {
-        return active;
+    public String getActive() {
+        if(active == false) {
+            return "Desactivado";
+        } else {
+            return "Activado";
+        }
     }
 
-    public void setActive(short active) {
-        this.active = active;
+    public void setActive(String active) {
+        this.active = !active.equals("false");
     }
 
     public Date getCreateTime() {
@@ -171,7 +172,7 @@ public class Career implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Career[ id=" + id + " ]";
+        return name;
     }
     
 }

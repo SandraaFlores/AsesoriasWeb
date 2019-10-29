@@ -5,37 +5,49 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewDayTitle}"></h:outputText>
+            | <h:outputText value="#{bundle.ViewDayTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewDayLabel_id}"/>
-                    <h:outputText value="#{dayController.selected.id}" title="#{bundle.ViewDayTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewDayLabel_name}"/>
-                    <h:outputText value="#{dayController.selected.name}" title="#{bundle.ViewDayTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewDayLabel_active}"/>
-                    <h:outputText value="#{dayController.selected.active}" title="#{bundle.ViewDayTitle_active}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{dayController.destroyAndView}" value="#{bundle.ViewDayDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewDayEditLink}"/>
-                <br />
-                <h:commandLink action="#{dayController.prepareCreate}" value="#{bundle.ViewDayCreateLink}" />
-                <br />
-                <h:commandLink action="#{dayController.prepareList}" value="#{bundle.ViewDayShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewDayIndexLink}"/>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-12 mt-2">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                </div>
+                <div class="col-sm-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0" align="text-center">Día</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form>
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{bundle.ViewDayLabel_id}"/>
+                                    <h:outputText value="#{dayController.selected.id}" title="#{bundle.ViewDayTitle_id}"/>
+                                    <h:outputText value="#{bundle.ViewDayLabel_name}"/>
+                                    <h:outputText value="#{dayController.selected.name}" title="#{bundle.ViewDayTitle_name}"/>
+                                    <h:outputText value="#{bundle.ViewDayLabel_active}"/>
+                                    <h:outputText value="#{dayController.selected.active}" title="#{bundle.ViewDayTitle_active}"/>
+                                </h:panelGrid>
+                                <div class="row mx-0 mt-4">
+                                    <div class="col-4 text-center">
+                                        <h:commandLink class="btn btn-danger" action="#{dayController.destroyAndView}" value="#{bundle.ViewDayDestroyLink}"/>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewDayEditLink}"/>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <h:commandLink class="btn btn-secondary" action="#{dayController.prepareList}" value="#{bundle.ViewDayShowAllLink}"/>
+                                    </div>
+                                </div>
 
-            </h:form>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

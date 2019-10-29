@@ -5,57 +5,57 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListStatusTitle}"></h:outputText>
+            | <h:outputText value="#{bundle.ListStatusTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListStatusEmpty}" rendered="#{statusController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{statusController.items.rowCount > 0}">
-                    <h:outputText value="#{statusController.pagination.pageFirstItem + 1}..#{statusController.pagination.pageLastItem + 1}/#{statusController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{statusController.previous}" value="#{bundle.Previous} #{statusController.pagination.pageSize}" rendered="#{statusController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{statusController.next}" value="#{bundle.Next} #{statusController.pagination.pageSize}" rendered="#{statusController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{statusController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStatusTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStatusTitle_name}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.name}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStatusTitle_active}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.active}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{statusController.prepareView}" value="#{bundle.ListStatusViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{statusController.prepareEdit}" value="#{bundle.ListStatusEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{statusController.destroy}" value="#{bundle.ListStatusDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{statusController.prepareCreate}" value="#{bundle.ListStatusCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListStatusIndexLink}"/>
-            </h:form>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-11 mt-4 mx-auto text-right">
+                    <h:form>
+                        <h:commandLink class="fas fa-plus-circle" action="#{statusController.prepareCreate}" value="" style="text-decoration: none; font-size: 2rem"/>
+                    </h:form>
+                </div>
+                <div class="col-12 text-center">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListStatusEmpty}" rendered="#{statusController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{statusController.items.rowCount > 0}">
+                            <h:outputText value="#{statusController.pagination.pageFirstItem + 1}..#{statusController.pagination.pageLastItem + 1}/#{statusController.pagination.itemsCount}"/>&nbsp;
+                            <h:commandLink action="#{statusController.previous}" value="#{bundle.Previous} #{statusController.pagination.pageSize}" rendered="#{statusController.pagination.hasPreviousPage}"/>&nbsp;
+                            <h:commandLink action="#{statusController.next}" value="#{bundle.Next} #{statusController.pagination.pageSize}" rendered="#{statusController.pagination.hasNextPage}"/>&nbsp;
+                            <h:dataTable class="table" value="#{statusController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListStatusTitle_id}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListStatusTitle_name}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.active}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink class="text-decoration-none fas fa-trash-alt color-red mx-1" action="#{statusController.destroy}" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

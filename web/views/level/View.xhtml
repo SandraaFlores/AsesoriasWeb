@@ -5,37 +5,49 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewLevelTitle}"></h:outputText>
+            | <h:outputText value="#{bundle.ViewLevelTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewLevelLabel_id}"/>
-                    <h:outputText value="#{levelController.selected.id}" title="#{bundle.ViewLevelTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewLevelLabel_name}"/>
-                    <h:outputText value="#{levelController.selected.name}" title="#{bundle.ViewLevelTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewLevelLabel_active}"/>
-                    <h:outputText value="#{levelController.selected.active}" title="#{bundle.ViewLevelTitle_active}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{levelController.destroyAndView}" value="#{bundle.ViewLevelDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewLevelEditLink}"/>
-                <br />
-                <h:commandLink action="#{levelController.prepareCreate}" value="#{bundle.ViewLevelCreateLink}" />
-                <br />
-                <h:commandLink action="#{levelController.prepareList}" value="#{bundle.ViewLevelShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewLevelIndexLink}"/>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-12 mt-2">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                </div>
+                <div class="col-sm-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0" align="text-center">Rol</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form>
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{bundle.ViewLevelLabel_id}"/>
+                                    <h:outputText value="#{levelController.selected.id}" title="#{bundle.ViewLevelTitle_id}"/>
+                                    <h:outputText value="#{bundle.ViewLevelLabel_name}"/>
+                                    <h:outputText value="#{levelController.selected.name}" title="#{bundle.ViewLevelTitle_name}"/>
+                                    <h:outputText value="#{bundle.ViewLevelLabel_active}"/>
+                                    <h:outputText value="#{levelController.selected.active}" title="#{bundle.ViewLevelTitle_active}"/>
+                                </h:panelGrid>
+                                <div class="row mx-0 mt-4">
+                                    <div class="col-4 text-center">
+                                        <h:commandLink class="btn btn-danger" action="#{levelController.destroyAndView}" value="#{bundle.ViewLevelDestroyLink}"/>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewLevelEditLink}"/>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <h:commandLink class="btn btn-secondary" action="#{levelController.prepareList}" value="#{bundle.ViewLevelShowAllLink}"/>
+                                    </div>
+                                </div>
 
-            </h:form>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
