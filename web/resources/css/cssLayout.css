@@ -29,3 +29,14 @@
 .color-black:hover {
     color: #0c0c0c;
 }
+#content-fluid{
+    min-height: calc(100vh - 156px)
+}
+
+.btn-primary, .btn-danger, .btn-info {
+    padding: 8px 20px;
+}
+
+.btn-sm {
+    padding: 7px 10px !important;
+}
