@@ -3,47 +3,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/templates/principal.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.EditSubjectTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditSubjectLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{subjectController.selected.id}" title="#{bundle.EditSubjectTitle_id}" required="true" requiredMessage="#{bundle.EditSubjectRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditSubjectLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{subjectController.selected.name}" title="#{bundle.EditSubjectTitle_name}" required="true" requiredMessage="#{bundle.EditSubjectRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.EditSubjectLabel_description}" for="description" />
-                    <h:inputText id="description" value="#{subjectController.selected.description}" title="#{bundle.EditSubjectTitle_description}" required="true" requiredMessage="#{bundle.EditSubjectRequiredMessage_description}"/>
-                    <h:outputLabel value="#{bundle.EditSubjectLabel_urlImage}" for="urlImage" />
-                    <h:inputText id="urlImage" value="#{subjectController.selected.urlImage}" title="#{bundle.EditSubjectTitle_urlImage}" required="true" requiredMessage="#{bundle.EditSubjectRequiredMessage_urlImage}"/>
-                    <h:outputLabel value="#{bundle.EditSubjectLabel_active}" for="active" />
-                    <h:inputText id="active" value="#{subjectController.selected.active}" title="#{bundle.EditSubjectTitle_active}" required="true" requiredMessage="#{bundle.EditSubjectRequiredMessage_active}"/>
-                    <h:outputLabel value="#{bundle.EditSubjectLabel_createTime}" for="createTime" />
-                    <h:inputText id="createTime" value="#{subjectController.selected.createTime}" title="#{bundle.EditSubjectTitle_createTime}" required="true" requiredMessage="#{bundle.EditSubjectRequiredMessage_createTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditSubjectLabel_updateTime}" for="updateTime" />
-                    <h:inputText id="updateTime" value="#{subjectController.selected.updateTime}" title="#{bundle.EditSubjectTitle_updateTime}" required="true" requiredMessage="#{bundle.EditSubjectRequiredMessage_updateTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                </h:panelGrid>
-                <h:commandLink action="#{subjectController.update}" value="#{bundle.EditSubjectSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditSubjectViewLink}"/>
-                <br />
-                <h:commandLink action="#{subjectController.prepareList}" value="#{bundle.EditSubjectShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditSubjectIndexLink}" />
-            </h:form>
+            <div class="row">
+                <div class="col-sm-12 mx-auto mt-2">
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate />
+                    </p:messages>
+                </div>
+                <div class="mx-auto col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-center">Editar Materia</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form class="form" role="form">
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Id:" for="id" />
+                                    <h:inputText id="id" class="form-control col-lg-6" value="#{subjectController.selected.id}" title="#{bundle.EditSubjectTitle_id}" required="false"/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Nombre:" for="name" />
+                                    <h:inputText id="name" class="form-control col-lg-6" value="#{subjectController.selected.name}" title="#{bundle.EditSubjectTitle_name}" required="true" requiredMessage="El campo Nombre es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Descripción:" for="description" />
+                                    <h:inputText id="description" class="form-control col-lg-6" value="#{subjectController.selected.description}" title="#{bundle.EditSubjectTitle_description}" required="true" requiredMessage="El campo Descripción es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Url Imagen:" for="urlImage" />
+                                    <h:inputText id="urlImage" class="form-control col-lg-6" value="#{subjectController.selected.urlImage}" title="#{bundle.EditSubjectTitle_urlImage}" required="true" requiredMessage="El campo Url Imagen es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Activo:" for="active" />
+                                    <h:inputText id="active" class="form-control col-lg-6" value="#{subjectController.selected.active}" title="#{bundle.EditSubjectTitle_active}" required="true" requiredMessage="El campo Activo es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel value="#{bundle.EditSubjectLabel_createTime}" for="createTime" />
+                                    <h:inputText id="createTime" value="#{subjectController.selected.createTime}" title="#{bundle.EditSubjectTitle_createTime}" required="false">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel value="#{bundle.EditSubjectLabel_updateTime}" for="updateTime" />
+                                    <h:inputText id="updateTime" value="#{subjectController.selected.updateTime}" title="#{bundle.EditSubjectTitle_updateTime}" required="false">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-3 text-center">
+                                        <h:commandLink class="btn btn-primary" action="#{subjectController.update}" value="Guardar"/>
+                                    </div>
+                                    <div class="col-lg-3 text-center">
+                                        <h:link class="btn btn-secondary" outcome="View" value="Ver"/>
+                                    </div>
+                                    <div class="col-lg-3 text-center">
+                                        <h:commandLink class="btn btn-secondary" action="#{subjectController.prepareList}" value="Lista" immediate="true"/>
+                                    </div>
+                                    <div class="col-lg-3 text-center">
+                                        <h:link class="btn btn-success" outcome="/index" value="Inicio" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

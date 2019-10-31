@@ -13,9 +13,9 @@
         <ui:define name="body">
             <div class="col-12 text-center">
                 <h:form styleClass="jsfcrud_list_form">
-                    <h:panelGroup id="messagePanel" layout="block">
-                        <p:growl id="mensaje" life="4000"/>
-                    </h:panelGroup>
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate />
+                    </p:messages>
                     <h:outputText escape="false" value="#{bundle.ListTypeMaterialEmpty}" rendered="#{typeMaterialController.items.rowCount == 0}"/>
                     <h:panelGroup rendered="#{typeMaterialController.items.rowCount > 0}">
                         <h:outputText value="#{typeMaterialController.pagination.pageFirstItem + 1}..#{typeMaterialController.pagination.pageLastItem + 1}/#{typeMaterialController.pagination.itemsCount}"/>&nbsp;

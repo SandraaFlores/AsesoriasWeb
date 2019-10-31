@@ -3,54 +3,87 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/templates/principal.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateTopicTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{topicController.selected.id}" title="#{bundle.CreateTopicTitle_id}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{topicController.selected.name}" title="#{bundle.CreateTopicTitle_name}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_description}" for="description" />
-                    <h:inputText id="description" value="#{topicController.selected.description}" title="#{bundle.CreateTopicTitle_description}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_description}"/>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_urlImage}" for="urlImage" />
-                    <h:inputText id="urlImage" value="#{topicController.selected.urlImage}" title="#{bundle.CreateTopicTitle_urlImage}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_urlImage}"/>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_active}" for="active" />
-                    <h:inputText id="active" value="#{topicController.selected.active}" title="#{bundle.CreateTopicTitle_active}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_active}"/>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_createTime}" for="createTime" />
-                    <h:inputText id="createTime" value="#{topicController.selected.createTime}" title="#{bundle.CreateTopicTitle_createTime}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_createTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_updateTime}" for="updateTime" />
-                    <h:inputText id="updateTime" value="#{topicController.selected.updateTime}" title="#{bundle.CreateTopicTitle_updateTime}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_updateTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_subjectId}" for="subjectId" />
-                    <h:selectOneMenu id="subjectId" value="#{topicController.selected.subjectId}" title="#{bundle.CreateTopicTitle_subjectId}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_subjectId}">
-                        <f:selectItems value="#{subjectController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateTopicLabel_topicId}" for="topicId" />
-                    <h:selectOneMenu id="topicId" value="#{topicController.selected.topicId}" title="#{bundle.CreateTopicTitle_topicId}" required="true" requiredMessage="#{bundle.CreateTopicRequiredMessage_topicId}">
-                        <f:selectItems value="#{topicController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{topicController.create}" value="#{bundle.CreateTopicSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{topicController.prepareList}" value="#{bundle.CreateTopicShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateTopicIndexLink}"/>
-            </h:form>
+            <div class="row pt-4">
+                <div class="col-sm-12 mx-auto mt-2">
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate />
+                    </p:messages>
+                </div>
+                <div class="col-sm-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-center">Crear Tema</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form class="form" role="form" >
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel value="Id" class="col-lg-3 col-form-label form-control-label" for="id" />
+                                    <h:inputText id="id" value="#{topicController.selected.id}" class="form-control col-lg-6" title="#{bundle.CreateTopicTitle_id}" required="false" requiredMessage="#{bundle.CreateTopicRequiredMessage_id}"/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Nombre:" class="col-lg-3 col-form-label form-control-label" for="name" />
+                                    <h:inputText id="name" class="form-control col-lg-6" value="#{topicController.selected.name}" title="#{bundle.CreateTopicTitle_name}" required="true" requiredMessage="El campo Nombre es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Descripción:" class="col-lg-3 col-form-label form-control-label" for="description" />
+                                    <h:inputText id="description" class="form-control col-lg-6" value="#{topicController.selected.description}" title="#{bundle.CreateTopicTitle_description}" required="true" requiredMessage="El campo Descripción es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Url Imagen:" class="col-lg-3 col-form-label form-control-label" for="urlImage" />
+                                    <h:inputText id="urlImage" class="form-control col-lg-6" value="#{topicController.selected.urlImage}" title="#{bundle.CreateTopicTitle_urlImage}" required="true" requiredMessage="El campo Url Imagen es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Activo:" class="col-lg-3 col-form-label form-control-label" for="active" />
+                                    <h:inputText id="active" class="form-control col-lg-6" value="#{topicController.selected.active}" title="#{bundle.CreateTopicTitle_active}" required="true" requiredMessage="El campo Activo: es obligatorio."/>
+                                </div>
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel value="#{bundle.CreateTopicLabel_createTime}" for="createTime" />
+                                    <h:inputText id="createTime" value="#{topicController.selected.createTime}" title="#{bundle.CreateTopicTitle_createTime}" required="false">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel value="#{bundle.CreateTopicLabel_updateTime}" for="updateTime" />
+                                    <h:inputText id="updateTime" value="#{topicController.selected.updateTime}" title="#{bundle.CreateTopicTitle_updateTime}" required="false">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Id Materia:" class="col-lg-3 col-form-label form-control-label" for="subjectId" />
+                                    <h:selectOneMenu id="subjectId" class="form-control col-lg-6" value="#{topicController.selected.subjectId}" title="#{bundle.CreateTopicTitle_subjectId}" required="true" requiredMessage="El campo Id Materia es obligatorio.">
+                                        <f:selectItems value="#{subjectController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Id Tema:" class="col-lg-3 col-form-label form-control-label" for="topicId" />
+                                    <h:selectOneMenu id="topicId" class="form-control col-lg-6" value="#{topicController.selected.topicId}" title="#{bundle.CreateTopicTitle_topicId}" required="false">
+                                        <f:selectItems value="#{topicController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <div class="col-lg-3 text-center">
+                                        <h:commandLink class="btn btn-primary" action="#{topicController.create}" value="Guardar" />
+                                    </div>
+                                    <div class="col-lg-3 text-center">
+                                        <h:commandLink class="btn btn-secondary" action="#{topicController.prepareList}" value="Lista" immediate="true"/>
+                                    </div>
+                                    <div class="col-lg-3 text-center">
+                                        <h:link class="btn btn-success" outcome="/index" value="Inicio"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

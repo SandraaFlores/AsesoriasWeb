@@ -13,9 +13,9 @@
         <ui:define name="body">
             <div class="row">
                 <div class="col-sm-12 mx-auto mt-2">
-                    <h:panelGroup id="messagePanel" layout="block">
-                        <p:growl id="mensaje" life="4000"/>
-                    </h:panelGroup>
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate />
+                    </p:messages>
                 </div>
                 <div class="mx-auto col-sm-6">
                     <div class="card">
