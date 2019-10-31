@@ -26,7 +26,7 @@
                             <h:form class="form" role="form" >
                                 <div class="form-group row mx-0 d-none">
                                 <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateTypeMaterialLabel_id}" for="id" />
-                                <h:inputText id="id" class="form-control col-lg-6" value="#{typeMaterialController.selected.id}" title="#{bundle.CreateTypeMaterialTitle_id}" required="false" requiredMessage="#{bundle.CreateTypeMaterialRequiredMessage_id}"/>
+                                <h:inputText id="id" class="form-control col-lg-6" value="#{typeMaterialController.selected.id}" title="#{bundle.CreateTypeMaterialTitle_id}" required="false"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Nombre:" for="name" />
@@ -38,22 +38,22 @@
                                 </div>
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateTypeMaterialLabel_createTime}" for="createTime" />
-                                    <h:inputText id="createTime" class="form-control col-lg-6" value="#{typeMaterialController.selected.createTime}" title="#{bundle.CreateTypeMaterialTitle_createTime}" required="false" requiredMessage="#{bundle.CreateTypeMaterialRequiredMessage_createTime}">
+                                    <h:inputText id="createTime" class="form-control col-lg-6" value="#{typeMaterialController.selected.createTime}" title="#{bundle.CreateTypeMaterialTitle_createTime}" required="false">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:inputText>
                                 </div>
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateTypeMaterialLabel_updateTime}" for="updateTime" />
-                                    <h:inputText id="updateTime" class="form-control col-lg-6" value="#{typeMaterialController.selected.updateTime}" title="#{bundle.CreateTypeMaterialTitle_updateTime}" required="false" requiredMessage="#{bundle.CreateTypeMaterialRequiredMessage_updateTime}">
+                                    <h:inputText id="updateTime" class="form-control col-lg-6" value="#{typeMaterialController.selected.updateTime}" title="#{bundle.CreateTypeMaterialTitle_updateTime}" required="false">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:inputText>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <div class="col-lg-3 text-center">
-                                        <h:commandLink class="btn btn-primary glyphicon glyphicon-floppy-save" action="#{typeMaterialController.create}" value="Guardar" />
+                                        <h:commandLink class="btn btn-primary" action="#{typeMaterialController.create}" value="Guardar" />
                                     </div>
                                     <div class="col-lg-6 text-center">
-                                        <h:commandLink class="btn btn-secondary" action="#{typeMaterialController.prepareList}" value="Ver" immediate="true"/>
+                                        <h:commandLink class="btn btn-secondary" action="#{typeMaterialController.prepareList}" value="Lista" immediate="true"/>
                                     </div>
                                     <div class="col-lg-3 text-center">
                                         <h:link class="btn btn-success" outcome="/index" value="Inicio"/>

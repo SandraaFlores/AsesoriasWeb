@@ -154,7 +154,7 @@ public class TypeMaterial implements Serializable {
 
     @Override
     public String toString() {
-        return "models.TypeMaterial[ id=" + id + " ]";
+        return name;
     }
     
 }

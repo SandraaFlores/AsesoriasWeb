@@ -49,7 +49,7 @@ public class Material implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -70,20 +70,18 @@ public class Material implements Serializable {
     @NotNull
     @Column(name = "active")
     private short active;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = true)
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = true)
     @Column(name = "update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materialId")
     private Collection<TeacherHasMaterial> teacherHasMaterialCollection;
     @JoinColumn(name = "topic_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Topic topicId;
     @JoinColumn(name = "type_material_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -209,7 +207,7 @@ public class Material implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Material[ id=" + id + " ]";
+        return name;
     }
     
 }

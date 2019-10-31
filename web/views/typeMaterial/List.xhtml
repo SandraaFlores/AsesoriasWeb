@@ -6,11 +6,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/admin/templates/main.xhtml">
+    <ui:composition template="/templates/principal.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListTypeMaterialTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <div class="col-12 text-center">
                 <h:form styleClass="jsfcrud_list_form">
                     <h:panelGroup id="messagePanel" layout="block">
@@ -24,25 +24,25 @@
                         <h:dataTable class="table" value="#{typeMaterialController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListTypeMaterialTitle_id}"/>
+                                    <h:outputText value="Id"/>
                                 </f:facet>
                                 <h:outputText value="#{item.id}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListTypeMaterialTitle_name}"/>
+                                    <h:outputText value="Nombre"/>
                                 </f:facet>
                                 <h:outputText value="#{item.name}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListTypeMaterialTitle_active}"/>
+                                    <h:outputText value="Activo"/>
                                 </f:facet>
                                 <h:outputText value="#{item.active}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListTypeMaterialTitle_createTime}"/>
+                                    <h:outputText value="Fecha Creación"/>
                                 </f:facet>
                                 <h:outputText value="#{item.createTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -50,7 +50,7 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListTypeMaterialTitle_updateTime}"/>
+                                    <h:outputText value="Fecha Actualización"/>
                                 </f:facet>
                                 <h:outputText value="#{item.updateTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -64,15 +64,18 @@
                                 <h:outputText value=" "/>
                                 <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{typeMaterialController.prepareEdit}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink class="btn btn-info btn-sm far fa-trash-alt" action="#{typeMaterialController.destroy}"/>
+                                <h:commandLink class="far fa-trash-alt" action="#{typeMaterialController.destroy}"/>
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
-                    <br />
-                    <h:commandButton class="btn btn-secondary" action="#{typeMaterialController.prepareCreate}" value="#{bundle.ListTypeMaterialCreateLink}"/>
-                    <br />
-                    <br />
-                    <h:button class="btn btn-success" outcome="/index" value="#{bundle.ListTypeMaterialIndexLink}"/>
+                    <div class="form-group row">
+                        <div class="col-lg-6 text-right">
+                            <h:commandButton class="btn btn-secondary" action="#{typeMaterialController.prepareCreate}" value="Crear nuevo"/> 
+                        </div>
+                        <div class="col-lg-6 text-left">
+                            <h:button class="btn btn-success" outcome="/index" value="Inicio"/>
+                        </div>
+                    </div>
                 </h:form>
             </div>
         </ui:define>
