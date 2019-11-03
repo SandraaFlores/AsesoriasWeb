@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,12 @@ public class UserFacade extends AbstractFacade<User> {
 
     public UserFacade() {
         super(User.class);
+    }
+    
+    public List<User> validar(User u){
+       return em.createNamedQuery("User.validar").setParameter("email", u.getEmail())
+               .setParameter("password", u.getPassword())
+               .getResultList();
     }
     
 }

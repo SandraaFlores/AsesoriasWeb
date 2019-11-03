@@ -5,6 +5,7 @@ import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -229,6 +230,32 @@ public class UserController implements Serializable {
             }
         }
 
+    }
+    
+    public String ingresar() {
+        User usu = null;
+        try {
+            
+            String ok="start";
+            List<User> lista = ejbFacade.validar(current);
+            for(User a : lista){
+                usu = a;
+            }
+            //usu.getNivel();
+            
+            if(usu!=null)
+            {
+                ok="Correcto";
+            }else{
+                JsfUtil.addErrorMessage("Correo o contraseña incorrecta");
+                ok="Error";
+            }
+            //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+            return ok;
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
     }
 
 }

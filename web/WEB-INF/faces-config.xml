@@ -9,4 +9,15 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+    <navigation-rule>
+        <from-view-id>/Ingresar.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Correcto</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Error</from-outcome>
+            <to-view-id>Ingresar.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByControlNumber", query = "SELECT u FROM User u WHERE u.controlNumber = :controlNumber")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.validar", query = "SELECT u FROM User u WHERE u.email = :email and u.password = :password")
     , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
     , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")
     , @NamedQuery(name = "User.findByUrlImage", query = "SELECT u FROM User u WHERE u.urlImage = :urlImage")
@@ -91,12 +92,10 @@ public class User implements Serializable {
     @Column(name = "active")
     private short active;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
@@ -280,5 +279,5 @@ public class User implements Serializable {
     public String toString() {
         return "models.User[ id=" + id + " ]";
     }
-    
+
 }
