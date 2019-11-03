@@ -3,55 +3,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/templates/principal.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewMaterialTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewMaterialLabel_id}"/>
-                    <h:outputText value="#{materialController.selected.id}" title="#{bundle.ViewMaterialTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_name}"/>
-                    <h:outputText value="#{materialController.selected.name}" title="#{bundle.ViewMaterialTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_url}"/>
-                    <h:outputText value="#{materialController.selected.url}" title="#{bundle.ViewMaterialTitle_url}"/>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_check}"/>
-                    <h:outputText value="#{materialController.selected.check}" title="#{bundle.ViewMaterialTitle_check}"/>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_active}"/>
-                    <h:outputText value="#{materialController.selected.active}" title="#{bundle.ViewMaterialTitle_active}"/>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_createTime}"/>
-                    <h:outputText value="#{materialController.selected.createTime}" title="#{bundle.ViewMaterialTitle_createTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_updateTime}"/>
-                    <h:outputText value="#{materialController.selected.updateTime}" title="#{bundle.ViewMaterialTitle_updateTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_topicId}"/>
-                    <h:outputText value="#{materialController.selected.topicId}" title="#{bundle.ViewMaterialTitle_topicId}"/>
-                    <h:outputText value="#{bundle.ViewMaterialLabel_typeMaterialId}"/>
-                    <h:outputText value="#{materialController.selected.typeMaterialId}" title="#{bundle.ViewMaterialTitle_typeMaterialId}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{materialController.destroyAndView}" value="#{bundle.ViewMaterialDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewMaterialEditLink}"/>
-                <br />
-                <h:commandLink action="#{materialController.prepareCreate}" value="#{bundle.ViewMaterialCreateLink}" />
-                <br />
-                <h:commandLink action="#{materialController.prepareList}" value="#{bundle.ViewMaterialShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewMaterialIndexLink}"/>
-
-            </h:form>
+            <div class="row">
+                <div class="col-sm-12 mx-auto mt-2">
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate />
+                    </p:messages>
+                </div>
+                <div class="mx-auto col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-center">Detalles Material</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form class="form row" role="form" >
+                                <div class="form-group  col-md-12 d-none">
+                                    <h:outputText value="#{bundle.ViewMaterialLabel_id}"/>
+                                    <h:outputText value="#{materialController.selected.id}" title="#{bundle.ViewMaterialTitle_id}"/>
+                                </div>
+                                <div class="form-group  col-md-12">
+                                    <b><h:outputText value="Nombre: "/></b>
+                                    <h:outputText value="#{materialController.selected.name}" title="#{bundle.ViewMaterialTitle_name}"/>
+                                </div>
+                                <div class="form-group  col-md-12">
+                                    <b><h:outputText value="Url Imagen: "/></b>
+                                    <h:outputText value="#{materialController.selected.url}" title="#{bundle.ViewMaterialTitle_url}"/>
+                                </div>
+                                <div class="form-group  col-md-12">
+                                    <b><h:outputText value="Verificar: "/></b>
+                                    <h:outputText value="#{materialController.selected.check}" title="#{bundle.ViewMaterialTitle_check}"/>
+                                </div>
+                                <div class="form-group  col-md-12">
+                                    <b><h:outputText value="Activo: "/></b>
+                                    <h:outputText value="#{materialController.selected.active}" title="#{bundle.ViewMaterialTitle_active}"/>
+                                </div>
+                                <div class="form-group  col-md-12 d-none">
+                                    <h:outputText value="#{bundle.ViewMaterialLabel_createTime}"/>
+                                    <h:outputText value="#{materialController.selected.createTime}" title="#{bundle.ViewMaterialTitle_createTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </div>
+                                <div class="form-group  col-md-12 d-none">
+                                    <h:outputText value="#{bundle.ViewMaterialLabel_updateTime}"/>
+                                    <h:outputText value="#{materialController.selected.updateTime}" title="#{bundle.ViewMaterialTitle_updateTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </div>
+                                <div class="form-group  col-md-12">
+                                    <b><h:outputText value="Tema: "/></b>
+                                    <h:outputText value="#{materialController.selected.topicId}" title="#{bundle.ViewMaterialTitle_topicId}"/>
+                                </div>
+                                <div class="form-group  col-md-12">
+                                    <b><h:outputText value="Tipo De Material: "/></b>
+                                    <h:outputText value="#{materialController.selected.typeMaterialId}" title="#{bundle.ViewMaterialTitle_typeMaterialId}"/>
+                                </div>
+                                <div class="col-md-12 text-left ">
+                                    <div class="d-flex justify-content-around">
+                                        <h:commandLink class="btn btn-primary" action="#{materialController.prepareList}" value="Lista"/>
+                                        <h:link class="btn btn-success" outcome="/index" value="Inicio"/>
+                                    </div>                          
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

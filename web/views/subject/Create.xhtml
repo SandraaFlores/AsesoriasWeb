@@ -26,44 +26,40 @@
                             <h:form class="form" role="form">
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Id" for="id" />
-                                    <h:inputText id="id" class="form-control col-lg-6" value="#{subjectController.selected.id}" title="#{bundle.CreateSubjectTitle_id}" required="false"/>
+                                    <h:inputText id="id" class="form-control col-lg-6" value="#{subjectController.selected.id}" required="false"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Nombre:" for="name" />
-                                    <h:inputText id="name" class="form-control col-lg-6" value="#{subjectController.selected.name}" title="#{bundle.CreateSubjectTitle_name}" required="true" requiredMessage="El campo Nombre es obligatorio."/>
+                                    <h:inputText id="name" class="form-control col-lg-6" value="#{subjectController.selected.name}" required="true" requiredMessage="El campo Nombre es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Descripción:" for="description" />
-                                    <h:inputText id="description" class="form-control col-lg-6" value="#{subjectController.selected.description}" title="#{bundle.CreateSubjectTitle_description}" required="true" requiredMessage="El campo Descripción es obligatorio."/>
+                                    <h:inputTextarea rows="3" id="description" class="form-control col-lg-6" value="#{subjectController.selected.description}" required="true" requiredMessage="El campo Descripción es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Url Imagen:" for="urlImage" />
-                                    <h:inputText id="urlImage" class="form-control col-lg-6" value="#{subjectController.selected.urlImage}" title="#{bundle.CreateSubjectTitle_urlImage}" required="true" requiredMessage="El campo Url Imagen es obligatorio."/>
+                                    <h:inputText id="urlImage" class="form-control col-lg-6" value="#{subjectController.selected.urlImage}" required="true" requiredMessage="El campo Url Imagen es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Activo:" for="active" />
-                                    <h:inputText id="active" class="form-control col-lg-6" value="#{subjectController.selected.active}" title="#{bundle.CreateSubjectTitle_active}" required="true" requiredMessage="El campo Activo es obligatorio."/>
+                                    <h:inputText id="active" class="form-control col-lg-6" value="#{subjectController.selected.active}" required="true" requiredMessage="El campo Activo es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel value="#{bundle.CreateSubjectLabel_createTime}" for="createTime" />
-                                    <h:inputText id="createTime" class="form-control col-lg-6" value="#{subjectController.selected.createTime}" title="#{bundle.CreateSubjectTitle_createTime}" required="false">
+                                    <h:inputText id="createTime" class="form-control col-lg-6" value="#{subjectController.selected.createTime}" required="false">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:inputText>
                                 </div>
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel value="#{bundle.CreateSubjectLabel_updateTime}" for="updateTime" />
-                                    <h:inputText id="updateTime" class="form-control col-lg-6" value="#{subjectController.selected.updateTime}" title="#{bundle.CreateSubjectTitle_updateTime}" required="false">
+                                    <h:inputText id="updateTime" class="form-control col-lg-6" value="#{subjectController.selected.updateTime}" required="false">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:inputText>
                                 </div>
-                                <div class="form-group row mx-0">
-                                    <div class="col-lg-3 text-center">
+                                <div class="col-md-12 text-left ">
+                                    <div class="d-flex justify-content-around">
                                         <h:commandLink class="btn btn-primary" action="#{subjectController.create}" value="Guardar" />
-                                    </div>
-                                    <div class="col-lg-3 text-center">
                                         <h:commandLink class="btn btn-secondary" action="#{subjectController.prepareList}" value="Lista" immediate="true"/>
-                                    </div>
-                                    <div class="col-lg-3 text-center">
                                         <h:link class="btn btn-success" outcome="/index" value="Inicio"/>
                                     </div>
                                 </div>

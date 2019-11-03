@@ -241,7 +241,7 @@ public class Topic implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Topic[ id=" + id + " ]";
+        return name;
     }
     
 }

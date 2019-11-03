@@ -22,12 +22,12 @@
                         <h:commandLink action="#{typeMaterialController.previous}" value="#{bundle.Previous} #{typeMaterialController.pagination.pageSize}" rendered="#{typeMaterialController.pagination.hasPreviousPage}"/>&nbsp;
                         <h:commandLink action="#{typeMaterialController.next}" value="#{bundle.Next} #{typeMaterialController.pagination.pageSize}" rendered="#{typeMaterialController.pagination.hasNextPage}"/>&nbsp;
                         <h:dataTable class="table" value="#{typeMaterialController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                            <h:column>
+                            <!--<h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Id"/>
                                 </f:facet>
                                 <h:outputText value="#{item.id}"/>
-                            </h:column>
+                            </h:column>-->
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Nombre"/>
@@ -40,7 +40,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.active}"/>
                             </h:column>
-                            <h:column>
+                            <!--<h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Fecha Creación"/>
                                 </f:facet>
@@ -55,7 +55,7 @@
                                 <h:outputText value="#{item.updateTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
-                            </h:column>
+                            </h:column>-->
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Acciones"/>
@@ -64,15 +64,13 @@
                                 <h:outputText value=" "/>
                                 <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{typeMaterialController.prepareEdit}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink class="far fa-trash-alt" action="#{typeMaterialController.destroy}"/>
+                                
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
-                    <div class="form-group row">
-                        <div class="col-lg-6 text-right">
-                            <h:commandButton class="btn btn-secondary" action="#{typeMaterialController.prepareCreate}" value="Crear nuevo"/> 
-                        </div>
-                        <div class="col-lg-6 text-left">
+                    <div class="col-md-12 text-left ">
+                        <div class="d-flex justify-content-around">
+                            <h:commandButton class="btn btn-primary" action="#{typeMaterialController.prepareCreate}" value="Crear nuevo"/> 
                             <h:button class="btn btn-success" outcome="/index" value="Inicio"/>
                         </div>
                     </div>
