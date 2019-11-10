@@ -55,13 +55,19 @@
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListStudentTitle_careerId}"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.careerId}"/>
+                                    <h:outputText value="#{item.careerId.name}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListStudentTitle_studentTypeId}"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.studentTypeId}"/>
+                                    <h:outputText value="#{item.studentTypeId.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListStudentTitle_userId}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.userId.controlNumber}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

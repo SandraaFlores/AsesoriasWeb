@@ -5,47 +5,56 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewStudentTypeTitle}"></h:outputText>
+            | <h:outputText value="#{bundle.ViewStudentTypeTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewStudentTypeLabel_id}"/>
-                    <h:outputText value="#{studentTypeController.selected.id}" title="#{bundle.ViewStudentTypeTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewStudentTypeLabel_name}"/>
-                    <h:outputText value="#{studentTypeController.selected.name}" title="#{bundle.ViewStudentTypeTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewStudentTypeLabel_description}"/>
-                    <h:outputText value="#{studentTypeController.selected.description}" title="#{bundle.ViewStudentTypeTitle_description}"/>
-                    <h:outputText value="#{bundle.ViewStudentTypeLabel_active}"/>
-                    <h:outputText value="#{studentTypeController.selected.active}" title="#{bundle.ViewStudentTypeTitle_active}"/>
-                    <h:outputText value="#{bundle.ViewStudentTypeLabel_createTime}"/>
-                    <h:outputText value="#{studentTypeController.selected.createTime}" title="#{bundle.ViewStudentTypeTitle_createTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewStudentTypeLabel_updateTime}"/>
-                    <h:outputText value="#{studentTypeController.selected.updateTime}" title="#{bundle.ViewStudentTypeTitle_updateTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{studentTypeController.destroyAndView}" value="#{bundle.ViewStudentTypeDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewStudentTypeEditLink}"/>
-                <br />
-                <h:commandLink action="#{studentTypeController.prepareCreate}" value="#{bundle.ViewStudentTypeCreateLink}" />
-                <br />
-                <h:commandLink action="#{studentTypeController.prepareList}" value="#{bundle.ViewStudentTypeShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewStudentTypeIndexLink}"/>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-12 mt-2">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                </div>
+                <div class="col-sm-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0" align="text-center">Carrera</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form>
+                                <h:panelGrid columns="2" class="mx-auto">
+                                    <h:outputText value="#{bundle.ViewStudentTypeLabel_id}"/>
+                                    <h:outputText value="#{studentTypeController.selected.id}" title="#{bundle.ViewStudentTypeTitle_id}"/>
+                                    <h:outputText value="#{bundle.ViewStudentTypeLabel_name}"/>
+                                    <h:outputText value="#{studentTypeController.selected.name}" title="#{bundle.ViewStudentTypeTitle_name}"/>
+                                    <h:outputText value="#{bundle.ViewStudentTypeLabel_description}"/>
+                                    <h:outputText value="#{studentTypeController.selected.description}" title="#{bundle.ViewStudentTypeTitle_description}"/>
+                                    <h:outputText value="#{bundle.ViewStudentTypeLabel_active}"/>
+                                    <h:outputText value="#{studentTypeController.selected.active}" title="#{bundle.ViewStudentTypeTitle_active}"/>
+                                    <h:outputText value="#{bundle.ViewStudentTypeLabel_createTime}"/>
+                                    <h:outputText value="#{studentTypeController.selected.createTime}" title="#{bundle.ViewStudentTypeTitle_createTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                    <h:outputText value="#{bundle.ViewStudentTypeLabel_updateTime}"/>
+                                    <h:outputText value="#{studentTypeController.selected.updateTime}" title="#{bundle.ViewStudentTypeTitle_updateTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </h:panelGrid>
+                                <div class="row mx-0 mt-4">
+                                    <div class="col-6 text-center">
+                                        <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewStudentTypeEditLink}"/>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <h:commandLink class="btn btn-secondary" action="#{studentTypeController.prepareList}" value="#{bundle.ViewStudentTypeShowAllLink}"/>
+                                    </div>
+                                </div>
 
-            </h:form>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

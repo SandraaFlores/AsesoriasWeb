@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <h:form>
-                                <h:panelGrid columns="2">
+                                <h:panelGrid columns="2" class="mx-auto">
                                     <h:outputText value="#{bundle.ViewUserLabel_id}"/>
                                     <h:outputText value="#{userController.selected.id}" title="#{bundle.ViewUserTitle_id}"/>
                                     <h:outputText value="#{bundle.ViewUserLabel_controlNumber}"/>
@@ -38,6 +38,14 @@
                                     <h:outputText value="#{userController.selected.lastName}" title="#{bundle.ViewUserTitle_lastName}"/>
                                     <h:outputText value="#{bundle.ViewUserLabel_urlImage}"/>
                                     <h:outputText value="#{userController.selected.urlImage}" title="#{bundle.ViewUserTitle_urlImage}"/>
+
+                                    <h:outputText value="#{bundle.ViewUserLabel_levelId}"/>
+                                    <h:outputText value="#{userController.selected.levelId.name}" title="#{bundle.ViewUserTitle_levelId}"/>
+                                    <h:outputText value="#{bundle.ViewUserLabel_statusId}"/>
+                                    <h:outputText value="#{userController.selected.statusId.name}" title="#{bundle.ViewUserTitle_statusId}"/>
+                                    <h:outputText value="#{bundle.ViewUserLabel_userTypeId}"/>
+                                    <h:outputText value="#{userController.selected.userTypeId.name}" title="#{bundle.ViewUserTitle_userTypeId}"/>
+                                    
                                     <h:outputText value="#{bundle.ViewUserLabel_createTime}"/>
                                     <h:outputText value="#{userController.selected.createTime}" title="#{bundle.ViewUserTitle_createTime}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -46,21 +54,12 @@
                                     <h:outputText value="#{userController.selected.updateTime}" title="#{bundle.ViewUserTitle_updateTime}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
-                                    <h:outputText value="#{bundle.ViewUserLabel_levelId}"/>
-                                    <h:outputText value="#{userController.selected.levelId}" title="#{bundle.ViewUserTitle_levelId}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_statusId}"/>
-                                    <h:outputText value="#{userController.selected.statusId}" title="#{bundle.ViewUserTitle_statusId}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_userTypeId}"/>
-                                    <h:outputText value="#{userController.selected.userTypeId}" title="#{bundle.ViewUserTitle_userTypeId}"/>
                                 </h:panelGrid>
                                 <div class="row mx-0 mt-4">
-                                    <div class="col-4 text-center">
-                                        <h:commandLink class="btn btn-danger" action="#{userController.destroyAndView}" value="#{bundle.ViewUserDestroyLink}"/>
-                                    </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewUserEditLink}"/>
                                     </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:commandLink class="btn btn-secondary" action="#{userController.prepareList}" value="#{bundle.ViewUserShowAllLink}"/>
                                     </div>
                                 </div>

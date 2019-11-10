@@ -62,7 +62,7 @@ public class StudentType implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
-    private short active;
+    private boolean active;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_time")
@@ -83,7 +83,7 @@ public class StudentType implements Serializable {
         this.id = id;
     }
 
-    public StudentType(Integer id, String name, String description, short active, Date createTime, Date updateTime) {
+    public StudentType(Integer id, String name, String description, boolean active, Date createTime, Date updateTime) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -117,15 +117,15 @@ public class StudentType implements Serializable {
     }
 
     public String getActive() {
-        if(active == 0) {
+        if(active == false) {
             return "Desactivado";
         } else {
             return "Activado";
         }
     }
 
-    public void setActive(short active) {
-        this.active = active;
+    public void setActive(String active) {
+        this.active = !active.equals("false");
     }
 
     public Date getCreateTime() {
