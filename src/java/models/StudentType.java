@@ -175,7 +175,7 @@ public class StudentType implements Serializable {
 
     @Override
     public String toString() {
-        return "models.StudentType[ id=" + id + " ]";
+        return name;
     }
     
 }
