@@ -59,14 +59,14 @@
                                 <div class="form-group row mx-0">
                                     <h:outputLabel value="Materia:" class="col-lg-3 col-form-label form-control-label" for="subjectId" />
                                     <h:selectOneMenu id="subjectId" class="form-control col-lg-6" value="#{topicController.selected.subjectId}" required="true" requiredMessage="El campo Materia es obligatorio.">
-                                        <f:selectItems value="#{subjectController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{subjectController.itemsAvailableSelectMany}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel value="Tema:" class="col-lg-3 col-form-label form-control-label" for="topicId" />
-                                    <h:selectOneMenu id="topicId" class="form-control col-lg-6" value="#{topicController.selected.topicId}" required="false">
+                                    <h:selectManyMenu id="topicId" class="form-control col-lg-6" value="#{topicController.selected.topicId}" required="false">
                                         <f:selectItems value="#{topicController.itemsAvailableSelectOne}"/>
-                                    </h:selectOneMenu>
+                                    </h:selectManyMenu>
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
