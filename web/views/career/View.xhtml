@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <h:form>
-                                <h:panelGrid columns="2">
+                                <h:panelGrid columns="2" class="mx-auto">
                                     <h:outputText value="#{bundle.ViewCareerLabel_name}"/>
                                     <h:outputText value="#{careerController.selected.name}" title="#{bundle.ViewCareerTitle_name}"/>
                                     <h:outputText value="#{bundle.ViewCareerLabel_acronym}"/>
@@ -40,13 +40,10 @@
                                     </h:outputText>
                                 </h:panelGrid>
                                 <div class="row mx-0 mt-4">
-                                    <div class="col-4 text-center">
-                                        <h:commandLink class="btn btn-danger" action="#{careerController.destroyAndView}" value="#{bundle.ViewCareerDestroyLink}"/>
-                                    </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewCareerEditLink}"/>
                                     </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:commandLink class="btn btn-secondary" action="#{careerController.prepareList}" value="#{bundle.ViewCareerShowAllLink}"/>
                                     </div>
                                 </div>

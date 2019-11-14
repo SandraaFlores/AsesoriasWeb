@@ -142,7 +142,7 @@ public class UserType implements Serializable {
 
     @Override
     public String toString() {
-        return "models.UserType[ id=" + id + " ]";
+        return name;
     }
     
 }

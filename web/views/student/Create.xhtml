@@ -5,46 +5,65 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateStudentTitle}"></h:outputText>
+            | <h:outputText value="#{bundle.CreateStudentTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateStudentLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{studentController.selected.id}" title="#{bundle.CreateStudentTitle_id}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateStudentLabel_semester}" for="semester" />
-                    <h:inputText id="semester" value="#{studentController.selected.semester}" title="#{bundle.CreateStudentTitle_semester}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_semester}"/>
-                    <h:outputLabel value="#{bundle.CreateStudentLabel_score}" for="score" />
-                    <h:inputText id="score" value="#{studentController.selected.score}" title="#{bundle.CreateStudentTitle_score}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_score}"/>
-                    <h:outputLabel value="#{bundle.CreateStudentLabel_phone}" for="phone" />
-                    <h:inputText id="phone" value="#{studentController.selected.phone}" title="#{bundle.CreateStudentTitle_phone}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_phone}"/>
-                    <h:outputLabel value="#{bundle.CreateStudentLabel_careerId}" for="careerId" />
-                    <h:selectOneMenu id="careerId" value="#{studentController.selected.careerId}" title="#{bundle.CreateStudentTitle_careerId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_careerId}">
-                        <f:selectItems value="#{careerController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateStudentLabel_studentTypeId}" for="studentTypeId" />
-                    <h:selectOneMenu id="studentTypeId" value="#{studentController.selected.studentTypeId}" title="#{bundle.CreateStudentTitle_studentTypeId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_studentTypeId}">
-                        <f:selectItems value="#{studentTypeController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateStudentLabel_userId}" for="userId" />
-                    <h:selectOneMenu id="userId" value="#{studentController.selected.userId}" title="#{bundle.CreateStudentTitle_userId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_userId}">
-                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{studentController.create}" value="#{bundle.CreateStudentSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{studentController.prepareList}" value="#{bundle.CreateStudentShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateStudentIndexLink}"/>
-            </h:form>
+        <ui:define name="content">
+            <div class="row pt-4">
+                <div class="col-sm-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0" align="text-center">Crear estudiante</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form class="form" role="form">
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_semester}" for="semester" />
+                                    <h:inputText id="semester" class="form-control col-lg-9" value="#{studentController.selected.semester}" title="#{bundle.CreateStudentTitle_semester}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_semester}"/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_phone}" for="phone" />
+                                    <h:inputText id="phone" class="form-control col-lg-9" value="#{studentController.selected.phone}" title="#{bundle.CreateStudentTitle_phone}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_phone}"/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_careerId}" for="careerId" />
+                                    <h:selectOneMenu id="careerId" class="form-control col-lg-9" value="#{studentController.selected.careerId}" title="#{bundle.CreateStudentTitle_careerId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_careerId}">
+                                        <f:selectItems value="#{careerController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_studentTypeId}" for="studentTypeId" />
+                                    <h:selectOneMenu id="studentTypeId" class="form-control col-lg-9" value="#{studentController.selected.studentTypeId}" title="#{bundle.CreateStudentTitle_studentTypeId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_studentTypeId}">
+                                        <f:selectItems value="#{studentTypeController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_userId}" for="userId" />
+                                    <h:selectOneMenu id="userId" class="form-control col-lg-9" value="#{studentController.selected.userId}" title="#{bundle.CreateStudentTitle_userId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_userId}">
+                                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <div class="col-lg-6 text-center">
+                                        <h:commandLink class="btn btn-primary glyphicon glyphicon-floppy-save" action="#{studentController.create}" value="Guardar" />  
+                                    </div>
+                                    <div class="col-lg-6 text-center">
+                                        <h:commandLink class="btn btn-secondary" action="#{studentController.prepareList}" value="#{bundle.CreateStudentShowAllLink}" immediate="true"/>  
+                                    </div>
+                                </div>
+                                <div class="row mx-0 mt-2">
+                                    <div class="col-12">
+                                        <h:panelGroup id="messagePanel" layout="block">
+                                            <h:messages styleClass="alert" errorStyle="color: red" infoStyle="color: green" layout="div"/>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

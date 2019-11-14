@@ -50,7 +50,7 @@ public class Level implements Serializable {
     private String name;
     @Basic(optional = false)
     @Column(name = "active")
-    private short active;
+    private boolean active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelId")
     private Collection<User> userCollection;
 
@@ -61,7 +61,7 @@ public class Level implements Serializable {
         this.id = id;
     }
 
-    public Level(Integer id, String name, short active) {
+    public Level(Integer id, String name, boolean active) {
         this.id = id;
         this.name = name;
         this.active = active;
@@ -84,15 +84,15 @@ public class Level implements Serializable {
     }
 
     public String getActive() {
-        if(active == 0) {
+        if(active == false) {
             return "Desactivado";
         } else {
             return "Activado";
         }
     }
 
-    public void setActive(short active) {
-        this.active = active;
+    public void setActive(String active) {
+        this.active = !active.equals("false");
     }
 
     @XmlTransient
@@ -126,7 +126,7 @@ public class Level implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Level[ id=" + id + " ]";
+        return name;
     }
     
 }

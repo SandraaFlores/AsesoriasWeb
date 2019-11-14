@@ -11,11 +11,6 @@
         </ui:define>
         <ui:define name="content">
             <div class="row mx-0">
-                <div class="col-11 mt-4 mx-auto text-right">
-                    <h:form>
-                        <h:commandLink class="fas fa-plus-circle" action="#{statusController.prepareCreate}" value="" style="text-decoration: none; font-size: 2rem"/>
-                    </h:form>
-                </div>
                 <div class="col-12 text-center">
                     <h:form styleClass="jsfcrud_list_form">
                         <h:panelGroup id="messagePanel" layout="block">
@@ -38,18 +33,6 @@
                                         <h:outputText value="#{bundle.ListStatusTitle_name}"/>
                                     </f:facet>
                                     <h:outputText value="#{item.name}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="&nbsp;"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.active}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="&nbsp;"/>
-                                    </f:facet>
-                                    <h:commandLink class="text-decoration-none fas fa-trash-alt color-red mx-1" action="#{statusController.destroy}" value=""/>
                                 </h:column>
                             </h:dataTable>
                         </h:panelGroup>

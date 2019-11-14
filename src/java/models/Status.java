@@ -127,7 +127,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Status[ id=" + id + " ]";
+        return name;
     }
     
 }

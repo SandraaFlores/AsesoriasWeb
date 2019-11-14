@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <h:form>
-                                <h:panelGrid columns="2">
+                                <h:panelGrid columns="2" class="mx-auto">
                                     <h:outputText value="#{bundle.ViewLevelLabel_id}"/>
                                     <h:outputText value="#{levelController.selected.id}" title="#{bundle.ViewLevelTitle_id}"/>
                                     <h:outputText value="#{bundle.ViewLevelLabel_name}"/>
@@ -32,13 +32,10 @@
                                     <h:outputText value="#{levelController.selected.active}" title="#{bundle.ViewLevelTitle_active}"/>
                                 </h:panelGrid>
                                 <div class="row mx-0 mt-4">
-                                    <div class="col-4 text-center">
-                                        <h:commandLink class="btn btn-danger" action="#{levelController.destroyAndView}" value="#{bundle.ViewLevelDestroyLink}"/>
-                                    </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewLevelEditLink}"/>
                                     </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:commandLink class="btn btn-secondary" action="#{levelController.prepareList}" value="#{bundle.ViewLevelShowAllLink}"/>
                                     </div>
                                 </div>

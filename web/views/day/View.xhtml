@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <h:form>
-                                <h:panelGrid columns="2">
+                                <h:panelGrid columns="2" class="mx-auto">
                                     <h:outputText value="#{bundle.ViewDayLabel_id}"/>
                                     <h:outputText value="#{dayController.selected.id}" title="#{bundle.ViewDayTitle_id}"/>
                                     <h:outputText value="#{bundle.ViewDayLabel_name}"/>
@@ -32,13 +32,10 @@
                                     <h:outputText value="#{dayController.selected.active}" title="#{bundle.ViewDayTitle_active}"/>
                                 </h:panelGrid>
                                 <div class="row mx-0 mt-4">
-                                    <div class="col-4 text-center">
-                                        <h:commandLink class="btn btn-danger" action="#{dayController.destroyAndView}" value="#{bundle.ViewDayDestroyLink}"/>
-                                    </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewDayEditLink}"/>
                                     </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-6 text-center">
                                         <h:commandLink class="btn btn-secondary" action="#{dayController.prepareList}" value="#{bundle.ViewDayShowAllLink}"/>
                                     </div>
                                 </div>
