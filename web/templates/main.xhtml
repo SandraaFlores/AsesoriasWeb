@@ -8,28 +8,28 @@
     <h:head>
         <title><ui:insert name="title" /></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        
+
         <!-- Cascading Style Sheet -->
         <ui:include src="/templates/global_css.xhtml"></ui:include>
-        
+
         <ui:insert name="head" />
     </h:head>
 
     <h:body>
-        <!-- Navbar -->
-        <ui:include src="/components/navbar.xhtml"></ui:include>
-        
+        <!-- Navbar
+        <ui:include src="/components/navbar.xhtml"></ui:include> -->
+
         <!-- Content -->
         <div class="container-fluid">
             <ui:insert name="body" />
         </div>
-                
-            <!-- Footer -->
-            <ui:include src="/components/footer.xhtml"></ui:include>
-        
+
+        <!-- Footer -->
+        <ui:include src="/components/footer.xhtml"></ui:include>
+
         <!-- JavaScript -->
         <ui:include src="/templates/global_js.xhtml"></ui:include>
-        
+
     </h:body>
 
 </html>

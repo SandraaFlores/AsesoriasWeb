@@ -10,21 +10,29 @@
         </resource-bundle>
     </application>
     <navigation-rule>
-        <from-view-id>/Ingresar.xhtml</from-view-id>
+        <from-view-id>/login.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>Correcto</from-outcome>
-            <to-view-id>index.xhtml</to-view-id>
+            <to-view-id>inicio.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>Error</from-outcome>
-            <to-view-id>Ingresar.xhtml</to-view-id>
+            <to-view-id>login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>Subject</from-outcome>
-            <to-view-id>views/subject/Create.xhtml</to-view-id>
+            <to-view-id>/views/subject/List.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Topic</from-outcome>
+            <to-view-id>/views/topic/List.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Material</from-outcome>
+            <to-view-id>/views/material/List.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

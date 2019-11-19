@@ -64,19 +64,19 @@ public class UserController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "List?faces-redirect=true";
     }
 
     public String prepareView() {
         current = (User) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "View?faces-redirect=true";
     }
 
     public String prepareCreate() {
         current = new User();
         selectedItemIndex = -1;
-        return "Create";
+        return "Create?faces-redirect=true";
     }
 
     public String create() {
@@ -93,7 +93,7 @@ public class UserController implements Serializable {
     public String prepareEdit() {
         current = (User) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "Edit?faces-redirect=true";
     }
 
     public String update() {
@@ -235,7 +235,6 @@ public class UserController implements Serializable {
     public String ingresar() {
         User usu = null;
         try {
-            
             String ok="start";
             List<User> lista = ejbFacade.validar(current);
             for(User a : lista){
@@ -246,9 +245,11 @@ public class UserController implements Serializable {
             if(usu!=null)
             {
                 ok="Correcto";
+                System.out.println("entraste");
             }else{
-                JsfUtil.addErrorMessage("Correo o contraseña incorrecta");
+                JsfUtil.addErrorMessage("Correo o contraseña incorecta");
                 ok="Error";
+                System.out.println("No entraste");
             }
             //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return ok;

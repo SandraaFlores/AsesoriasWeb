@@ -5,14 +5,13 @@
  */
 package session;
 
-import com.sun.tools.jxc.ap.Const;
 import controllers.UserFacade;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import models.User;
@@ -23,7 +22,7 @@ import models.User;
  */
 //@Named(value = "login")
 @ManagedBean(name = "login", eager = true)
-@RequestScoped
+@SessionScoped
 public class Login implements Serializable {
 
     private String email;
@@ -34,10 +33,6 @@ public class Login implements Serializable {
     @EJB
     private UserFacade usufacade;
     private User usuautenticado;
-
-    public static final int ADMIN = 1;
-    public static final int PROFESSOR = 2;
-    public static final int STUDENT = 3;
 
     /**
      * Creates a new instance of Login
@@ -85,43 +80,51 @@ public class Login implements Serializable {
     public void setUsuautenticado(User usuautenticado) {
         this.usuautenticado = usuautenticado;
     }
-    
-    public int getStudent() {
-        return STUDENT;
-    }
-
-    
 
     public void Acceso() throws IOException {
-
         httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         usuautenticado = usufacade.buscar(email, password);
         if (usuautenticado != null) {
             httpservlet.getSession().setAttribute("usuario", usuautenticado);
             String viewString = "index.xhtml";
+            /*if (usuautenticado.getLevelId().getId() == 1) {
+                viewString = "admin/templates/content.xhtml";
+            } else {
+                if (usuautenticado.getLevelId().getId() == 2 || usuautenticado.getLevelId().getId() == 1) {
+                    viewString = "professor/templates/content.xhtml";
+
+                } else {
+                    if (usuautenticado.getLevelId().getId() == 3 || usuautenticado.getLevelId().getId() == 1) {
+                        viewString = "student/templates/content.xhtml";
+                    } else {
+                        viewString = "index.xhtml";
+                    }
+                }
+            }*/
             switch (usuautenticado.getLevelId().getId()) {
-                case ADMIN:
-                    viewString = "admin.xhtml";
+                case 1:
+                    viewString = "admin/templates/content.xhtml";
                     break;
-                case PROFESSOR:
-                    viewString = "super.xhtml";
+                case 2:
+                    viewString = "professor/templates/content.xhtml";
                     break;
-                case STUDENT:
-                    viewString = "super.xhtml";
+                case 3:
+                    viewString = "student/templates/content.xhtml";
                     break;
             }
+
             FacesContext.getCurrentInstance().getExternalContext().redirect(viewString);
             //return "Acceder";
         } else {
-            System.out.println("no se encuentra de la base");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario o password incorrecto", null));
+            System.out.println("No se encuentra registrado en la base");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correo o contraseña incorrecta.", null));
         }
     }
 
     public void cerrarSesion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/AsesoriasWeb/faces/login.xhtml");
             usuautenticado = null;
         } catch (Exception e) {
         }
@@ -131,13 +134,15 @@ public class Login implements Serializable {
         httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         User usu = (User) httpservlet.getSession().getAttribute("usuario");
         if (usu != null) {
-            if (usu.getLevelId().getId() != nivel) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("sin_privilegios.xhtml");
+            if (usu.getLevelId().getId() != nivel && (usu.getLevelId().getId())!= 1) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/AsesoriasWeb/faces/sin_privilegios.xhtml");
             }
         } else {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../../Ingresar.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/AsesoriasWeb/faces/error.xhtml");
         }
     }
+    
+
 
 }

@@ -38,7 +38,7 @@ public class UserFacade extends AbstractFacade<User> {
     }
     
     public User buscar(String email, String pass){
-        Query consulta = em.createNamedQuery("User.buscar",User.class)
+        Query consulta = em.createNamedQuery("User.buscar", User.class)
                 .setParameter("email", email)
                 .setParameter("password", pass);
         List<User> lista = consulta.getResultList();

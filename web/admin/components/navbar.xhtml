@@ -4,51 +4,66 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/AsesoriasWeb/">Asesorías</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/AsesoriasWeb/faces/views/career/List.xhtml">Carreras</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/AsesoriasWeb/faces/views/day/List.xhtml">Días</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/AsesoriasWeb/faces/views/level/List.xhtml">Roles</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Usuarios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <a class="dropdown-item" href="/AsesoriasWeb/faces/views/user/List.xhtml">Estudiantes</a>
-                            <a class="dropdown-item" href="/AsesoriasWeb/faces/views/user/List.xhtml">Profesores</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Tipos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="/AsesoriasWeb/faces/views/userType/List.xhtml">Usuarios</a>
-                            <a class="dropdown-item" href="/AsesoriasWeb/faces/views/studentType/List.xhtml">Estudiantes</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/AsesoriasWeb/faces/views/status/List.xhtml">Estatus</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/AsesoriasWeb/faces/views/student/List.xhtml">Estudiantes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Cerrar sesión</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/AsesoriasWeb/faces/admin/templates/content.xhtml">Administrador</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/career/List.xhtml">Carreras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/day/List.xhtml">Días</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/level/List.xhtml">Roles</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuarios
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                        <a class="dropdown-item" href="/AsesoriasWeb/faces/views/user/List.xhtml">Estudiantes</a>
+                        <a class="dropdown-item" href="/AsesoriasWeb/faces/views/user/List.xhtml">Profesores</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tipos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <a class="dropdown-item" href="/AsesoriasWeb/faces/views/userType/List.xhtml">Usuarios</a>
+                        <a class="dropdown-item" href="/AsesoriasWeb/faces/views/studentType/List.xhtml">Estudiantes</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/status/List.xhtml">Estatus</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/student/List.xhtml">Estudiantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/subject/List.xhtml">Materias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/topic/List.xhtml">Temas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AsesoriasWeb/faces/views/material/List.xhtml">Materiales</a>
+                </li>
+               
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       ¡Hola, #{sessionScope.usuario.firstName}! 
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <h:form><h:commandLink class="dropdown-item" action="#{login.cerrarSesion}">Cerrar Sesión</h:commandLink></h:form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 </html>
