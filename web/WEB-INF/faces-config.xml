@@ -20,19 +20,4 @@
             <to-view-id>login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>Subject</from-outcome>
-            <to-view-id>/views/subject/List.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>Topic</from-outcome>
-            <to-view-id>/views/topic/List.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>Material</from-outcome>
-            <to-view-id>/views/material/List.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
 </faces-config>

@@ -29,7 +29,7 @@
                             </h:column>-->
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Nombre"/>
+                                    <h:outputText value="Materia"/>
                                 </f:facet>
                                 <h:outputText value="#{item.name}"/>
                             </h:column>
@@ -41,17 +41,17 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Url Imagen"/>
+                                    <h:outputText value="Imagen"/>
                                 </f:facet>
                                 <h:outputText value="#{item.urlImage}"/>
                             </h:column>
-                            <h:column>
+                            <!--<h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Activo"/>
                                 </f:facet>
                                 <h:outputText value="#{item.active}"/>
                             </h:column>
-                            <!--<h:column>
+                            <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Fecha Creación"/>
                                 </f:facet>
@@ -73,13 +73,10 @@
                                 </f:facet>
                                 <h:commandLink class="fas fa-eye color-black mx-1" action="#{subjectController.prepareView}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{subjectController.prepareEdit}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink class="far fa-trash-alt color-red mx-1" action="#{subjectController.destroy}"/>
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
-                    <div class="col-md-12 text-left ">
+                    <div class="col-md-12 text-left d-none">
                         <div class="d-flex justify-content-around">
                             <h:commandLink class="btn btn-primary" action="#{subjectController.prepareCreate}" value="Crear nuevo"/>
                         </div>

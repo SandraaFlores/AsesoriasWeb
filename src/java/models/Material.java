@@ -41,9 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Material.findByName", query = "SELECT m FROM Material m WHERE m.name = :name")
     , @NamedQuery(name = "Material.findByUrl", query = "SELECT m FROM Material m WHERE m.url = :url")
     , @NamedQuery(name = "Material.findByCheck", query = "SELECT m FROM Material m WHERE m.check = :check")
-    , @NamedQuery(name = "Material.findByActive", query = "SELECT m FROM Material m WHERE m.active = :active")
-    , @NamedQuery(name = "Material.findByCreateTime", query = "SELECT m FROM Material m WHERE m.createTime = :createTime")
-    , @NamedQuery(name = "Material.findByUpdateTime", query = "SELECT m FROM Material m WHERE m.updateTime = :updateTime")})
+    , @NamedQuery(name = "Material.findByActive", query = "SELECT m FROM Material m WHERE m.active = :active")})
 public class Material implements Serializable {
 
     private static final long serialVersionUID = 1L;

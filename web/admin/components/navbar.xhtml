@@ -53,13 +53,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/AsesoriasWeb/faces/views/material/List.xhtml">Materiales</a>
                 </li>
-               
+
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       ¡Hola, #{sessionScope.usuario.firstName}! 
+                        ¡Hola, #{sessionScope.usuario.firstName}! 
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <h:form><h:commandLink class="dropdown-item" action="#{login.cerrarSesion}">Cerrar Sesión</h:commandLink></h:form>
+                    <div class="dropdown-menu px-1" style="min-width: 0" aria-labelledby="navbarDropdown2">
+                        <h:form><h:commandLink class="dropdown-item px-0" style="padding: 0!important" action="#{login.cerrarSesion}">Cerrar Sesión</h:commandLink></h:form>
                     </div>
                 </li>
             </ul>

@@ -87,20 +87,6 @@ public class Login implements Serializable {
         if (usuautenticado != null) {
             httpservlet.getSession().setAttribute("usuario", usuautenticado);
             String viewString = "index.xhtml";
-            /*if (usuautenticado.getLevelId().getId() == 1) {
-                viewString = "admin/templates/content.xhtml";
-            } else {
-                if (usuautenticado.getLevelId().getId() == 2 || usuautenticado.getLevelId().getId() == 1) {
-                    viewString = "professor/templates/content.xhtml";
-
-                } else {
-                    if (usuautenticado.getLevelId().getId() == 3 || usuautenticado.getLevelId().getId() == 1) {
-                        viewString = "student/templates/content.xhtml";
-                    } else {
-                        viewString = "index.xhtml";
-                    }
-                }
-            }*/
             switch (usuautenticado.getLevelId().getId()) {
                 case 1:
                     viewString = "admin/templates/content.xhtml";
@@ -117,7 +103,7 @@ public class Login implements Serializable {
             //return "Acceder";
         } else {
             System.out.println("No se encuentra registrado en la base");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correo o contraseña incorrecta.", null));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correo o contraseña incorrecta.", null));
         }
     }
 
