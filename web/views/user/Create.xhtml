@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
@@ -35,10 +36,6 @@
                                     <h:inputText id="lastName" class="form-control col-lg-8" value="#{userController.selected.lastName}" title="#{bundle.CreateUserTitle_lastName}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_lastName}"/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-4 col-form-label form-control-label" value="#{bundle.CreateUserLabel_urlImage}" for="urlImage" />
-                                    <h:inputText id="urlImage" class="form-control col-lg-8" value="#{userController.selected.urlImage}" title="#{bundle.CreateUserTitle_urlImage}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_urlImage}"/>
-                                </div>
-                                <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-2 col-form-label form-control-label" value="#{bundle.CreateUserLabel_levelId}" for="levelId" />
                                     <h:selectOneMenu id="levelId" class="form-control col-lg-4" value="#{userController.selected.levelId}" title="#{bundle.CreateUserTitle_levelId}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_levelId}">
                                         <f:selectItems value="#{levelController.itemsAvailableSelectOne}"/>
@@ -54,6 +51,23 @@
                                     <h:outputLabel class="col-lg-3 mt-lg-3 col-form-label form-control-label" value="#{bundle.CreateUserLabel_password}" for="password" />
                                     <h:inputSecret id="password" class="form-control col-lg-3 mt-lg-3" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_password}"/>
                                 </div>
+                                <!--<div class="form-group row mx-0">
+                                    <div class="col-lg-12 text-center">
+                                        <p:fileUpload
+                                                  mode="advanced"
+                                                  auto="false"
+                                                  dragDropSupport="false"
+                                                  multiple="true"
+                                                  sizeLimit="100000"
+                                                  fileUploadListener="#{userController.handleFileUpload}"
+                                                  update="messages"
+                                                  fileLimit="3"
+                                                  value="#{userController.file}"
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                        <p:growl id="messages" 
+                                        showDetail="true" />
+                                    </div>
+                                </div>-->
                                 <div class="form-group row mx-0">
                                     <div class="col-lg-6 text-center">
                                         <h:commandLink class="btn btn-primary glyphicon glyphicon-floppy-save" action="#{userController.create}" value="Guardar" />  

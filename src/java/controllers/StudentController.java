@@ -71,7 +71,7 @@ public class StudentController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
-
+    
     public String prepareCreate() {
         current = new Student();
         selectedItemIndex = -1;

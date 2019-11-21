@@ -5,69 +5,71 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListScheduleTitle}"></h:outputText>
+            | <h:outputText value="#{bundle.ListScheduleTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListScheduleEmpty}" rendered="#{scheduleController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{scheduleController.items.rowCount > 0}">
-                    <h:outputText value="#{scheduleController.pagination.pageFirstItem + 1}..#{scheduleController.pagination.pageLastItem + 1}/#{scheduleController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{scheduleController.previous}" value="#{bundle.Previous} #{scheduleController.pagination.pageSize}" rendered="#{scheduleController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{scheduleController.next}" value="#{bundle.Next} #{scheduleController.pagination.pageSize}" rendered="#{scheduleController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{scheduleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListScheduleTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListScheduleTitle_hour}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.hour}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListScheduleTitle_active}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.active}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListScheduleTitle_dayId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dayId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListScheduleTitle_studentId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.studentId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{scheduleController.prepareView}" value="#{bundle.ListScheduleViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{scheduleController.prepareEdit}" value="#{bundle.ListScheduleEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{scheduleController.destroy}" value="#{bundle.ListScheduleDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{scheduleController.prepareCreate}" value="#{bundle.ListScheduleCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListScheduleIndexLink}"/>
-            </h:form>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-11 mt-4 mx-auto text-right">
+                    <h:form>
+                        <h:commandLink class="fas fa-plus-circle" action="#{scheduleController.prepareCreate}" value="" style="text-decoration: none; font-size: 2rem"/>
+                    </h:form>
+                </div>
+                <div class="col-12 text-center">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListScheduleEmpty}" rendered="#{scheduleController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{scheduleController.items.rowCount > 0}">
+                            <h:outputText value="#{scheduleController.pagination.pageFirstItem + 1}..#{scheduleController.pagination.pageLastItem + 1}/#{scheduleController.pagination.itemsCount}"/>&nbsp;
+                            <h:commandLink action="#{scheduleController.previous}" value="#{bundle.Previous} #{scheduleController.pagination.pageSize}" rendered="#{scheduleController.pagination.hasPreviousPage}"/>&nbsp;
+                            <h:commandLink action="#{scheduleController.next}" value="#{bundle.Next} #{scheduleController.pagination.pageSize}" rendered="#{scheduleController.pagination.hasNextPage}"/>&nbsp;
+                            <h:dataTable class="table" value="#{scheduleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListScheduleTitle_id}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListScheduleTitle_hour}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.hour}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.active}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListScheduleTitle_dayId}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dayId.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListScheduleTitle_studentId}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.studentId.userId.controlNumber}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink class="text-decoration-none far fa-eye color-black mx-1" action="#{scheduleController.prepareView}" value=""/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink class="text-decoration-none fas fa-pencil-alt color-blue mx-1" action="#{scheduleController.prepareEdit}" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

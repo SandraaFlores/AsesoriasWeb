@@ -53,7 +53,7 @@ public class Schedule implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
-    private short active;
+    private boolean active;
     @JoinColumn(name = "day_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Day dayId;
@@ -70,7 +70,7 @@ public class Schedule implements Serializable {
         this.id = id;
     }
 
-    public Schedule(Integer id, String hour, short active) {
+    public Schedule(Integer id, String hour, boolean active) {
         this.id = id;
         this.hour = hour;
         this.active = active;
@@ -92,12 +92,16 @@ public class Schedule implements Serializable {
         this.hour = hour;
     }
 
-    public short getActive() {
-        return active;
+    public String getActive() {
+        if(active == false) {
+            return "Desactivado";
+        } else {
+            return "Activado";
+        }
     }
 
-    public void setActive(short active) {
-        this.active = active;
+    public void setActive(String active) {
+        this.active = !active.equals("false");
     }
 
     public Day getDayId() {

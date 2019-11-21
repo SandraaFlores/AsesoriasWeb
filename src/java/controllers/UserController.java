@@ -3,6 +3,12 @@ package controllers;
 import models.User;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,6 +16,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,11 +24,15 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 @Named("userController")
 @SessionScoped
 public class UserController implements Serializable {
 
+    private UploadedFile file;
+    
     private User current;
     private DataModel items = null;
     @EJB
@@ -61,7 +72,7 @@ public class UserController implements Serializable {
         }
         return pagination;
     }
-
+    
     public String prepareList() {
         recreateModel();
         return "List";
@@ -72,7 +83,7 @@ public class UserController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
-
+    
     public String prepareCreate() {
         current = new User();
         selectedItemIndex = -1;
@@ -81,6 +92,7 @@ public class UserController implements Serializable {
 
     public String create() {
         try {
+            current.setUrlImage("null");
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
@@ -95,16 +107,50 @@ public class UserController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
+    
+    public void handleFileUpload(FileUploadEvent event) {
+        file = event.getFile();
+        FacesMessage msg = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
-    public String update() {
+    public String update() throws FileNotFoundException, IOException {
         try {
+            String type = file.getContentType();
+
+            //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
+            String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
+
+            String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
+            current.setUrlImage("/img/" + fileName);
+            File newFile = new File(path, fileName);
+            
+            InputStream input = file.getInputstream();
+            OutputStream output = new FileOutputStream(newFile);
+
+            byte[] bytes = new byte[1024];
+            int read;
+
+            while((read = input.read(bytes)) != (-1)) {
+                output.write(bytes, 0, read);
+            }
+            
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured " + e.getMessage()));
             return null;
         }
+    }
+    
+    public String extention(String fileName) {
+        String extention = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extention = fileName.substring( i + 1);
+        }
+        return extention;
     }
 
     public String destroy() {
@@ -190,6 +236,14 @@ public class UserController implements Serializable {
 
     public User getUser(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+    
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
     @FacesConverter(forClass = User.class)
