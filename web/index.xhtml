@@ -4,48 +4,44 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/admin/templates/main.xhtml">
-        <ui:define name="title">| Inicio</ui:define>
-        <ui:define name="content">
-            <div class="row">
-                <div class="col-12">
-                    <h:link outcome="/views/career/List" value="Show All Career Items"/>
-                    <br />
-                    <h:link outcome="/views/day/List" value="Show All Day Items"/>
-                    <br />
-                    <h:link outcome="/views/exception/List" value="Show All Exception Items"/>
-                    <br />
-                    <h:link outcome="/views/level/List" value="Show All Level Items"/>
-                    <br />
-                    <h:link outcome="/views/material/List" value="Show All Material Items"/>
-                    <br />
-                    <h:link outcome="/views/report/List" value="Show All Report Items"/>
-                    <br />
-                    <h:link outcome="/views/reportStatus/List" value="Show All ReportStatus Items"/>
-                    <br />
-                    <h:link outcome="/views/schedule/List" value="Show All Schedule Items"/>
-                    <br />
-                    <h:link outcome="/views/status/List" value="Show All Status Items"/>
-                    <br />
-                    <h:link outcome="/views/student/List" value="Show All Student Items"/>
-                    <br />
-                    <h:link outcome="/views/studentHasTopic/List" value="Show All StudentHasTopic Items"/>
-                    <br />
-                    <h:link outcome="/views/studentType/List" value="Show All StudentType Items"/>
-                    <br />
-                    <h:link outcome="/views/subject/List" value="Show All Subject Items"/>
-                    <br />
-                    <h:link outcome="/views/teacherHasMaterial/List" value="Show All TeacherHasMaterial Items"/>
-                    <br />
-                    <h:link outcome="/views/topic/List" value="Show All Topic Items"/>
-                    <br />
-                    <h:link outcome="/views/typeMaterial/List" value="Show All TypeMaterial Items"/>
-                    <br />
-                    <h:link outcome="/views/user/List" value="Show All User Items"/>
-                    <br />
-                    <h:link outcome="/views/userType/List" value="Show All UserType Items"/>
+
+    <ui:composition template="/templates/indexTemplate.xhtml">
+        <ui:define name="title">Inicio</ui:define>
+        <ui:define name="body">
+
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="../images/c4.jpg" alt="Los Angeles"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="../images/c2.jpg" alt="Chicago"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="../images/c3.jpg" alt="New York"/>
+                    </div>
                 </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev btn-lg" href="#myCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
+
+
         </ui:define>
     </ui:composition>
 </html>

@@ -63,23 +63,24 @@ public class TopicController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "List?faces-redirect=true";
     }
 
     public String prepareView() {
         current = (Topic) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "View?faces-redirect=true";
     }
 
     public String prepareCreate() {
         current = new Topic();
         selectedItemIndex = -1;
-        return "Create";
+        return "Create?faces-redirect=true";
     }
 
     public String create() {
         try {
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicCreated"));
             return prepareCreate();
@@ -92,7 +93,7 @@ public class TopicController implements Serializable {
     public String prepareEdit() {
         current = (Topic) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "Edit?faces-redirect=true";
     }
 
     public String update() {

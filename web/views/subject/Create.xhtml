@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<div xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/templates/principal.xhtml">
+    <ui:composition template="/student/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateSubjectTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
+        <ui:define name="content">
             <div class="row pt-4">
                 <div class="col-sm-12 mx-auto mt-2">
                     <p:messages id="messages" closable="true" >
-                        <p:autoUpdate />
                     </p:messages>
                 </div>
                 <div class="col-sm-6 mx-auto">
@@ -60,7 +59,6 @@
                                     <div class="d-flex justify-content-around">
                                         <h:commandLink class="btn btn-primary" action="#{subjectController.create}" value="Guardar" />
                                         <h:commandLink class="btn btn-secondary" action="#{subjectController.prepareList}" value="Lista" immediate="true"/>
-                                        <h:link class="btn btn-success" outcome="/index" value="Inicio"/>
                                     </div>
                                 </div>
                             </h:form>
@@ -71,4 +69,4 @@
         </ui:define>
     </ui:composition>
 
-</html>
+</div>

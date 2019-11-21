@@ -8,12 +8,11 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <ui:composition template="/templates/principal.xhtml">
+    <ui:composition template="/templates/indexTemplate.xhtml">
         <ui:define name="body">
             <div class="row pt-4">
                 <div class="col-sm-12 mx-auto mt-2">
                     <p:messages id="messages" closable="true" >
-                        <p:autoUpdate />
                     </p:messages>
                 </div>
                 <div class="col-sm-6 mx-auto">
@@ -25,15 +24,15 @@
                             <h:form class="form" role="form" >
                                 <div class="form-group row mx-0">
                                     <h:outputLabel value="Correo Electrónico:" class="col-lg-3 col-form-label form-control-label" for="email" />
-                                    <h:inputText id="email" value="#{userController.selected.email}" class="form-control col-lg-6" required="true" requiredMessage="El campo Correo Electrónico es obligatorio."/>
+                                    <h:inputText id="email" value="#{login.email}" class="form-control col-lg-6" required="true" requiredMessage="El campo Correo Electrónico es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel value="Contraseña:" class="col-lg-3 col-form-label form-control-label" for="password" />
-                                    <h:inputSecret id="password" value="#{userController.selected.password}" class="form-control col-lg-6" required="true" requiredMessage="El campo Contraseña es obligatorio."/>
+                                    <h:inputSecret id="password" value="#{login.password}" class="form-control col-lg-6" required="true" requiredMessage="El campo Contraseña es obligatorio."/>
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
-                                        <h:commandButton class="btn btn-primary" action="#{userController.ingresar()}" value="Ingresar"/>
+                                        <h:commandButton class="btn btn-primary " action="#{login.Acceso()}" value="Ingresar"></h:commandButton>
                                     </div>
                                 </div>
                             </h:form>

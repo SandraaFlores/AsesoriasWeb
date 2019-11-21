@@ -42,6 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.validar", query = "SELECT u FROM User u WHERE u.email = :email and u.password = :password")
+    , @NamedQuery(name = "User.buscar", query = "SELECT u FROM User u WHERE u.email = :email and u.password = :password")
     , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
     , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")
     , @NamedQuery(name = "User.findByUrlImage", query = "SELECT u FROM User u WHERE u.urlImage = :urlImage")
@@ -91,11 +92,11 @@ public class User implements Serializable {
     @NotNull
     @Column(name = "active")
     private short active;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
@@ -104,13 +105,13 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<TeacherHasMaterial> teacherHasMaterialCollection;
     @JoinColumn(name = "level_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Level levelId;
     @JoinColumn(name = "status_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Status statusId;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private UserType userTypeId;
 
     public User() {

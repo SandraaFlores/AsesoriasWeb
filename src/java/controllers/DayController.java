@@ -63,19 +63,19 @@ public class DayController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "List?faces-redirect=true";
     }
 
     public String prepareView() {
         current = (Day) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "View?faces-redirect=true";
     }
 
     public String prepareCreate() {
         current = new Day();
         selectedItemIndex = -1;
-        return "Create";
+        return "Create?faces-redirect=true";
     }
 
     public String create() {
@@ -92,7 +92,7 @@ public class DayController implements Serializable {
     public String prepareEdit() {
         current = (Day) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "Edit?faces-redirect=true";
     }
 
     public String update() {

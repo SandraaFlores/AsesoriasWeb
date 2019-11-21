@@ -32,7 +32,7 @@ import org.primefaces.model.UploadedFile;
 public class UserController implements Serializable {
 
     private UploadedFile file;
-    
+
     private User current;
     private DataModel items = null;
     @EJB
@@ -72,22 +72,22 @@ public class UserController implements Serializable {
         }
         return pagination;
     }
-    
+
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "List?faces-redirect=true";
     }
 
     public String prepareView() {
         current = (User) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "View?faces-redirect=true";
     }
-    
+
     public String prepareCreate() {
         current = new User();
         selectedItemIndex = -1;
-        return "Create";
+        return "Create?faces-redirect=true";
     }
 
     public String create() {
@@ -105,9 +105,9 @@ public class UserController implements Serializable {
     public String prepareEdit() {
         current = (User) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "Edit?faces-redirect=true";
     }
-    
+
     public void handleFileUpload(FileUploadEvent event) {
         file = event.getFile();
         FacesMessage msg = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
@@ -124,7 +124,7 @@ public class UserController implements Serializable {
             String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
             current.setUrlImage("/img/" + fileName);
             File newFile = new File(path, fileName);
-            
+
             InputStream input = file.getInputstream();
             OutputStream output = new FileOutputStream(newFile);
 
@@ -134,7 +134,7 @@ public class UserController implements Serializable {
             while((read = input.read(bytes)) != (-1)) {
                 output.write(bytes, 0, read);
             }
-            
+
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
             return "View";
@@ -143,7 +143,7 @@ public class UserController implements Serializable {
             return null;
         }
     }
-    
+
     public String extention(String fileName) {
         String extention = "";
         int i = fileName.lastIndexOf('.');
@@ -237,7 +237,7 @@ public class UserController implements Serializable {
     public User getUser(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
-    
+
     public UploadedFile getFile() {
         return file;
     }
@@ -300,9 +300,11 @@ public class UserController implements Serializable {
             if(usu!=null)
             {
                 ok="Correcto";
+                System.out.println("entraste");
             }else{
-                JsfUtil.addErrorMessage("Correo o contraseña incorrecta");
+                JsfUtil.addErrorMessage("Correo o contraseña incorecta");
                 ok="Error";
+                System.out.println("No entraste");
             }
             //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return ok;
