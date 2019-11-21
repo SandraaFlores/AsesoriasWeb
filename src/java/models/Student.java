@@ -207,7 +207,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Student[ id=" + id + " ]";
+        return userId.getControlNumber();
     }
     
 }

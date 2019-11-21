@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
@@ -20,40 +21,53 @@
                             <h:form class="form" role="form">
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-4 col-form-label form-control-label" value="#{bundle.CreateUserLabel_controlNumber}" for="controlNumber" />
-                                    <h:inputText id="controlNumber" class="form-control col-lg-3" value="#{userController.selected.controlNumber}" title="#{bundle.CreateUserTitle_controlNumber}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_controlNumber}"/>
+                                    <h:inputText id="controlNumber" class="form-control col-lg-3" value="#{userController.selected.controlNumber}" title="#{bundle.CreateUserTitle_controlNumber}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_controlNumber}"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-4 col-form-label form-control-label" value="#{bundle.CreateUserLabel_email}" for="email" />
-                                    <h:inputText id="email" class="form-control col-lg-6" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_email}"/>
+                                    <h:inputText id="email" class="form-control col-lg-6" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_email}"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-4 col-form-label form-control-label" value="#{bundle.CreateUserLabel_firstName}" for="firstName" />
-                                    <h:inputText id="firstName" class="form-control col-lg-8" value="#{userController.selected.firstName}" title="#{bundle.CreateUserTitle_firstName}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_firstName}"/>
+                                    <h:inputText id="firstName" class="form-control col-lg-8" value="#{userController.selected.firstName}" title="#{bundle.CreateUserTitle_firstName}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_firstName}"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-4 col-form-label form-control-label" value="#{bundle.CreateUserLabel_lastName}" for="lastName" />
-                                    <h:inputText id="lastName" class="form-control col-lg-8" value="#{userController.selected.lastName}" title="#{bundle.CreateUserTitle_lastName}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_lastName}"/>
-                                </div>
-                                <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-4 col-form-label form-control-label" value="#{bundle.CreateUserLabel_urlImage}" for="urlImage" />
-                                    <h:inputText id="urlImage" class="form-control col-lg-8" value="#{userController.selected.urlImage}" title="#{bundle.CreateUserTitle_urlImage}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_urlImage}"/>
+                                    <h:inputText id="lastName" class="form-control col-lg-8" value="#{userController.selected.lastName}" title="#{bundle.CreateUserTitle_lastName}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_lastName}"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-2 col-form-label form-control-label" value="#{bundle.CreateUserLabel_levelId}" for="levelId" />
-                                    <h:selectOneMenu id="levelId" class="form-control col-lg-4" value="#{userController.selected.levelId}" title="#{bundle.CreateUserTitle_levelId}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_levelId}">
+                                    <h:selectOneMenu id="levelId" class="form-control col-lg-4" value="#{userController.selected.levelId}" title="#{bundle.CreateUserTitle_levelId}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_levelId}">
                                         <f:selectItems value="#{levelController.itemsAvailableSelectOne}"/>
                                     </h:selectOneMenu>
                                     <h:outputLabel class="col-lg-2 col-form-label form-control-label" value="#{bundle.CreateUserLabel_statusId}" for="statusId" />
-                                    <h:selectOneMenu id="statusId" class="form-control col-lg-4" value="#{userController.selected.statusId}" title="#{bundle.CreateUserTitle_statusId}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_statusId}">
+                                    <h:selectOneMenu id="statusId" class="form-control col-lg-4" value="#{userController.selected.statusId}" title="#{bundle.CreateUserTitle_statusId}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_statusId}">
                                         <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
                                     </h:selectOneMenu>
                                     <h:outputLabel class="col-lg-2 mt-lg-3 col-form-label form-control-label" value="#{bundle.CreateUserLabel_userTypeId}" for="userTypeId" />
-                                    <h:selectOneMenu id="userTypeId" class="form-control col-lg-4 mt-lg-3" value="#{userController.selected.userTypeId}" title="#{bundle.CreateUserTitle_userTypeId}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_userTypeId}">
+                                    <h:selectOneMenu id="userTypeId" class="form-control col-lg-4 mt-lg-3" value="#{userController.selected.userTypeId}" title="#{bundle.CreateUserTitle_userTypeId}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_userTypeId}">
                                         <f:selectItems value="#{userTypeController.itemsAvailableSelectOne}"/>
                                     </h:selectOneMenu>
                                     <h:outputLabel class="col-lg-3 mt-lg-3 col-form-label form-control-label" value="#{bundle.CreateUserLabel_password}" for="password" />
-                                    <h:inputSecret id="password" class="form-control col-lg-3 mt-lg-3" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_password}"/>
+                                    <h:inputSecret id="password" class="form-control col-lg-3 mt-lg-3" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_password}"/>
                                 </div>
+                                <!--<div class="form-group row mx-0">
+                                    <div class="col-lg-12 text-center">
+                                        <p:fileUpload
+                                                  mode="advanced"
+                                                  auto="false"
+                                                  dragDropSupport="false"
+                                                  multiple="true"
+                                                  sizeLimit="100000"
+                                                  fileUploadListener="#{userController.handleFileUpload}"
+                                                  update="messages"
+                                                  fileLimit="3"
+                                                  value="#{userController.file}"
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                        <p:growl id="messages" 
+                                        showDetail="true" />
+                                    </div>
+                                </div>-->
                                 <div class="form-group row mx-0">
                                     <div class="col-lg-6 text-center">
                                         <h:commandLink class="btn btn-primary glyphicon glyphicon-floppy-save" action="#{userController.create}" value="Guardar" />  
