@@ -117,12 +117,11 @@ public class TopicController implements Serializable {
 
         if (file != null) {
             String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
-            long h = System.currentTimeMillis();
-            current.setUrlImage("/images/" + h + file.getFileName());
+            current.setUrlImage("/images/" + file.getFileName());
             InputStream input = file.getInputstream();
             
             Path folder = Paths.get(ruta);
-            Path fileToCreatePath = folder.resolve(h+file.getFileName());
+            Path fileToCreatePath = folder.resolve(file.getFileName());
             Path newFilePath = Files.createFile(fileToCreatePath);
 
             Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);

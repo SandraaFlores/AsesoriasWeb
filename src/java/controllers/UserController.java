@@ -119,7 +119,7 @@ public class UserController implements Serializable {
             String type = file.getContentType();
 
             //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
-            String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
+            String path = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/resources/img/";
 
             String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
             current.setUrlImage("/img/" + fileName);
