@@ -23,38 +23,44 @@
                         </div>
                         <div class="card-body">
                             <h:form>
-                                <h:panelGrid columns="2" class="mx-auto">
-                                    <h:outputText value="#{bundle.ViewUserLabel_id}"/>
-                                    <h:outputText value="#{userController.selected.id}" title="#{bundle.ViewUserTitle_id}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_controlNumber}"/>
-                                    <h:outputText value="#{userController.selected.controlNumber}" title="#{bundle.ViewUserTitle_controlNumber}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_email}"/>
-                                    <h:outputText value="#{userController.selected.email}" title="#{bundle.ViewUserTitle_email}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_password}"/>
-                                    <h:outputText value="#{userController.selected.password}" title="#{bundle.ViewUserTitle_password}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_firstName}"/>
-                                    <h:outputText value="#{userController.selected.firstName}" title="#{bundle.ViewUserTitle_firstName}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_lastName}"/>
-                                    <h:outputText value="#{userController.selected.lastName}" title="#{bundle.ViewUserTitle_lastName}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_urlImage}"/>
-                                    <h:outputText value="#{userController.selected.urlImage}" title="#{bundle.ViewUserTitle_urlImage}"/>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h:panelGrid columns="2" class="mx-auto">
+                                            <h:outputText value="#{bundle.ViewUserLabel_id}"/>
+                                            <h:outputText value="#{userController.selected.id}" title="#{bundle.ViewUserTitle_id}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_controlNumber}"/>
+                                            <h:outputText value="#{userController.selected.controlNumber}" title="#{bundle.ViewUserTitle_controlNumber}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_email}"/>
+                                            <h:outputText value="#{userController.selected.email}" title="#{bundle.ViewUserTitle_email}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_password}"/>
+                                            <h:outputText value="#{userController.selected.password}" title="#{bundle.ViewUserTitle_password}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_firstName}"/>
+                                            <h:outputText value="#{userController.selected.firstName}" title="#{bundle.ViewUserTitle_firstName}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_lastName}"/>
+                                            <h:outputText value="#{userController.selected.lastName}" title="#{bundle.ViewUserTitle_lastName}"/>
+                                            
 
-                                    <h:outputText value="#{bundle.ViewUserLabel_levelId}"/>
-                                    <h:outputText value="#{userController.selected.levelId.name}" title="#{bundle.ViewUserTitle_levelId}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_statusId}"/>
-                                    <h:outputText value="#{userController.selected.statusId.name}" title="#{bundle.ViewUserTitle_statusId}"/>
-                                    <h:outputText value="#{bundle.ViewUserLabel_userTypeId}"/>
-                                    <h:outputText value="#{userController.selected.userTypeId.name}" title="#{bundle.ViewUserTitle_userTypeId}"/>
-                                    
-                                    <h:outputText value="#{bundle.ViewUserLabel_createTime}"/>
-                                    <h:outputText value="#{userController.selected.createTime}" title="#{bundle.ViewUserTitle_createTime}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:outputText>
-                                    <h:outputText value="#{bundle.ViewUserLabel_updateTime}"/>
-                                    <h:outputText value="#{userController.selected.updateTime}" title="#{bundle.ViewUserTitle_updateTime}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:outputText>
-                                </h:panelGrid>
+                                            <h:outputText value="#{bundle.ViewUserLabel_levelId}"/>
+                                            <h:outputText value="#{userController.selected.levelId.name}" title="#{bundle.ViewUserTitle_levelId}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_statusId}"/>
+                                            <h:outputText value="#{userController.selected.statusId.name}" title="#{bundle.ViewUserTitle_statusId}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_userTypeId}"/>
+                                            <h:outputText value="#{userController.selected.userTypeId.name}" title="#{bundle.ViewUserTitle_userTypeId}"/>
+
+                                            <h:outputText value="#{bundle.ViewUserLabel_createTime}"/>
+                                            <h:outputText value="#{userController.selected.createTime}" title="#{bundle.ViewUserTitle_createTime}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                            <h:outputText value="#{bundle.ViewUserLabel_updateTime}"/>
+                                            <h:outputText value="#{userController.selected.updateTime}" title="#{bundle.ViewUserTitle_updateTime}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="/AsesoriasWeb/resources#{userController.selected.urlImage}" alt="Foto de perfil" style="max-height: 100px"></img>
+                                    </div>
+                                </div>
                                 <div class="row mx-0 mt-4">
                                     <div class="col-6 text-center">
                                         <h:link class="btn btn-primary" outcome="Edit" value="#{bundle.ViewUserEditLink}"/>

@@ -40,3 +40,8 @@
 .btn-sm {
     padding: 7px 10px !important;
 }
+
+div .bg-admin {
+    background: lightblue url("../images/c3.jpg") no-repeat fixed center;
+    min-height: 75vh;
+}
