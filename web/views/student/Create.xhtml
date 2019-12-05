@@ -20,7 +20,20 @@
                             <h:form class="form" role="form">
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_semester}" for="semester" />
-                                    <h:inputText id="semester" class="form-control col-lg-9" value="#{studentController.selected.semester}" title="#{bundle.CreateStudentTitle_semester}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_semester}"/>
+                                    <h:selectOneMenu id="semester" class="form-control col-lg-9" value="#{studentController.selected.semester}" title="#{bundle.CreateStudentTitle_semester}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_semester}">
+                                        <f:selectItem itemValue = "1" itemLabel = "Primero" /> 
+                                        <f:selectItem itemValue = "2" itemLabel = "Segundo" />
+                                        <f:selectItem itemValue = "3" itemLabel = "Tercero" />
+                                        <f:selectItem itemValue = "4" itemLabel = "Cuarto" />
+                                        <f:selectItem itemValue = "5" itemLabel = "Quinto" />
+                                        <f:selectItem itemValue = "6" itemLabel = "Sexto" />
+                                        <f:selectItem itemValue = "7" itemLabel = "Séptimo" />
+                                        <f:selectItem itemValue = "8" itemLabel = "Octavo" />
+                                        <f:selectItem itemValue = "9" itemLabel = "Noveno" />
+                                        <f:selectItem itemValue = "10" itemLabel = "Décimo" />
+                                        <f:selectItem itemValue = "11" itemLabel = "Onceavo" />
+                                        <f:selectItem itemValue = "12" itemLabel = "Doceavo" />
+                                    </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_phone}" for="phone" />

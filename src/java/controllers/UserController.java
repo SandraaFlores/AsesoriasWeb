@@ -31,7 +31,7 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 public class UserController implements Serializable {
 
-    private UploadedFile file;
+    private UploadedFile file = null;
 
     private User current;
     private DataModel items = null;
@@ -92,7 +92,29 @@ public class UserController implements Serializable {
 
     public String create() {
         try {
-            current.setUrlImage("null");
+            if(file != null) {
+                String type = file.getContentType();
+
+                //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
+                String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
+
+                String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
+                current.setUrlImage("/img/" + fileName);
+                File newFile = new File(path, fileName);
+
+                InputStream input = file.getInputstream();
+                OutputStream output = new FileOutputStream(newFile);
+
+                byte[] bytes = new byte[1024];
+                int read;
+
+                while((read = input.read(bytes)) != (-1)) {
+                    output.write(bytes, 0, read);
+                }
+            } else {
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CreateUserRequiredMessage_urlImage"));
+                return null;
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
@@ -116,27 +138,29 @@ public class UserController implements Serializable {
 
     public String update() throws FileNotFoundException, IOException {
         try {
-            String type = file.getContentType();
+            if (file != null) {
+                String type = file.getContentType();
 
-            //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
-            String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
+                //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
+                String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
 
-            String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
-            current.setUrlImage("/img/" + fileName);
-            File newFile = new File(path, fileName);
+                String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
+                current.setUrlImage("/img/" + fileName);
+                File newFile = new File(path, fileName);
 
-            InputStream input = file.getInputstream();
-            OutputStream output = new FileOutputStream(newFile);
+                InputStream input = file.getInputstream();
+                OutputStream output = new FileOutputStream(newFile);
 
-            byte[] bytes = new byte[1024];
-            int read;
+                byte[] bytes = new byte[1024];
+                int read;
 
-            while((read = input.read(bytes)) != (-1)) {
-                output.write(bytes, 0, read);
+                while((read = input.read(bytes)) != (-1)) {
+                    output.write(bytes, 0, read);
+                }
             }
 
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
+            JsfUtil.addSuccessMessage("El usuario ha sido actualizado correctamente.");
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured " + e.getMessage()));

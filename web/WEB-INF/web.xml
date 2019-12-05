@@ -10,7 +10,6 @@
         <load-on-startup>1</load-on-startup>
         <multipart-config>
             <location>\resources\img\</location>
-            <max-file-size>1300000</max-file-size>
             <max-request-size>20000000</max-request-size>
             <file-size-threshold>50000</file-size-threshold>
         </multipart-config>

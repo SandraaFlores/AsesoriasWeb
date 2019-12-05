@@ -54,25 +54,17 @@
                                         <f:selectItems value="#{userTypeController.itemsAvailableSelectOne}"/>
                                     </h:selectOneMenu>
                                 </div>
-                                <div class="form-group row mx-0">
-                                    <div class="col-lg-6 text-center">
-                                        <p:commandButton action="#{userController.update}" 
-                                                         value="Guardar"
-                                                         immediate="true"
-                                                         ajax="false"
-                                                         class="btn btn-primary glyphicon glyphicon-floppy-save" >
-                                            <!--<f:ajax execute="@all" render="@form" /> -->
-                                        </p:commandButton>  
-                                    </div>
-                                    <div class="col-lg-6 text-center">
-                                        <h:commandLink class="btn btn-secondary" 
-                                                       action="#{userController.prepareList}" 
-                                                       value="#{bundle.EditUserShowAllLink}" 
-                                                       immediate="true"/>
-                                    </div>
-                                </div>
                                 <div class="row mx-0">
-                                    <div class="col-lg-12 text-center">
+                                    <div class="col-8 text-center">
+                                        <br />
+                                        <span>Foto de perfil:</span>
+                                        <br />
+                                        <span>Si no deseas cambiarla, ignora este campo.</span>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <img src="/AsesoriasWeb/resources#{userController.selected.urlImage}" alt="Foto de perfil" style="max-height: 100px"></img>
+                                    </div>
+                                    <div class="col-12 text-center mt-2">
                                         <p:fileUpload
                                                   mode="advanced"
                                                   auto="false"
@@ -87,7 +79,23 @@
                                         <p:growl id="messages" 
                                         showDetail="true" />
                                     </div>
-                                
+                                </div>
+                                <div class="form-group row mx-0 mt-3">
+                                    <div class="col-lg-6 text-center">
+                                       
+                                        <p:commandButton action="#{userController.update}" 
+                                                         value="Guardar"
+                                                         ajax="false"
+                                                         class="btn btn-primary glyphicon glyphicon-floppy-save" >
+                                            <!--<f:ajax execute="@all" render="@form" /> -->
+                                        </p:commandButton>  
+                                    </div>
+                                    <div class="col-lg-6 text-center">
+                                        <h:commandLink class="btn btn-secondary" 
+                                                       action="#{userController.prepareList}" 
+                                                       value="#{bundle.EditUserShowAllLink}" 
+                                                       immediate="true"/>
+                                    </div>
                                 </div>
                             </h:form>
                         </div>
