@@ -22,7 +22,7 @@
                             <h4 class="mb-0 text-center">Editar Tema</h4>
                         </div>
                         <div class="card-body">
-                            <h:form class="form" role="form">
+                            <h:form class="form" role="form" enctype="multipart/form-data">
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Id:" for="id" />
                                     <h:inputText id="id" class="form-control col-lg-6" value="#{topicController.selected.id}" title="#{bundle.EditTopicTitle_id}" required="false" requiredMessage="El campo Id es obligatorio."/>
@@ -35,10 +35,12 @@
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Descripción:" for="description" />
                                     <h:inputTextarea rows="3" id="description" class="form-control col-lg-6" value="#{topicController.selected.description}" title="#{bundle.EditTopicTitle_description}" required="true" requiredMessage="El campo Descripción es obligatorio."/>
                                 </div>
+                                
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Url Imagen:" for="urlImage" />
-                                    <h:inputText id="urlImage" class="form-control col-lg-6" value="#{topicController.selected.urlImage}" title="#{bundle.EditTopicTitle_urlImage}" required="true" requiredMessage="El campo Url Imagen es obligatorio."/>
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Imagen:" for="urlImage" />
+                                    <p:fileUpload id="urlImage" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="form-control col-lg-6" value="#{topicController.file}" mode="simple" />
                                 </div>
+                                                               
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Activo:" for="active" />
                                     <h:inputText id="active" class="form-control col-lg-6" value="#{topicController.selected.active}" title="#{bundle.EditTopicTitle_active}" required="true" requiredMessage="El campo Active es obligatorio."/>
@@ -69,10 +71,9 @@
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
-                                        <h:commandLink class="btn btn-primary" action="#{topicController.update}" value="Editar"/>
-                                        <h:link class="btn btn-secondary" outcome="View" value="Ver"/>
+                                        <p:commandButton class="btn btn-primary" action="#{topicController.update}" value="Guardar" ajax="false"/>
                                         <h:commandLink class="btn btn-secondary" action="#{topicController.prepareList}" value="Lista" immediate="true"/>
-                                        <h:link class="btn btn-success" outcome="/index" value="Inicio" />
+                                        
                                     </div>
                                 </div>
                             </h:form>

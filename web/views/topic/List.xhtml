@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/student/templates/main.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListTopicTitle}"></h:outputText>
         </ui:define>
@@ -41,18 +41,18 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Url"/>
+                                    <h:outputText value="Imagen"/>
                                 </f:facet>
-                                <h:outputText value="#{item.urlImage}"/>
+                                <img src="/AsesoriasWeb#{item.urlImage}" alt="sin imagen" style="width:80px; height: auto;"></img>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Active:"/>
+                                    <h:outputText value="Activo"/>
                                 </f:facet>
                                 <h:outputText value="#{item.active}"/>
                             </h:column>
-                            <!--
-                            <h:column>
+
+                            <!--<h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListTopicTitle_createTime}"/>
                                 </f:facet>
@@ -81,20 +81,21 @@
                                 <h:outputText value="#{item.getTopicId().getName()}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">
+                                <f:facet name="header" >
                                     <h:outputText value="Acciones"/>
                                 </f:facet>
                                 <h:commandLink class="fas fa-eye color-black mx-1" action="#{topicController.prepareView}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{topicController.prepareEdit}"/>
+                                <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{topicController.prepareEdit}" />
                                 <h:outputText value=" "/>
+                                <h:commandLink class="far fa-trash-alt color-red mx-1" action="#{topicController.destroy}" />
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
                     <div class="col-md-12 text-left ">
                         <div class="d-flex justify-content-around">
                             <h:commandLink class="btn btn-primary" action="#{topicController.prepareCreate}" value="Crear nuevo"/>
-                            <h:link class="btn btn-success" outcome="/index" value="Inicio"/>
+
                         </div>
                     </div>
                 </h:form>

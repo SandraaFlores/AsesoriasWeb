@@ -6,10 +6,8 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +17,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -40,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Material.findById", query = "SELECT m FROM Material m WHERE m.id = :id")
     , @NamedQuery(name = "Material.findByName", query = "SELECT m FROM Material m WHERE m.name = :name")
     , @NamedQuery(name = "Material.findByUrl", query = "SELECT m FROM Material m WHERE m.url = :url")
-    , @NamedQuery(name = "Material.findByCheck", query = "SELECT m FROM Material m WHERE m.check = :check")
+    , @NamedQuery(name = "Material.findByCheckin", query = "SELECT m FROM Material m WHERE m.checkin = :checkin")
     , @NamedQuery(name = "Material.findByActive", query = "SELECT m FROM Material m WHERE m.active = :active")
     , @NamedQuery(name = "Material.findByCreateTime", query = "SELECT m FROM Material m WHERE m.createTime = :createTime")
     , @NamedQuery(name = "Material.findByUpdateTime", query = "SELECT m FROM Material m WHERE m.updateTime = :updateTime")})
@@ -49,7 +45,7 @@ public class Material implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = true)
+    @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -64,24 +60,24 @@ public class Material implements Serializable {
     private String url;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "check")
-    private short check;
+    @Column(name = "checkin")
+    private short checkin;
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
     private short active;
-    @Basic(optional = true)
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @Basic(optional = true)
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "materialId")
-    private Collection<TeacherHasMaterial> teacherHasMaterialCollection;
     @JoinColumn(name = "topic_id", referencedColumnName = "id")
-    @ManyToOne(optional = true)
+    @ManyToOne(optional = false)
     private Topic topicId;
     @JoinColumn(name = "type_material_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -94,11 +90,11 @@ public class Material implements Serializable {
         this.id = id;
     }
 
-    public Material(Integer id, String name, String url, short check, short active, Date createTime, Date updateTime) {
+    public Material(Integer id, String name, String url, short checkin, short active, Date createTime, Date updateTime) {
         this.id = id;
         this.name = name;
         this.url = url;
-        this.check = check;
+        this.checkin = checkin;
         this.active = active;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -128,12 +124,12 @@ public class Material implements Serializable {
         this.url = url;
     }
 
-    public short getCheck() {
-        return check;
+    public short getCheckin() {
+        return checkin;
     }
 
-    public void setCheck(short check) {
-        this.check = check;
+    public void setCheckin(short checkin) {
+        this.checkin = checkin;
     }
 
     public short getActive() {
@@ -158,15 +154,6 @@ public class Material implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @XmlTransient
-    public Collection<TeacherHasMaterial> getTeacherHasMaterialCollection() {
-        return teacherHasMaterialCollection;
-    }
-
-    public void setTeacherHasMaterialCollection(Collection<TeacherHasMaterial> teacherHasMaterialCollection) {
-        this.teacherHasMaterialCollection = teacherHasMaterialCollection;
     }
 
     public Topic getTopicId() {
@@ -207,7 +194,7 @@ public class Material implements Serializable {
 
     @Override
     public String toString() {
-        return name;
+        return "models.Material[ id=" + id + " ]";
     }
     
 }

@@ -3,8 +3,14 @@ package controllers;
 import models.Topic;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -16,12 +22,14 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.model.UploadedFile;
 
 @Named("topicController")
 @SessionScoped
 public class TopicController implements Serializable {
 
     private Topic current;
+    private UploadedFile file;
     private DataModel items = null;
     @EJB
     private controllers.TopicFacade ejbFacade;
@@ -78,16 +86,24 @@ public class TopicController implements Serializable {
         return "Create?faces-redirect=true";
     }
 
-    public String create() {
-        try {
-            
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
+    public String create() throws IOException {
+        //try {
+
+        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+        current.setUrlImage("/images/" + file.getFileName());
+        InputStream input = file.getInputstream();
+        Path folder = Paths.get(ruta);
+        Path fileToCreatePath = folder.resolve(file.getFileName());
+        Path newFilePath = Files.createFile(fileToCreatePath);
+
+        Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        getFacade().create(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicCreated"));
+        return prepareCreate();
+        /* } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        }
+        }*/
     }
 
     public String prepareEdit() {
@@ -96,15 +112,28 @@ public class TopicController implements Serializable {
         return "Edit?faces-redirect=true";
     }
 
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicUpdated"));
-            return "View";
-        } catch (Exception e) {
+    public String update() throws IOException {
+//        try {
+
+        if (file != null) {
+            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            current.setUrlImage("/images/" + file.getFileName());
+            InputStream input = file.getInputstream();
+            
+            Path folder = Paths.get(ruta);
+            Path fileToCreatePath = folder.resolve(file.getFileName());
+            Path newFilePath = Files.createFile(fileToCreatePath);
+
+            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        getFacade().edit(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicUpdated"));
+        return "View";
+        /*      } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        }
+        }*/
     }
 
     public String destroy() {
@@ -230,6 +259,14 @@ public class TopicController implements Serializable {
             }
         }
 
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/student/templates/main.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTopicTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <div class="col-12 text-center">
+                <h:form styleClass="jsfcrud_list_form">
+                    <p:messages id="messages" closable="true" >
+                    </p:messages>
+                    <h:outputText escape="false" value="#{bundle.ListTopicEmpty}" rendered="#{topicController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{topicController.items.rowCount > 0}">
+                        <h:outputText value="#{topicController.pagination.pageFirstItem + 1}..#{topicController.pagination.pageLastItem + 1}/#{topicController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{topicController.previous}" value="#{bundle.Previous} #{topicController.pagination.pageSize}" rendered="#{topicController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{topicController.next}" value="#{bundle.Next} #{topicController.pagination.pageSize}" rendered="#{topicController.pagination.hasNextPage}"/>&nbsp;
+                       
+                        <div class="mx-auto col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-center">Detalles Tema</h4>
+                        </div>
+                        <div class="card-body">
+                        <h:form class="form row" role="form" >
+                        
+                            <h:dataTable class="table" value="#{topicController.items}" var="item"  rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <!--
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            -->
+                            
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{item.name}"/>
+                            
+                            
+                                <f:facet name="header">
+                                    <h:outputText value="Descripción"/>
+                                </f:facet>
+                                <h:outputText value="#{item.description}"/>
+                            
+                            
+                                <f:facet name="header">
+                                    <h:outputText value="Imagen"/>
+                                </f:facet>
+                                <h:outputText value="#{item.urlImage}"/>
+                            
+                            
+                                <f:facet name="header">
+                                    <h:outputText value="Activo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.active}"/>
+                            
+                            
+                            <!--
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTopicTitle_createTime}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.createTime}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            
+                            
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTopicTitle_updateTime}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.updateTime}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            -->
+                            
+                                <f:facet name="header">
+                                    <h:outputText value="Materia"/>
+                                </f:facet>
+                                <h:outputText value="#{item.getSubjectId().getName()}"/>
+                            
+                            
+                                <f:facet name="header">
+                                    <h:outputText value="Tema"/>
+                                </f:facet>
+                                <h:outputText value="#{item.getTopicId().getName()}"/>
+                            
+                            
+                                <f:facet name="header" >
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <h:commandLink class="fas fa-eye color-black mx-1" action="#{topicController.prepareView}"/>
+                                <h:outputText value=" "/>
+                            
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <div class="col-md-12 text-left ">
+                        <div class="d-flex justify-content-around">
+                            <h:commandLink class="btn btn-primary" action="#{topicController.prepareCreate}" value="Crear nuevo"/>
+                            
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -35,11 +35,11 @@
                                     <b><h:outputText value="Descripción:" class="col-lg-3 col-form-label form-control-label"/></b>
                                     <h:outputText value="#{subjectController.selected.description}" title="#{bundle.ViewSubjectTitle_description}"/>
                                 </div>
-                                <div class="form-group row">
-                                    <b><h:outputText value="Url Imagen:" class="col-lg-3 col-form-label form-control-label"/></b>
+                                <div class="form-group row  d-none">
+                                    <b><h:outputText value="Imagen:" class="col-lg-3 col-form-label form-control-label"/></b>
                                     <h:outputText value="#{subjectController.selected.urlImage}" title="#{bundle.ViewSubjectTitle_urlImage}"/>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row d-none">
                                     <b><h:outputText value="Activo:" class="col-lg-3 col-form-label form-control-label"/></b>
                                     <h:outputText value="#{subjectController.selected.active}" title="#{bundle.ViewSubjectTitle_active}"/>
                                 </div>
@@ -57,9 +57,8 @@
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
-                                        <h:link class="btn btn-primary" outcome="Edit" value="Editar"/>
-                                        <h:commandLink class="btn btn-secondary" action="#{subjectController.prepareCreate}" value="Crear nuevo" />
-                                        <h:commandLink class="btn btn-secondary" action="#{subjectController.prepareList}" value="Lista"/>
+                                        
+                                        <h:commandLink class="btn btn-primary" action="#{subjectController.prepareList}" value="Lista"/>
                                     </div>
                                 </div>
                             </h:form>

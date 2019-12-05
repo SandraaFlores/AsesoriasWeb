@@ -22,7 +22,7 @@
                             <h4 class="mb-0 text-center">Crear Tema</h4>
                         </div>
                         <div class="card-body">
-                            <h:form class="form" role="form" >
+                            <h:form class="form" role="form" enctype="multipart/form-data">
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel value="Id" class="col-lg-3 col-form-label form-control-label" for="id" />
                                     <h:inputText id="id" value="#{topicController.selected.id}" class="form-control col-lg-6" required="false" requiredMessage="#{bundle.CreateTopicRequiredMessage_id}"/>
@@ -36,9 +36,10 @@
                                     <h:inputTextarea rows="3" id="description" class="form-control col-lg-6" value="#{topicController.selected.description}" required="true" requiredMessage="El campo Descripción es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel value="Url Imagen:" class="col-lg-3 col-form-label form-control-label" for="urlImage" />
-                                    <h:inputText id="urlImage" class="form-control col-lg-6" value="#{topicController.selected.urlImage}" required="true" requiredMessage="El campo Url Imagen es obligatorio."/>
+                                    <h:outputLabel value="Imagen:" class="col-lg-3 col-form-label form-control-label" for="urlImage" />
+                                    <p:fileUpload id="urlImage" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="form-control col-lg-6" value="#{topicController.file}" mode="simple" />
                                 </div>
+
                                 <div class="form-group row mx-0">
                                     <h:outputLabel value="Activo:" class="col-lg-3 col-form-label form-control-label" for="active" />
                                     <h:inputText id="active" class="form-control col-lg-6" value="#{topicController.selected.active}" required="true" requiredMessage="El campo Activo: es obligatorio."/>
@@ -63,15 +64,15 @@
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel value="Tema:" class="col-lg-3 col-form-label form-control-label" for="topicId" />
-                                    <h:selectManyMenu id="topicId" class="form-control col-lg-6" value="#{topicController.selected.topicId}" required="false">
+                                    <h:selectOneMenu id="topicId" class="form-control col-lg-6" value="#{topicController.selected.topicId}" required="false">
                                         <f:selectItems value="#{topicController.itemsAvailableSelectOne}"/>
-                                    </h:selectManyMenu>
+                                    </h:selectOneMenu>
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
-                                        <h:commandLink class="btn btn-primary" action="#{topicController.create}" value="Guardar" />
+                                        <p:commandButton class="btn btn-primary" action="#{topicController.create}" value="Guardar" ajax="false"/>
                                         <h:commandLink class="btn btn-secondary" action="#{topicController.prepareList}" value="Lista" immediate="true"/>
-                                        <h:link class="btn btn-success" outcome="/index" value="Inicio"/>
+
                                     </div>
                                 </div>
                             </h:form>
