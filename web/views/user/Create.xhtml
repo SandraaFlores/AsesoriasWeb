@@ -52,25 +52,16 @@
                                     <h:inputSecret id="password" class="form-control col-lg-3 mt-lg-3" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_password}"/>
                                 </div>
                                 <div class="row mx-0">
-                                    <div class="col-3 text-center">
-                                        <br />
-                                        <br />
+                                    <div class="col-3 text-center mt-2">
                                         <span>Foto de perfil:</span>
                                     </div>
                                     <div class="col-9 text-center mt-2">
-                                        <p:fileUpload
-                                                  mode="advanced"
-                                                  auto="false"
-                                                  dragDropSupport="false"
-                                                  multiple="true"
-                                                  sizeLimit="100000"
-                                                  fileUploadListener="#{userController.handleFileUpload}"
-                                                  update="messages"
-                                                  fileLimit="3"
-                                                  value="#{userController.file}"
-                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
                                         <p:growl id="messages" 
                                         showDetail="true" />
+                                        <p:fileUpload allowTypes="/(\.|\/)(jpe?g|png)$/" 
+                                                      value="#{userController.file}" 
+                                                      mode="simple"
+                                                      fileUploadListener="#{userController.handleFileUpload}"/>
                                     </div>
                                 </div>
                                 <div class="form-group row mx-0 mt-3">

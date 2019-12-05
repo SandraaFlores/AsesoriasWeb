@@ -5,9 +5,11 @@
  */
 package controllers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import models.Topic;
 
 /**
@@ -23,6 +25,13 @@ public class TopicFacade extends AbstractFacade<Topic> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public List<Topic> getBySubjectId(int subjectId) {
+        Query query = em.createNamedQuery("Topic.findBySubjectId", Topic.class)
+                .setParameter("subjectId", subjectId);
+        List<Topic> list = query.getResultList();
+        return list;
     }
 
     public TopicFacade() {

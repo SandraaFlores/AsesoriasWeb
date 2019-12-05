@@ -31,7 +31,7 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 public class UserController implements Serializable {
 
-    private UploadedFile file = null;
+    private UploadedFile file;
 
     private User current;
     private DataModel items = null;
@@ -93,8 +93,6 @@ public class UserController implements Serializable {
     public String create() {
         try {
             if(file != null) {
-                String type = file.getContentType();
-
                 //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
                 String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
 
