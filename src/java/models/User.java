@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.validar", query = "SELECT u FROM User u WHERE u.email = :email and u.password = :password")
     , @NamedQuery(name = "User.buscar", query = "SELECT u FROM User u WHERE u.email = :email and u.password = :password")
+    , @NamedQuery(name = "User.asesor", query = "SELECT u FROM User u WHERE u.userTypeId.id = 2")
     , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
     , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")
     , @NamedQuery(name = "User.findByUrlImage", query = "SELECT u FROM User u WHERE u.urlImage = :urlImage")

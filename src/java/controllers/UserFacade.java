@@ -48,4 +48,12 @@ public class UserFacade extends AbstractFacade<User> {
         return null;
     }
     
+    public List<User> asesor(){
+        Query consulta = em.createNamedQuery("User.asesor", User.class);
+        List<User> lista = consulta.getResultList();
+        
+        return lista;
+    }
+    
+    
 }

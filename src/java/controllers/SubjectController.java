@@ -3,8 +3,14 @@ package controllers;
 import models.Subject;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -16,6 +22,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.model.UploadedFile;
 
 @Named("subjectController")
 @SessionScoped
@@ -23,6 +30,7 @@ public class SubjectController implements Serializable {
 
     private Subject current;
     private DataModel items = null;
+    private UploadedFile file;
     @EJB
     private controllers.SubjectFacade ejbFacade;
     private PaginationHelper pagination;
@@ -78,15 +86,20 @@ public class SubjectController implements Serializable {
         return "Create?faces-redirect=true";
     }
 
-    public String create() {
-        try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SubjectCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public String create() throws IOException {
+        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+        current.setUrlImage("/images/" + file.getFileName());
+        InputStream input = file.getInputstream();
+        Path folder = Paths.get(ruta);
+        Path fileToCreatePath = folder.resolve(file.getFileName());
+        Path newFilePath = Files.createFile(fileToCreatePath);
+
+        Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+        getFacade().create(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SubjectCreated"));
+        return prepareCreate();
+
     }
 
     public String prepareEdit() {
@@ -95,15 +108,22 @@ public class SubjectController implements Serializable {
         return "Edit?faces-redirect=true";
     }
 
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SubjectUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+    public String update() throws IOException {
+        if (file != null) {
+            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            current.setUrlImage("/images/" + file.getFileName());
+            InputStream input = file.getInputstream();
+
+            Path folder = Paths.get(ruta);
+            Path fileToCreatePath = folder.resolve(file.getFileName());
+            Path newFilePath = Files.createFile(fileToCreatePath);
+
+            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
         }
+        getFacade().edit(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SubjectUpdated"));
+        return "View";
+
     }
 
     public String destroy() {
@@ -229,6 +249,14 @@ public class SubjectController implements Serializable {
             }
         }
 
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
 }

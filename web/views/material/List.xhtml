@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/student/templates/main.xhtml">
+    <ui:composition template="/professor/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListMaterialTitle}"></h:outputText>
         </ui:define>
@@ -20,7 +20,7 @@
                         <h:outputText value="#{materialController.pagination.pageFirstItem + 1}..#{materialController.pagination.pageLastItem + 1}/#{materialController.pagination.itemsCount}"/>&nbsp;
                         <h:commandLink action="#{materialController.previous}" value="#{bundle.Previous} #{materialController.pagination.pageSize}" rendered="#{materialController.pagination.hasPreviousPage}"/>&nbsp;
                         <h:commandLink action="#{materialController.next}" value="#{bundle.Next} #{materialController.pagination.pageSize}" rendered="#{materialController.pagination.hasNextPage}"/>&nbsp;
-                        <h:dataTable value="#{materialController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:dataTable class="table" value="#{materialController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Id"/>
@@ -35,9 +35,9 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Url Imagen"/>
+                                    <h:outputText value="Archivo"/>
                                 </f:facet>
-                                <h:outputText value="#{item.url}"/>
+                                <a href="/AsesoriasWeb#{item.url}" target="_blank" class="fa fa-file-alt" style="font-size: 40px"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -51,7 +51,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.active}"/>
                             </h:column>
-                            <h:column>
+                            <!--<h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListMaterialTitle_createTime}"/>
                                 </f:facet>
@@ -66,35 +66,32 @@
                                 <h:outputText value="#{item.updateTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
-                            </h:column>
+                            </h:column>-->
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Tema"/>
                                 </f:facet>
-                                <h:outputText value="#{item.topicId}"/>
+                                <h:outputText value="#{item.getTopicId().getName()}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Tipo De Material"/>
                                 </f:facet>
-                                <h:outputText value="#{item.typeMaterialId}"/>
+                                <h:outputText value="#{item.getTypeMaterialId().getName()}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Acciones"/>
                                 </f:facet>
-                                <h:commandLink class="fas fa-eye color-black mx-1" action="#{materialController.prepareView}" value="#{bundle.ListMaterialViewLink}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{materialController.prepareEdit}" value="#{bundle.ListMaterialEditLink}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink class="far fa-trash-alt color-red mx-1" action="#{materialController.destroy}" value="#{bundle.ListMaterialDestroyLink}"/>
+                                <h:commandLink class="fas fa-eye color-black mx-1" action="#{materialController.prepareView}" />
+                                <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{materialController.prepareEdit}"/>
+                                <h:commandLink class="far fa-trash-alt color-red mx-1" action="#{materialController.destroy}" />
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
                     <div class="col-md-12 text-left ">
                         <div class="d-flex justify-content-around">
-                            <h:commandLink action="#{materialController.prepareCreate}" value="#{bundle.ListMaterialCreateLink}"/>
-                            <h:link outcome="/index" value="#{bundle.ListMaterialIndexLink}"/>
+                            <p:commandButton action="#{materialController.prepareCreate}" value="Crear Nuevo" ajax="false"/>
                         </div>
                     </div>
                 </h:form>

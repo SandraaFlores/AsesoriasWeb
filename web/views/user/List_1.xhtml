@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/admin/templates/main.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-11 mt-4 mx-auto text-right">
+                    <h:form>
+                        <h:commandLink class="fas fa-plus-circle" action="#{userController.prepareCreate}" value="" style="text-decoration: none; font-size: 2rem"/>
+                    </h:form>
+                </div>
+                <div class="col-12 text-center">
+                    <h:form id="form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+
+                        <h:outputText escape="false" value="#{bundle.ListUserEmpty}" rendered="#{userController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{userController.items.rowCount > 0}">
+                            <h:outputText value="#{userController.pagination.pageFirstItem + 1}..#{userController.pagination.pageLastItem + 1}/#{userController.pagination.itemsCount}"/>&nbsp;
+                            <h:commandLink action="#{userController.previous}" value="#{bundle.Previous} #{userController.pagination.pageSize}" rendered="#{userController.pagination.hasPreviousPage}"/>&nbsp;
+                            <h:commandLink action="#{userController.next}" value="#{bundle.Next} #{userController.pagination.pageSize}" rendered="#{userController.pagination.hasNextPage}"/>&nbsp;
+                            <p:dataGrid value="#{userController.getItemsProf()}"
+                                        var="item"
+                                        columns="3" 
+                                        rows="12" 
+                                        paginator="true"
+                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        rowsPerPageTemplate="6,12,16">
+
+                                <f:facet name="header">
+                                    Profesor
+                                </f:facet>                                
+
+                              
+                                    <h:panelGrid columns="1">
+                                          <p:panel header="#{item.id}">
+                                        <img src="/AsesoriasWeb#{topicController.selected.urlImage}" alt="sin imagen" style="width:100%; height: auto;"></img> 
+
+                                        <h:outputText value="#{item.firstName}" />
+                                        <h:outputText value="#{item.email}" />
+                                            </p:panel>
+
+                                    </h:panelGrid>
+                            
+
+                            </p:dataGrid>>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

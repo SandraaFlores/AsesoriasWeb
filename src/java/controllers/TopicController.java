@@ -73,11 +73,21 @@ public class TopicController implements Serializable {
         recreateModel();
         return "List?faces-redirect=true";
     }
+    
+    public String prepareList2() {
+        recreateModel();
+        return "List_1?faces-redirect=true";
+    }
 
     public String prepareView() {
         current = (Topic) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View?faces-redirect=true";
+    }
+     public String prepareView2() {
+        current = (Topic) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View_1?faces-redirect=true";
     }
 
     public String prepareCreate() {
@@ -95,8 +105,8 @@ public class TopicController implements Serializable {
         Path folder = Paths.get(ruta);
         Path fileToCreatePath = folder.resolve(file.getFileName());
         Path newFilePath = Files.createFile(fileToCreatePath);
-
         Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        
         getFacade().create(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicCreated"));
         return prepareCreate();

@@ -6,9 +6,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/professor/templates/main.xhtml">
+    <ui:composition template="/student/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewMaterialTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ViewTopicTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
             <div class="row">
@@ -19,52 +19,56 @@
                 <div class="mx-auto col-sm-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="mb-0 text-center">Detalles Material</h4>
+                            <h4 class="mb-0 text-center">Detalles Tema</h4>
                         </div>
                         <div class="card-body">
                             <h:form class="form row" role="form" >
                                 <div class="form-group  col-md-12 d-none">
-                                    <h:outputText value="#{bundle.ViewMaterialLabel_id}"/>
-                                    <h:outputText value="#{materialController.selected.id}" title="#{bundle.ViewMaterialTitle_id}"/>
+                                    <h:outputText value="Id:"/>
+                                    <h:outputText value="#{topicController.selected.id}" title="#{bundle.ViewTopicTitle_id}"/>
                                 </div>
                                 <div class="form-group  col-md-12">
                                     <b><h:outputText value="Nombre: "/></b>
-                                    <h:outputText value="#{materialController.selected.name}" title="#{bundle.ViewMaterialTitle_name}"/>
+                                    <h:outputText value="#{topicController.selected.name}" title="#{bundle.ViewTopicTitle_name}"/>
                                 </div>
                                 <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Verificar: "/></b>
-                                    <h:outputText value="#{materialController.selected.checkin}" title="#{bundle.ViewMaterialTitle_checkin}"/>
+                                    <b><h:outputText value="Descripción: "/></b>
+                                    <h:outputText value="#{topicController.selected.description}" title="#{bundle.ViewTopicTitle_description}"/>
                                 </div>
                                 <div class="form-group  col-md-12">
+                                    <img src="/AsesoriasWeb#{topicController.selected.urlImage}" alt="sin imagen" style="width:100%; height: auto;"></img>
+                                </div>
+                                <div class="form-group  col-md-12 d-none">
                                     <b><h:outputText value="Activo: "/></b>
-                                    <h:outputText value="#{materialController.selected.active}" title="#{bundle.ViewMaterialTitle_active}"/>
+                                    <h:outputText value="#{topicController.selected.active}" title="#{bundle.ViewTopicTitle_active}"/>
                                 </div>
                                 <div class="form-group  col-md-12 d-none">
-                                    <h:outputText value="#{bundle.ViewMaterialLabel_createTime}"/>
-                                    <h:outputText value="#{materialController.selected.createTime}" title="#{bundle.ViewMaterialTitle_createTime}">
+                                    <h:outputText value="Fecha Creación: "/>
+                                    <h:outputText value="#{topicController.selected.createTime}" title="#{bundle.ViewTopicTitle_createTime}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
                                 </div>
                                 <div class="form-group  col-md-12 d-none">
-                                    <h:outputText value="#{bundle.ViewMaterialLabel_updateTime}"/>
-                                    <h:outputText value="#{materialController.selected.updateTime}" title="#{bundle.ViewMaterialTitle_updateTime}">
+                                    <h:outputText value="Fecha Actualización: "/>
+                                    <h:outputText value="#{topicController.selected.updateTime}" title="#{bundle.ViewTopicTitle_updateTime}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
                                 </div>
-                                <div class="form-group  col-md-12">
+                                <div class="form-group  col-md-12 d-none">
+                                    <b><h:outputText value="Materia: "/></b>
+                                    <h:outputText value="#{topicController.selected.getSubjectId().getName()}" title="#{bundle.ViewTopicTitle_subjectId}"/>
+                                </div>
+                                <div class="form-group  col-md-12 d-none">
                                     <b><h:outputText value="Tema: "/></b>
-                                    <h:outputText value="#{materialController.selected.getTopicId().getName()}" title="#{bundle.ViewMaterialTitle_topicId}"/>
+                                    <h:outputText value="#{topicController.selected.getTopicId().getName()}" title="#{bundle.ViewTopicTitle_topicId}"/>
                                 </div>
                                 <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Tipo De Material: "/></b>
-                                    <h:outputText value="#{materialController.selected.getTypeMaterialId().getName()}" title="#{bundle.ViewMaterialTitle_typeMaterialId}"/>
-                                </div>
-                                <div class="form-group  col-md-12">
-                                    <a href="/AsesoriasWeb#{materialController.selected.url}" class="fa fa-file-alt text-center" style="font-size: 40px"/>
+                                    <b><h:outputText value="Materiales Disponibles: "/></b>  
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
-                                        <h:commandLink class="btn btn-primary" action="#{materialController.prepareList}" value="Lista"/>
+                                        <h:commandLink class="btn btn-primary" action="#{topicController.prepareList2}" value="Lista"/>
+                                        
                                     </div>                          
                                 </div>
                             </h:form>

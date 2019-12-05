@@ -39,6 +39,7 @@ public class UserController implements Serializable {
     private controllers.UserFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private List<User> usr;
 
     public UserController() {
     }
@@ -205,6 +206,14 @@ public class UserController implements Serializable {
         }
         return items;
     }
+    
+    public List<User> getItemsProf() {
+        
+            usr = ejbFacade.asesor();
+        
+        return usr;
+    }
+
 
     private void recreateModel() {
         items = null;

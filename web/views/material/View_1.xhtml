@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/professor/templates/main.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewMaterialTitle}"></h:outputText>
         </ui:define>
@@ -31,11 +31,11 @@
                                     <b><h:outputText value="Nombre: "/></b>
                                     <h:outputText value="#{materialController.selected.name}" title="#{bundle.ViewMaterialTitle_name}"/>
                                 </div>
-                                <div class="form-group  col-md-12">
+                                <div class="form-group  col-md-12 d-none">
                                     <b><h:outputText value="Verificar: "/></b>
                                     <h:outputText value="#{materialController.selected.checkin}" title="#{bundle.ViewMaterialTitle_checkin}"/>
                                 </div>
-                                <div class="form-group  col-md-12">
+                                <div class="form-group  col-md-12 d-none">
                                     <b><h:outputText value="Activo: "/></b>
                                     <h:outputText value="#{materialController.selected.active}" title="#{bundle.ViewMaterialTitle_active}"/>
                                 </div>
@@ -60,11 +60,11 @@
                                     <h:outputText value="#{materialController.selected.getTypeMaterialId().getName()}" title="#{bundle.ViewMaterialTitle_typeMaterialId}"/>
                                 </div>
                                 <div class="form-group  col-md-12">
-                                    <a href="/AsesoriasWeb#{materialController.selected.url}" class="fa fa-file-alt text-center" style="font-size: 40px"/>
+                                    <img src="/AsesoriasWeb#{materialController.selected.url}" alt="sin imagen" style="width:100%; height: auto;"/>
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
-                                        <h:commandLink class="btn btn-primary" action="#{materialController.prepareList}" value="Lista"/>
+                                        <h:commandLink class="btn btn-primary" action="#{materialController.prepareList2}" value="Lista"/>
                                     </div>                          
                                 </div>
                             </h:form>

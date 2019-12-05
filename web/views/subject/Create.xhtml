@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/student/templates/main.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateSubjectTitle}"></h:outputText>
         </ui:define>
@@ -22,7 +22,7 @@
                             <h4 class="mb-0 text-center">Crear Materia</h4>
                         </div>
                         <div class="card-body">
-                            <h:form class="form" role="form">
+                            <h:form class="form" role="form" enctype="multipart/form-data">
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Id" for="id" />
                                     <h:inputText id="id" class="form-control col-lg-6" value="#{subjectController.selected.id}" required="false"/>
@@ -36,8 +36,8 @@
                                     <h:inputTextarea rows="3" id="description" class="form-control col-lg-6" value="#{subjectController.selected.description}" required="true" requiredMessage="El campo Descripción es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Url Imagen:" for="urlImage" />
-                                    <h:inputText id="urlImage" class="form-control col-lg-6" value="#{subjectController.selected.urlImage}" required="true" requiredMessage="El campo Url Imagen es obligatorio."/>
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Imagen:" for="urlImage" />
+                                    <p:fileUpload id="urlImage" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="form-control col-lg-6" value="#{subjectController.file}" required="true" requiredMessage="El campo Imagen es obligatorio." mode="simple"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Activo:" for="active" />
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">
-                                        <h:commandLink class="btn btn-primary" action="#{subjectController.create}" value="Guardar" />
+                                        <p:commandButton class="btn btn-primary" action="#{subjectController.create}" value="Guardar" ajax="false"/>
                                         <h:commandLink class="btn btn-secondary" action="#{subjectController.prepareList}" value="Lista" immediate="true"/>
                                     </div>
                                 </div>
