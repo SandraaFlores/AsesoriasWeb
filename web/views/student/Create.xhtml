@@ -21,6 +21,7 @@
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_semester}" for="semester" />
                                     <h:selectOneMenu id="semester" class="form-control col-lg-9" value="#{studentController.selected.semester}" title="#{bundle.CreateStudentTitle_semester}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_semester}">
+                                        <f:selectItem itemValue = "" itemLabel = "Selecciona el semestre" /> 
                                         <f:selectItem itemValue = "1" itemLabel = "Primero" /> 
                                         <f:selectItem itemValue = "2" itemLabel = "Segundo" />
                                         <f:selectItem itemValue = "3" itemLabel = "Tercero" />
@@ -42,7 +43,7 @@
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_careerId}" for="careerId" />
                                     <h:selectOneMenu id="careerId" class="form-control col-lg-9" value="#{studentController.selected.careerId}" title="#{bundle.CreateStudentTitle_careerId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_careerId}">
-                                        <f:selectItems value="#{careerController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{careerController.careersActive}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">
@@ -54,7 +55,7 @@
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateStudentLabel_userId}" for="userId" />
                                     <h:selectOneMenu id="userId" class="form-control col-lg-9" value="#{studentController.selected.userId}" title="#{bundle.CreateStudentTitle_userId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_userId}">
-                                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{userController.usersActive}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">

@@ -7,7 +7,7 @@
 
     <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            | <h:outputText value="#{bundle.EditStudentTitle}"></h:outputText>
+            | <h:outputText value="Editar estudiante"></h:outputText>
         </ui:define>
         <ui:define name="content">
             <div class="row mx-0">
@@ -19,13 +19,13 @@
                 <div class="col-sm-6 mx-auto">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="mb-0" align="text-center">Editar carrera</h4>
+                            <h4 class="mb-0" align="text-center">Editar estudiante</h4>
                         </div>
                         <div class="card-body">
                             <h:form class="form">
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.EditStudentLabel_semester}" for="semester" />
-                                    <h:selectOneMenu id="semester" class="form-control col-lg-9" value="#{studentController.selected.semester}" title="#{bundle.EditStudentTitle_semester}" required="true" requiredMessage="#{bundle.EditStudentRequiredMessage_semester}">
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Semestre" for="semester" />
+                                    <h:selectOneMenu id="semester" class="form-control col-lg-9" value="#{studentController.selected.semester}" title="#{bundle.EditStudentTitle_semester}" required="true" requiredMessage="El teléfono es requerido">
                                         <f:selectItem itemValue = "1" itemLabel = "Primero" /> 
                                         <f:selectItem itemValue = "2" itemLabel = "Segundo" />
                                         <f:selectItem itemValue = "3" itemLabel = "Tercero" />
@@ -41,33 +41,33 @@
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.EditStudentLabel_phone}" for="phone" />
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Teléfono:" for="phone" />
                                     <h:inputText id="phone" class="form-control col-lg-9" value="#{studentController.selected.phone}" title="#{bundle.EditStudentTitle_phone}" required="true" requiredMessage="#{bundle.EditStudentRequiredMessage_phone}"/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.EditStudentLabel_careerId}" for="careerId" />
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Carrera:" for="careerId" />
                                     <h:selectOneMenu id="careerId" class="form-control col-lg-9" value="#{studentController.selected.careerId}" title="#{bundle.EditStudentTitle_careerId}" required="true" requiredMessage="#{bundle.EditStudentRequiredMessage_careerId}">
-                                        <f:selectItems value="#{careerController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{careerController.careersActive}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.EditStudentLabel_studentTypeId}" for="studentTypeId" />
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Tipo:" for="studentTypeId" />
                                     <h:selectOneMenu id="studentTypeId" class="form-control col-lg-9" value="#{studentController.selected.studentTypeId}" title="#{bundle.EditStudentTitle_studentTypeId}" required="true" requiredMessage="#{bundle.EditStudentRequiredMessage_studentTypeId}">
                                         <f:selectItems value="#{studentTypeController.itemsAvailableSelectOne}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.EditStudentLabel_userId}" for="userId" />
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Usuario:" for="userId" />
                                     <h:selectOneMenu id="userId" class="form-control col-lg-9" value="#{studentController.selected.userId}" title="#{bundle.EditStudentTitle_userId}" required="true" requiredMessage="#{bundle.EditStudentRequiredMessage_userId}">
-                                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                                        <f:selectItems value="#{userController.usersActive}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <div class="col-6 text-center">
-                                        <h:commandLink class="btn btn-primary" action="#{studentController.update}" value="#{bundle.EditStudentSaveLink}"/>
+                                        <h:commandLink class="btn btn-primary" action="#{studentController.update}" value="Guardar"/>
                                     </div>
                                     <div class="col-6 text-center">
-                                        <h:commandLink class="btn btn-secondary" action="#{studentController.prepareList}" value="#{bundle.EditStudentShowAllLink}" immediate="true"/>
+                                        <h:commandLink class="btn btn-secondary" action="#{studentController.prepareList}" value="Cancelar" immediate="true"/>
                                     </div>
                                 </div>
                             </h:form>

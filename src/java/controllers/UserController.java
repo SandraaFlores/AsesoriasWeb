@@ -117,25 +117,26 @@ public class UserController implements Serializable {
 
     public String update() throws FileNotFoundException, IOException {
         try {
-            String type = file.getContentType();
+            if(file != null) {
+                String type = file.getContentType();
 
-            //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
-            String path = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/resources/img/";
+                //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
+                String path = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/resources/img/";
 
-            String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
-            current.setUrlImage("/img/" + fileName);
-            File newFile = new File(path, fileName);
+                String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
+                current.setUrlImage("/img/" + fileName);
+                File newFile = new File(path, fileName);
 
-            InputStream input = file.getInputstream();
-            OutputStream output = new FileOutputStream(newFile);
+                InputStream input = file.getInputstream();
+                OutputStream output = new FileOutputStream(newFile);
 
-            byte[] bytes = new byte[1024];
-            int read;
+                byte[] bytes = new byte[1024];
+                int read;
 
-            while((read = input.read(bytes)) != (-1)) {
-                output.write(bytes, 0, read);
+                while((read = input.read(bytes)) != (-1)) {
+                    output.write(bytes, 0, read);
+                }
             }
-
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
             return "View";
@@ -241,6 +242,11 @@ public class UserController implements Serializable {
 
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+    }
+    
+    public SelectItem[] getUsersActive()
+    {
+        return ejbFacade.findAllActive();
     }
 
     public User getUser(java.lang.Integer id) {

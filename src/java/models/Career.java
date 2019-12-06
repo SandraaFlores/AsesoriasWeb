@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Career.findAll", query = "SELECT c FROM Career c")
+    , @NamedQuery(name = "Career.findAllActive", query = "SELECT c FROM Career c WHERE c.active = TRUE")
     , @NamedQuery(name = "Career.findById", query = "SELECT c FROM Career c WHERE c.id = :id")
     , @NamedQuery(name = "Career.findByName", query = "SELECT c FROM Career c WHERE c.name = :name")
     , @NamedQuery(name = "Career.findByAcronym", query = "SELECT c FROM Career c WHERE c.acronym = :acronym")
@@ -151,23 +152,17 @@ public class Career implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public boolean equals(Object other) {
+        return (id != null && other != null && getClass() == other.getClass())
+             ? id.equals(((Career) other).id)
+             : (other == this);
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Career)) {
-            return false;
-        }
-        Career other = (Career) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return (id != null) 
+             ? (getClass().hashCode() + id.hashCode()) 
+             : super.hashCode();
     }
 
     @Override

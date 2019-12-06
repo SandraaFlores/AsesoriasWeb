@@ -7,6 +7,7 @@ package controllers;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -29,6 +30,20 @@ public class UserFacade extends AbstractFacade<User> {
 
     public UserFacade() {
         super(User.class);
+    }
+    
+    public SelectItem[] findAllActive() {
+        Query query = em.createNamedQuery("User.findAllActive", User.class);
+        List<User> list = query.getResultList();
+        SelectItem[] selectItems = new SelectItem[list.size()+1];
+        
+        selectItems[0] = new SelectItem(null, "Selecciona un usuario");
+        for (int i = 1; i <= list.size(); i++) {
+            User user = list.get(i-1);
+            selectItems[i] = new SelectItem(user, user.getControlNumber());
+        }
+        
+        return selectItems;
     }
     
     public List<User> validar(User u){

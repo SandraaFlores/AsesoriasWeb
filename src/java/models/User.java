@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+    , @NamedQuery(name = "User.findAllActive", query = "SELECT u FROM User u WHERE u.statusId.id = 2")
     , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
     , @NamedQuery(name = "User.findByControlNumber", query = "SELECT u FROM User u WHERE u.controlNumber = :controlNumber")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
@@ -258,28 +259,22 @@ public class User implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public boolean equals(Object other) {
+        return (id != null && other != null && getClass() == other.getClass())
+             ? id.equals(((User) other).id)
+             : (other == this);
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return (id != null) 
+             ? (getClass().hashCode() + id.hashCode()) 
+             : super.hashCode();
     }
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return controlNumber;
     }
 
 }

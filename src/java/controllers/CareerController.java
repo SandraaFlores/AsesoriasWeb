@@ -190,6 +190,10 @@ public class CareerController implements Serializable {
     public Career getCareer(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
+    
+    public SelectItem[] getCareersActive() {
+        return ejbFacade.findAllActive();
+    }
 
     @FacesConverter(forClass = Career.class)
     public static class CareerControllerConverter implements Converter {

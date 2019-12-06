@@ -8,97 +8,67 @@
 
     <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListTopicTitle}"></h:outputText>
+            | <h:outputText value="Temas"></h:outputText>
         </ui:define>
         <ui:define name="content">
-            <div class="col-12 text-center">
-                <h:form styleClass="jsfcrud_list_form">
-                    <p:messages id="messages" closable="true" >
-                    </p:messages>
-                    <h:outputText escape="false" value="#{bundle.ListTopicEmpty}" rendered="#{topicController.items.rowCount == 0}"/>
-                    <h:panelGroup rendered="#{topicController.items.rowCount > 0}">
-                        <h:outputText value="#{topicController.pagination.pageFirstItem + 1}..#{topicController.pagination.pageLastItem + 1}/#{topicController.pagination.itemsCount}"/>&nbsp;
-                        <h:commandLink action="#{topicController.previous}" value="#{bundle.Previous} #{topicController.pagination.pageSize}" rendered="#{topicController.pagination.hasPreviousPage}"/>&nbsp;
-                        <h:commandLink action="#{topicController.next}" value="#{bundle.Next} #{topicController.pagination.pageSize}" rendered="#{topicController.pagination.hasNextPage}"/>&nbsp;
-                        <h:dataTable class="table" value="#{topicController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                            <!--<h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Id"/>
-                                </f:facet>
-                                <h:outputText value="#{item.id}"/>
-                            </h:column>-->
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Nombre"/>
-                                </f:facet>
-                                <h:outputText value="#{item.name}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Descripción"/>
-                                </f:facet>
-                                <h:outputText value="#{item.description}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Imagen"/>
-                                </f:facet>
-                                <img src="/AsesoriasWeb#{item.urlImage}" alt="sin imagen" style="width:80px; height: auto;"></img>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Activo"/>
-                                </f:facet>
-                                <h:outputText value="#{item.active}"/>
-                            </h:column>
-
-                            <!--<h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListTopicTitle_createTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListTopicTitle_updateTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.updateTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>-->
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Materia"/>
-                                </f:facet>
-                                <h:outputText value="#{item.getSubjectId().getName()}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Tema"/>
-                                </f:facet>
-                                <h:outputText value="#{item.getTopicId().getName()}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header" >
-                                    <h:outputText value="Acciones"/>
-                                </f:facet>
-                                <h:commandLink class="fas fa-eye color-black mx-1" action="#{topicController.prepareView}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{topicController.prepareEdit}" />
-                                <h:outputText value=" "/>
-                                <h:commandLink class="far fa-trash-alt color-red mx-1" action="#{topicController.destroy}" />
-                            </h:column>
-                        </h:dataTable>
-                    </h:panelGroup>
-                    <div class="col-md-12 text-left ">
-                        <div class="d-flex justify-content-around">
-                            <h:commandLink class="btn btn-primary" action="#{topicController.prepareCreate}" value="Crear nuevo"/>
-
-                        </div>
-                    </div>
-                </h:form>
+            <div class="row mx-0">
+                <div class="col-11 mt-4 mx-auto text-right">
+                    <h:form>
+                        <h:commandLink class="fas fa-plus-circle" action="#{topicController.prepareCreate}" value="" style="text-decoration: none; font-size: 2rem"/>
+                    </h:form>
+                </div>
+                <div class="col-12 text-center">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <p:messages id="messages" closable="true" >
+                        </p:messages>
+                        <h:outputText escape="false" value="#{bundle.ListTopicEmpty}" rendered="#{topicController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{topicController.items.rowCount > 0}">
+                            <h:outputText value="#{topicController.pagination.pageFirstItem + 1}..#{topicController.pagination.pageLastItem + 1}/#{topicController.pagination.itemsCount}"/>&nbsp;
+                            <h:commandLink action="#{topicController.previous}" value="#{bundle.Previous} #{topicController.pagination.pageSize}" rendered="#{topicController.pagination.hasPreviousPage}"/>&nbsp;
+                            <h:commandLink action="#{topicController.next}" value="#{bundle.Next} #{topicController.pagination.pageSize}" rendered="#{topicController.pagination.hasNextPage}"/>&nbsp;
+                            <h:dataTable class="table" value="#{topicController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Materia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.getSubjectId().getName()}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Tema"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Descripción"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Imagen"/>
+                                    </f:facet>
+                                    <img src="/AsesoriasWeb#{item.urlImage}" alt="sin imagen" style="width:80px; height: auto;"></img>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Estado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.active}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" >
+                                        <h:outputText value="Acciones"/>
+                                    </f:facet>
+                                    <h:commandLink class="fas fa-eye color-black mx-1" action="#{topicController.prepareView}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{topicController.prepareEdit}" />
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
             </div>
         </ui:define>
     </ui:composition>

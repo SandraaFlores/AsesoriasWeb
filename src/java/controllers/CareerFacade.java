@@ -5,9 +5,12 @@
  */
 package controllers;
 
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import models.Career;
 
 /**
@@ -23,6 +26,20 @@ public class CareerFacade extends AbstractFacade<Career> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public SelectItem[] findAllActive() {
+        Query query = em.createNamedQuery("Career.findAllActive", Career.class);
+        List<Career> list = query.getResultList();
+        SelectItem[] selectItems = new SelectItem[list.size()+1];
+        
+        selectItems[0] = new SelectItem(null, "Selecciona una carrera");
+        for (int i = 1; i <= list.size(); i++) {
+            Career career = list.get(i-1);
+            selectItems[i] = new SelectItem(career, career.getName());
+        }
+        
+        return selectItems;
     }
 
     public CareerFacade() {
