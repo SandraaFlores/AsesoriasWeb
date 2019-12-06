@@ -41,7 +41,7 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Verficiar"/>
+                                    <h:outputText value="Aprobado"/>
                                 </f:facet>
                                 <h:outputText value="#{item.checkin}"/>
                             </h:column>
@@ -85,13 +85,12 @@
                                 </f:facet>
                                 <h:commandLink class="fas fa-eye color-black mx-1" action="#{materialController.prepareView}" />
                                 <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{materialController.prepareEdit}"/>
-                                <h:commandLink class="far fa-trash-alt color-red mx-1" action="#{materialController.destroy}" />
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
                     <div class="col-md-12 text-left ">
                         <div class="d-flex justify-content-around">
-                            <p:commandButton action="#{materialController.prepareCreate}" value="Crear Nuevo" ajax="false"/>
+                            <h:commandButton class="btn btn-primary" action="#{materialController.prepareCreate}" value="Crear Nuevo" />
                         </div>
                     </div>
                 </h:form>

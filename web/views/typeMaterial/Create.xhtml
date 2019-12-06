@@ -6,11 +6,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/templates/principal.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateTypeMaterialTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
+        <ui:define name="content">
             <div class="row pt-4">
                 <div class="col-sm-12 mx-auto mt-2">
                     <p:messages id="messages" closable="true" >
@@ -25,8 +25,8 @@
                         <div class="card-body">
                             <h:form class="form" role="form" >
                                 <div class="form-group row mx-0 d-none">
-                                <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateTypeMaterialLabel_id}" for="id" />
-                                <h:inputText id="id" class="form-control col-lg-6" value="#{typeMaterialController.selected.id}" title="#{bundle.CreateTypeMaterialTitle_id}" required="false"/>
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateTypeMaterialLabel_id}" for="id" />
+                                    <h:inputText id="id" class="form-control col-lg-6" value="#{typeMaterialController.selected.id}" title="#{bundle.CreateTypeMaterialTitle_id}" required="false"/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Nombre:" for="name" />
@@ -48,16 +48,9 @@
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:inputText>
                                 </div>
-                                <div class="form-group row mx-0">
-                                    <div class="col-lg-3 text-center">
-                                        <h:commandLink class="btn btn-primary" action="#{typeMaterialController.create}" value="Guardar" />
-                                    </div>
-                                    <div class="col-lg-6 text-center">
-                                        <h:commandLink class="btn btn-secondary" action="#{typeMaterialController.prepareList}" value="Lista" immediate="true"/>
-                                    </div>
-                                    <div class="col-lg-3 text-center">
-                                        <h:link class="btn btn-success" outcome="/index" value="Inicio"/>
-                                    </div>
+                                <div class="d-flex justify-content-around">
+                                    <h:commandLink class="btn btn-primary" action="#{typeMaterialController.create}" value="Guardar" />
+                                    <h:commandLink class="btn btn-secondary" action="#{typeMaterialController.prepareList}" value="Lista" immediate="true"/>
                                 </div>
                             </h:form>
                         </div>

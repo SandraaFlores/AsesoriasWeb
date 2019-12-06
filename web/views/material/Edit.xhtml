@@ -32,11 +32,11 @@
                                     <h:inputText id="name" value="#{materialController.selected.name}" class="form-control col-lg-6" required="true" requiredMessage="El campo Nombre es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel value="Imagen:" class="col-lg-3 col-form-label form-control-label" for="url" />
-                                    <p:fileUpload id="url" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{materialController.file}" class="form-control col-lg-6" required="true" requiredMessage="El campo Imagen es obligatorio." mode="simple"/>
+                                    <h:outputLabel value="Archivo:" class="col-lg-3 col-form-label form-control-label" for="url" />
+                                    <p:fileUpload id="url" allowTypes="/(\.|\/)(doc|docx|txt|xls|xlsx|pdf|jpg|gif|jpe?g|png)$/" value="#{materialController.file}" class="form-control col-lg-6" required="true" requiredMessage="El campo Imagen es obligatorio." mode="simple"/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel value="Verficar:" class="col-lg-3 col-form-label form-control-label" for="check" />
+                                    <h:outputLabel value="Aprobado:" class="col-lg-3 col-form-label form-control-label" for="check" />
                                     <h:inputText id="check" value="#{materialController.selected.checkin}" class="form-control col-lg-6" required="true" requiredMessage="El campo Verificar es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">

@@ -18,7 +18,7 @@
                             <h4 class="mb-0" align="text-center">Crear usuario</h4>
                         </div>
                         <div class="card-body">
-                            <h:form class="form" role="form">
+                            <h:form class="form" role="form" enctype="multipart/form-data">
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-4 col-form-label form-control-label" value="#{bundle.CreateUserLabel_controlNumber}" for="controlNumber" />
                                     <h:inputText id="controlNumber" class="form-control col-lg-3" value="#{userController.selected.controlNumber}" title="#{bundle.CreateUserTitle_controlNumber}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_controlNumber}"/>
@@ -52,23 +52,14 @@
                                     <h:inputSecret id="password" class="form-control col-lg-3 mt-lg-3" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_password}"/>
                                 </div>
                                 <div class="row mx-0">
-                                    <div class="col-3 text-center mt-2">
-                                        <span>Foto de perfil:</span>
-                                    </div>
+                                    <h:outputLabel value="Foto de perfil:" class="col-3 text-center mt-2" for="urlImage"/>
                                     <div class="col-9 text-center mt-2">
-                                        <p:growl id="messages" 
-                                        showDetail="true" />
-                                        <p:fileUpload allowTypes="/(\.|\/)(jpe?g|png)$/" 
-                                                      value="#{userController.file}" 
-                                                      mode="simple"
-                                                      fileUploadListener="#{userController.handleFileUpload}"/>
+                                        <p:fileUpload id="urlImage" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{userController.file}" mode="simple"/>
                                     </div>
                                 </div>
                                 <div class="form-group row mx-0 mt-3">
-                                    <div class="col-lg-6 text-center">
-                                        <h:commandLink class="btn btn-primary glyphicon glyphicon-floppy-save" action="#{userController.create}" value="Guardar" />  
-                                    </div>
-                                    <div class="col-lg-6 text-center">
+                                    <div class="d-flex justify-content-around">
+                                        <p:commandButton class="btn btn-primary glyphicon glyphicon-floppy-save" action="#{userController.create}" value="Guardar" ajax="false"/>  
                                         <h:commandLink class="btn btn-secondary" action="#{userController.prepareList}" value="#{bundle.CreateUserShowAllLink}" immediate="true"/>  
                                     </div>
                                 </div>

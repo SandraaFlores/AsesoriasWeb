@@ -121,24 +121,23 @@ public class MaterialController implements Serializable {
     }
 
     public String update() throws IOException {
-        
+
         if (file != null) {
             String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
             current.setUrl("/images/" + file.getFileName());
             InputStream input = file.getInputstream();
-            
+
             Path folder = Paths.get(ruta);
             Path fileToCreatePath = folder.resolve(file.getFileName());
             Path newFilePath = Files.createFile(fileToCreatePath);
 
             Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
         }
-        
-        
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("MaterialUpdated"));
-            return "View";
-        
+
+        getFacade().edit(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("MaterialUpdated"));
+        return "View";
+
     }
 
     public String destroy() {

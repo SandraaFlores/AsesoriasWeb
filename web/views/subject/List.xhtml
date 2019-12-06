@@ -72,14 +72,11 @@
                                     <h:outputText value="Acciones"/>
                                 </f:facet>
                                 <h:commandLink class="fas fa-eye color-black mx-1" action="#{subjectController.prepareView}"/>
-                                <h:outputText value=" "/>
                                 <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{subjectController.prepareEdit}" />
-                                <h:outputText value=" "/>
-                                <h:commandLink class="far fa-trash-alt color-red mx-1" action="#{subjectController.destroy}" />
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
-                    <div class="col-md-12 text-left d-none">
+                    <div class="col-md-12 text-left">
                         <div class="d-flex justify-content-around">
                             <h:commandLink class="btn btn-primary" action="#{subjectController.prepareCreate}" value="Crear nuevo"/>
                         </div>

@@ -26,8 +26,8 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <h:panelGrid columns="2" class="mx-auto">
-                                            <h:outputText value="#{bundle.ViewUserLabel_id}"/>
-                                            <h:outputText value="#{userController.selected.id}" title="#{bundle.ViewUserTitle_id}"/>
+                                            <h:outputText value="#{bundle.ViewUserLabel_id}" class="d-none"/>
+                                            <h:outputText value="#{userController.selected.id}" title="#{bundle.ViewUserTitle_id}" class="d-none"/>
                                             <h:outputText value="#{bundle.ViewUserLabel_controlNumber}"/>
                                             <h:outputText value="#{userController.selected.controlNumber}" title="#{bundle.ViewUserTitle_controlNumber}"/>
                                             <h:outputText value="#{bundle.ViewUserLabel_email}"/>
@@ -47,19 +47,20 @@
                                             <h:outputText value="#{bundle.ViewUserLabel_userTypeId}"/>
                                             <h:outputText value="#{userController.selected.userTypeId.name}" title="#{bundle.ViewUserTitle_userTypeId}"/>
 
-                                            <h:outputText value="#{bundle.ViewUserLabel_createTime}"/>
+                                            <!--<h:outputText value="#{bundle.ViewUserLabel_createTime}"/>
                                             <h:outputText value="#{userController.selected.createTime}" title="#{bundle.ViewUserTitle_createTime}">
                                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                             </h:outputText>
                                             <h:outputText value="#{bundle.ViewUserLabel_updateTime}"/>
                                             <h:outputText value="#{userController.selected.updateTime}" title="#{bundle.ViewUserTitle_updateTime}">
                                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                            </h:outputText>
+                                            </h:outputText>-->
                                         </h:panelGrid>
                                     </div>
                                     <div class="col-4">
-                                        <img src="/AsesoriasWeb/resources#{userController.selected.urlImage}" alt="Foto de perfil" style="max-height: 100px"></img>
+                                        <img src="/AsesoriasWeb#{userController.selected.urlImage}" alt="Foto de perfil" style="max-height: 100px"></img>
                                     </div>
+                                    
                                 </div>
                                 <div class="row mx-0 mt-4">
                                     <div class="col-6 text-center">

@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/admin/templates/main.xhtml">
+    <ui:composition template="/student/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListUserTitle}"></h:outputText>
         </ui:define>
@@ -40,19 +40,21 @@
                                     Profesor
                                 </f:facet>                                
 
-                              
-                                    <h:panelGrid columns="1">
-                                          <p:panel header="#{item.id}">
-                                        <img src="/AsesoriasWeb#{topicController.selected.urlImage}" alt="sin imagen" style="width:100%; height: auto;"></img> 
 
+                                <h:panelGrid columns="1">
+                                    <p:panel header="#{item.id}">
+                                        
+                                        
+                                        <img src="/AsesoriasWeb#{item.getUrlImage()}" alt="Foto de perfil" style="max-height: 100px"></img>
+                                        <br/>
                                         <h:outputText value="#{item.firstName}" />
+                                        <br/>
+                                        <h:outputText value="#{item.lastName}" />
+                                        <br/>
                                         <h:outputText value="#{item.email}" />
-                                            </p:panel>
-
-                                    </h:panelGrid>
-                            
-
-                            </p:dataGrid>>
+                                    </p:panel>
+                                </h:panelGrid>
+                            </p:dataGrid>
                         </h:panelGroup>
                     </h:form>
                 </div>
