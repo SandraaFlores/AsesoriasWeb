@@ -5,9 +5,11 @@
  */
 package controllers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import models.Material;
 
 /**
@@ -23,6 +25,18 @@ public class MaterialFacade extends AbstractFacade<Material> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public List<Material> getByTopicId(int topicId) {
+        Query query = em.createNamedQuery("Material.findByTopicId", Material.class)
+                .setParameter("topicId", topicId);
+        List<Material> list = query.getResultList();
+        if(list.isEmpty()) {
+            Material material = new Material();
+            material.setName("No contiene materiales");
+            list.add(material);
+        }
+        return list;
     }
 
     public MaterialFacade() {

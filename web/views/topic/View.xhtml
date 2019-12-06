@@ -22,52 +22,80 @@
                             <h4 class="mb-0 text-center">Detalles del tema</h4>
                         </div>
                         <div class="card-body">
-                            <h:form class="form row" role="form" >
-                                <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Id: "/></b>
-                                    <h:outputText value="#{topicController.selected.id}" title="#{bundle.ViewTopicTitle_id}"/>
+                            <h:form class="form" role="form" >
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="form-group  col-md-12">
+                                                <b><h:outputText value="Id: "/></b>
+                                                <h:outputText value="#{topicController.selected.id}" title="#{bundle.ViewTopicTitle_id}"/>
+                                            </div>
+                                            <div class="form-group  col-md-12">
+                                                <b><h:outputText value="Nombre: "/></b>
+                                                <h:outputText value="#{topicController.selected.name}" title="#{bundle.ViewTopicTitle_name}"/>
+                                            </div>
+                                            <div class="form-group  col-md-12">
+                                                <b><h:outputText value="Descripción: "/></b>
+                                                <h:outputText value="#{topicController.selected.description}" title="#{bundle.ViewTopicTitle_description}"/>
+                                            </div>
+                                            <div class="form-group  col-md-12">
+                                                <b><h:outputText value="Imagen: "/></b>
+                                                <img src="/AsesoriasWeb#{topicController.selected.urlImage}" alt="sin imagen" style="width:100%; height: auto;"></img> 
+                                            </div>
+                                            <div class="form-group  col-md-12">
+                                                <b><h:outputText value="Estado: "/></b>
+                                                <h:outputText value="#{topicController.selected.active}" title="#{bundle.ViewTopicTitle_active}"/>
+                                            </div>
+                                            <div class="form-group  col-md-12 d-none">
+                                                <h:outputText value="Fecha creación: "/>
+                                                <h:outputText value="#{topicController.selected.createTime}" title="#{bundle.ViewTopicTitle_createTime}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </div>
+                                            <div class="form-group  col-md-12 d-none">
+                                                <h:outputText value="Fecha actualización: "/>
+                                                <h:outputText value="#{topicController.selected.updateTime}" title="#{bundle.ViewTopicTitle_updateTime}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </div>
+                                            <div class="form-group  col-md-12">
+                                                <b><h:outputText value="Materia: "/></b>
+                                                <h:outputText value="#{topicController.selected.getSubjectId().getName()}" title="#{bundle.ViewTopicTitle_subjectId}"/>
+                                            </div>
+                                            <div class="form-group col-md-12 d-none">
+                                                <b><h:outputText value="Subtema de: "/></b>
+                                                <h:outputText value="#{topicController.selected.getTopicId().getName()}" title="#{bundle.ViewTopicTitle_topicId}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <p:commandButton value="Ver materiales" >
+                                                    <f:ajax event="click" 
+                                                            render="display"
+                                                            listener="#{topicHasMaterials.getMaterialsOfTopic(topicController.selected.getId())}"/>
+                                                </p:commandButton>
+                                            </div>
+                                            <div class="col-12 text-center">
+                                                <h:panelGroup id="display">
+                                                    <ui:repeat value="#{topicHasMaterials.list}" var="material">
+                                                        <li>
+                                                            <span class="fas fa-file-alt">  #{material.name}</span>
+                                                        </li>
+                                                    </ui:repeat>
+                                                </h:panelGroup>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Nombre: "/></b>
-                                    <h:outputText value="#{topicController.selected.name}" title="#{bundle.ViewTopicTitle_name}"/>
-                                </div>
-                                <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Descripción: "/></b>
-                                    <h:outputText value="#{topicController.selected.description}" title="#{bundle.ViewTopicTitle_description}"/>
-                                </div>
-                                <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Imagen: "/></b>
-                                    <img src="/AsesoriasWeb#{topicController.selected.urlImage}" alt="sin imagen" style="width:100%; height: auto;"></img> 
-                                </div>
-                                <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Estado: "/></b>
-                                    <h:outputText value="#{topicController.selected.active}" title="#{bundle.ViewTopicTitle_active}"/>
-                                </div>
-                                <div class="form-group  col-md-12 d-none">
-                                    <h:outputText value="Fecha creación: "/>
-                                    <h:outputText value="#{topicController.selected.createTime}" title="#{bundle.ViewTopicTitle_createTime}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:outputText>
-                                </div>
-                                <div class="form-group  col-md-12 d-none">
-                                    <h:outputText value="Fecha actualización: "/>
-                                    <h:outputText value="#{topicController.selected.updateTime}" title="#{bundle.ViewTopicTitle_updateTime}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:outputText>
-                                </div>
-                                <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Materia: "/></b>
-                                    <h:outputText value="#{topicController.selected.getSubjectId().getName()}" title="#{bundle.ViewTopicTitle_subjectId}"/>
-                                </div>
-                                <div class="form-group col-md-12 d-none">
-                                    <b><h:outputText value="Subtema de: "/></b>
-                                    <h:outputText value="#{topicController.selected.getTopicId().getName()}" title="#{bundle.ViewTopicTitle_topicId}"/>
-                                </div>
-                                <div class="col-6 text-center">
-                                    <h:link class="btn btn-primary" outcome="Edit" value="Editar"/>
-                                </div>
-                                <div class="col-6 text-center">
-                                    <h:commandLink class="btn btn-secondary" action="#{topicController.prepareList}" value="Regresar"/>
+                                <div class="row">
+                                    <div class="col-6 text-center">
+                                        <h:link class="btn btn-primary" outcome="Edit" value="Editar"/>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <h:commandLink class="btn btn-secondary" action="#{topicController.prepareList}" value="Regresar"/>
+                                    </div>
                                 </div>
                             </h:form>
                         </div>

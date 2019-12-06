@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m")
+    , @NamedQuery(name = "Material.findByTopicId", query = "SELECT m FROM Material m WHERE m.topicId.id = :topicId")
     , @NamedQuery(name = "Material.findById", query = "SELECT m FROM Material m WHERE m.id = :id")
     , @NamedQuery(name = "Material.findByName", query = "SELECT m FROM Material m WHERE m.name = :name")
     , @NamedQuery(name = "Material.findByUrl", query = "SELECT m FROM Material m WHERE m.url = :url")

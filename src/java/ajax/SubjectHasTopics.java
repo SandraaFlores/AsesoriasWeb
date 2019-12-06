@@ -10,7 +10,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import controllers.TopicFacade;
 import java.util.List;
-import javax.faces.event.AjaxBehaviorEvent;
 import models.Subject;
 import models.Topic;
 
