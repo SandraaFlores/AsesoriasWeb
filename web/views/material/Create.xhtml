@@ -32,12 +32,12 @@
                                     <h:inputText id="name" class="form-control col-lg-6" value="#{materialController.selected.name}" required="true" requiredMessage="El campo Nombre es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Imagen:" for="url" />
-                                    <p:fileUpload id="url" allowTypes="/(\.|\/)(doc|docx|xls|xlsx|pdf|gif|jpe?g|png)$/" class="form-control col-lg-6" value="#{materialController.file}" required="true" requiredMessage="El campo Imagen es obligatorio." mode="simple"/>
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Archivo:" for="url" />
+                                    <p:fileUpload id="url" allowTypes="/(\.|\/)(doc|docx|txt|xls|xlsx|pdf|jpg|gif|jpe?g|png)$/" class="form-control col-lg-6" value="#{materialController.file}" required="true" requiredMessage="El campo Archivo es obligatorio." mode="simple"/>
                                 </div>
                                 <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Verificar:" for="check" />
-                                    <h:inputText id="check" class="form-control col-lg-6" value="#{materialController.selected.checkin}" required="true" requiredMessage="El campo Verificar es obligatorio."/>
+                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Aprobado:" for="check" />
+                                    <h:inputText id="check" class="form-control col-lg-6" value="#{materialController.selected.checkin}" required="true" requiredMessage="El campo Aprobado es obligatorio."/>
                                 </div>
                                 <div class="form-group row mx-0">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Activo:" for="active" />

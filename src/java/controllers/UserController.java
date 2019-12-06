@@ -11,6 +11,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -91,16 +95,20 @@ public class UserController implements Serializable {
         return "Create?faces-redirect=true";
     }
 
-    public String create() {
-        try {
-            current.setUrlImage("null");
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public String create() throws IOException {
+
+        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+        current.setUrlImage("/images/" + file.getFileName());
+        InputStream input = file.getInputstream();
+        Path folder = Paths.get(ruta);
+        Path fileToCreatePath = folder.resolve(file.getFileName());
+        Path newFilePath = Files.createFile(fileToCreatePath);
+        Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+        getFacade().create(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+        return prepareCreate();
+
     }
 
     public String prepareEdit() {
@@ -115,42 +123,30 @@ public class UserController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public String update() throws FileNotFoundException, IOException {
-        try {
-            if(file != null) {
-                String type = file.getContentType();
+    public String update() throws IOException {
+        if (file != null) {
+            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            current.setUrlImage("/images/" + file.getFileName());
+            InputStream input = file.getInputstream();
 
-                //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
-                String path = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/resources/img/";
+            Path folder = Paths.get(ruta);
+            Path fileToCreatePath = folder.resolve(file.getFileName());
+            Path newFilePath = Files.createFile(fileToCreatePath);
 
-                String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
-                current.setUrlImage("/img/" + fileName);
-                File newFile = new File(path, fileName);
-
-                InputStream input = file.getInputstream();
-                OutputStream output = new FileOutputStream(newFile);
-
-                byte[] bytes = new byte[1024];
-                int read;
-
-                while((read = input.read(bytes)) != (-1)) {
-                    output.write(bytes, 0, read);
-                }
-            }
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured " + e.getMessage()));
-            return null;
+            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
         }
+
+        getFacade().edit(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
+        return "View";
+
     }
 
     public String extention(String fileName) {
         String extention = "";
         int i = fileName.lastIndexOf('.');
         if (i > 0) {
-            extention = fileName.substring( i + 1);
+            extention = fileName.substring(i + 1);
         }
         return extention;
     }
@@ -207,11 +203,11 @@ public class UserController implements Serializable {
         }
         return items;
     }
-    
+
     public List<User> getItemsProf() {
-        
-            usr = ejbFacade.asesor();
-        
+
+        usr = ejbFacade.asesor();
+
         return usr;
     }
 
@@ -243,7 +239,7 @@ public class UserController implements Serializable {
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
-    
+
     public SelectItem[] getUsersActive()
     {
         return ejbFacade.findAllActive();
@@ -300,25 +296,24 @@ public class UserController implements Serializable {
         }
 
     }
-    
+
     public String ingresar() {
         User usu = null;
         try {
-            
-            String ok="start";
+
+            String ok = "start";
             List<User> lista = ejbFacade.validar(current);
-            for(User a : lista){
+            for (User a : lista) {
                 usu = a;
             }
             //usu.getNivel();
-            
-            if(usu!=null)
-            {
-                ok="Correcto";
+
+            if (usu != null) {
+                ok = "Correcto";
                 System.out.println("entraste");
-            }else{
+            } else {
                 JsfUtil.addErrorMessage("Correo o contraseña incorecta");
-                ok="Error";
+                ok = "Error";
                 System.out.println("No entraste");
             }
             //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
