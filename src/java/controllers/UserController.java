@@ -97,16 +97,28 @@ public class UserController implements Serializable {
 
     public String create() throws IOException {
 
-        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
-        current.setUrlImage("/images/" + file.getFileName());
-        InputStream input = file.getInputstream();
-        Path folder = Paths.get(ruta);
-        Path fileToCreatePath = folder.resolve(file.getFileName());
-        Path newFilePath = Files.createFile(fileToCreatePath);
-        Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        if(file != null) {
+            //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
+            String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
+
+            String fileName = "profile-image-" + current.getId() + "." + file.getContentType();
+            current.setUrlImage("/img/" + fileName);
+            File newFile = new File(path, fileName);
+            InputStream input = file.getInputstream();
+            OutputStream output = new FileOutputStream(newFile);
+            byte[] bytes = new byte[1024];
+            int read;
+            while((read = input.read(bytes)) != (-1)) {
+                output.write(bytes, 0, read);
+            }
+        } else {
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CreateUserRequiredMessage_urlImage"));
+            return null;
+        }
 
         getFacade().create(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+        items = null;
         return prepareCreate();
 
     }

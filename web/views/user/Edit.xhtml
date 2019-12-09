@@ -65,17 +65,7 @@
                                         <img src="/AsesoriasWeb/resources#{userController.selected.urlImage}" alt="Foto de perfil" style="max-height: 100px"></img>
                                     </div>
                                     <div class="col-12 text-center mt-2">
-                                        <p:fileUpload
-                                                  mode="advanced"
-                                                  auto="false"
-                                                  dragDropSupport="false"
-                                                  multiple="true"
-                                                  sizeLimit="100000"
-                                                  fileUploadListener="#{userController.handleFileUpload}"
-                                                  update="messages"
-                                                  fileLimit="3"
-                                                  value="#{userController.file}"
-                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                        <p:fileUpload id="urlImage" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{userController.file}" mode="simple"/>
                                         <p:growl id="messages" 
                                         showDetail="true" />
                                     </div>
