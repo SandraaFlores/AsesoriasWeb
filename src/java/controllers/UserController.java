@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import java.io.Serializable;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -97,30 +98,36 @@ public class UserController implements Serializable {
 
     public String create() throws IOException {
 
-        if(file != null) {
-            //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
-            String path = "C:/Users/barcl/Documents/NetBeansProjects/AsesoriasWeb/web/resources/img/";
-
-            String fileName = "profile-image-" + current.getId() + "." + file.getContentType();
-            current.setUrlImage("/img/" + fileName);
-            File newFile = new File(path, fileName);
-            InputStream input = file.getInputstream();
-            OutputStream output = new FileOutputStream(newFile);
-            byte[] bytes = new byte[1024];
-            int read;
-            while((read = input.read(bytes)) != (-1)) {
-                output.write(bytes, 0, read);
-            }
-        } else {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CreateUserRequiredMessage_urlImage"));
-            return null;
+        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+        current.setUrlImage("/images/" + file.getFileName());
+        InputStream input = file.getInputstream();
+        Path folder = Paths.get(ruta);
+        Path fileToCreatePath = folder.resolve(file.getFileName());
+         
+        
+        try{
+        Path newFilePath = Files.createFile(fileToCreatePath);
+       
+            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        }catch(FileAlreadyExistsException e){
+            
         }
+        
 
-        getFacade().create(current);
-        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+        getFacade().edit(current);
+        JsfUtil.addSuccessMessage("Usuario creado");
         items = null;
         return prepareCreate();
 
+    }
+    
+    public String extention(String fileName) {
+        String extention = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extention = fileName.substring( i + 1);
+        }
+        return extention;
     }
 
     public String prepareEdit() {
@@ -137,30 +144,24 @@ public class UserController implements Serializable {
 
     public String update() throws IOException {
         if (file != null) {
-            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
-            current.setUrlImage("/images/" + file.getFileName());
+        //String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("../resources/img/");
+            String path = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+
+            String fileName = "profile-image-" + current.getId() + "." + extention(file.getFileName());
+            current.setUrlImage("/images/" + fileName);
+            File newFile = new File(path, fileName);
             InputStream input = file.getInputstream();
-
-            Path folder = Paths.get(ruta);
-            Path fileToCreatePath = folder.resolve(file.getFileName());
-            Path newFilePath = Files.createFile(fileToCreatePath);
-
-            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+            OutputStream output = new FileOutputStream(newFile);
+            byte[] bytes = new byte[1024];
+            int read;
+            while((read = input.read(bytes)) != (-1)) {
+                output.write(bytes, 0, read);
+            }
         }
-
         getFacade().edit(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
         return "View";
 
-    }
-
-    public String extention(String fileName) {
-        String extention = "";
-        int i = fileName.lastIndexOf('.');
-        if (i > 0) {
-            extention = fileName.substring(i + 1);
-        }
-        return extention;
     }
 
     public String destroy() {
