@@ -3,8 +3,11 @@ package controllers;
 import models.Career;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import java.io.IOException;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -23,6 +26,8 @@ public class CareerController implements Serializable {
 
     private Career current;
     private DataModel items = null;
+    private List<Career> careerList;
+    
     @EJB
     private controllers.CareerFacade ejbFacade;
     private PaginationHelper pagination;
@@ -41,6 +46,20 @@ public class CareerController implements Serializable {
 
     private CareerFacade getFacade() {
         return ejbFacade;
+    }
+
+    public List<Career> getCareerList() {
+        careerList = new ArrayList<>();
+        getItems().forEach((item) -> {
+            Career career = (Career)item;
+            careerList.add(career);
+        });
+        
+        return careerList;
+    }
+
+    public void setCareerList(List<Career> careerList) {
+        this.careerList = careerList;
     }
 
     public PaginationHelper getPagination() {
@@ -87,6 +106,21 @@ public class CareerController implements Serializable {
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
+        }
+    }
+    
+    public void updateWithAjax(Career career) throws IOException{
+        try {
+            current = career;
+            current.setId(career.getId());
+            current.setName(career.getName());
+            current.setAcronym(career.getAcronym());
+            current.setActive((career.getActive().equals("Activado")) + "");
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage("Carrera actualizada");
+            items = null;
+        } catch(Exception e) {
+            JsfUtil.addErrorMessage(e.getMessage());
         }
     }
 

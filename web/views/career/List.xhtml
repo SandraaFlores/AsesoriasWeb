@@ -3,20 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             | <h:outputText value="#{bundle.ListCareerTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
-            <div class="row mx-0">
-                <div class="col-11 mt-4 mx-auto text-right">
+            <p:growl id="growl" life="3000" />
+            <div class="row mx-0" id="content">
+                <div class="col-10">
+                </div>
+                <div class="col-2 mt-4 mx-auto text-right">
                     <h:form>
                         <h:commandLink class="fas fa-plus-circle" action="#{careerController.prepareCreate}" value="" style="text-decoration: none; font-size: 2rem"/>
                     </h:form>
                 </div>
                 <div class="col-12 text-center">
-                    <h:form styleClass="jsfcrud_list_form">
+                    <h:form styleClass="jsfcrud_list_form" id="form">
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>
@@ -28,35 +33,54 @@
                             <h:dataTable class="table" value="#{careerController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCareerTitle_id}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.id}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
                                         <h:outputText value="#{bundle.ListCareerTitle_name}"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.name}"/>
+                                    <h:inputText id="name"
+                                         a:placeholder="Nombre"
+                                         class="form-control" 
+                                         value="#{item.name}"
+                                         required="true" 
+                                         requiredMessage="#{bundle.CreateCareerRequiredMessage_name}" />
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListCareerTitle_acronym}"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.acronym}"/>
+                                    <h:inputText id="acronym"
+                                         a:placeholder="Acrónimo"
+                                         class="form-control" 
+                                         value="#{item.acronym}"
+                                         required="true" 
+                                         requiredMessage="#{bundle.CreateCareerRequiredMessage_acronym}">
+                                        #{item.acronym}
+                                    </h:inputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Estado"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.active}"/>
+                                    <h:inputHidden id="active"
+                                                   class="form-control"
+                                                   value="#{item.active}"
+                                                   required="true"
+                                                   requiredMessage="#{bundle_CreateCareerRequiredMessage_active}">
+                                        #{item.active}
+                                    </h:inputHidden>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="&nbsp;"/>
+                                        <h:outputText value=""/>
                                     </f:facet>
-                                    <h:commandLink class="text-decoration-none far fa-eye color-black mx-1" action="#{careerController.prepareView}" value=""/>
+                                    <h:commandLink class="fas fa-save" value="">
+                                        <f:ajax execute="@form"
+                                                listener="#{careerController.updateWithAjax(item)}"
+                                                rendered="form"
+                                                render="form"/>
+                                    </h:commandLink>
                                     <h:outputText value=" "/>
                                     <h:commandLink class="text-decoration-none fas fa-pencil-alt color-blue mx-1" action="#{careerController.prepareEdit}" value=""/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink class="text-decoration-none far fa-eye color-black mx-1" action="#{careerController.prepareView}" value=""/>
                                 </h:column>
                             </h:dataTable>
                         </h:panelGroup>

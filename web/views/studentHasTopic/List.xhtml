@@ -5,85 +5,67 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListStudentHasTopicTitle}"></h:outputText>
+            | <h:outputText value="Asesor con topicos"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListStudentHasTopicEmpty}" rendered="#{studentHasTopicController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{studentHasTopicController.items.rowCount > 0}">
-                    <h:outputText value="#{studentHasTopicController.pagination.pageFirstItem + 1}..#{studentHasTopicController.pagination.pageLastItem + 1}/#{studentHasTopicController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{studentHasTopicController.previous}" value="#{bundle.Previous} #{studentHasTopicController.pagination.pageSize}" rendered="#{studentHasTopicController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{studentHasTopicController.next}" value="#{bundle.Next} #{studentHasTopicController.pagination.pageSize}" rendered="#{studentHasTopicController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{studentHasTopicController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStudentHasTopicTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStudentHasTopicTitle_teacher}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.teacher}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStudentHasTopicTitle_active}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.active}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStudentHasTopicTitle_createTime}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.createTime}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStudentHasTopicTitle_updateTime}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.updateTime}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStudentHasTopicTitle_studentId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.studentId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListStudentHasTopicTitle_topicId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.topicId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{studentHasTopicController.prepareView}" value="#{bundle.ListStudentHasTopicViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{studentHasTopicController.prepareEdit}" value="#{bundle.ListStudentHasTopicEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{studentHasTopicController.destroy}" value="#{bundle.ListStudentHasTopicDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{studentHasTopicController.prepareCreate}" value="#{bundle.ListStudentHasTopicCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListStudentHasTopicIndexLink}"/>
-            </h:form>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-11 mt-4 mx-auto text-right">
+                    <h:form>
+                        <h:commandLink class="fas fa-plus-circle" action="#{studentHasTopicController.prepareCreate}" value="" style="text-decoration: none; font-size: 2rem"/>
+                    </h:form>
+                </div>
+                <div class="col-12 text-center">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="Sin asesores con topicos que mostrar" rendered="#{studentHasTopicController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{studentHasTopicController.items.rowCount > 0}">
+                            <h:outputText value="#{studentHasTopicController.pagination.pageFirstItem + 1}..#{studentHasTopicController.pagination.pageLastItem + 1}/#{studentHasTopicController.pagination.itemsCount}"/>&nbsp;
+                            <h:commandLink action="#{studentHasTopicController.previous}" value="#{bundle.Previous} #{studentHasTopicController.pagination.pageSize}" rendered="#{studentHasTopicController.pagination.hasPreviousPage}"/>&nbsp;
+                            <h:commandLink action="#{studentHasTopicController.next}" value="#{bundle.Next} #{studentHasTopicController.pagination.pageSize}" rendered="#{studentHasTopicController.pagination.hasNextPage}"/>&nbsp;
+                            <h:dataTable class="table" value="#{studentHasTopicController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Estudiante"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.studentId.userId.controlNumber}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Tema"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.topicId.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Profesor"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.teacher}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Fecha de creación"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.createTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Fecha de actualización"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.updateTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
