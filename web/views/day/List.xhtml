@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
@@ -13,9 +14,11 @@
             <div class="row mx-0">
                 <div class="col-12 text-center">
                     <h:form styleClass="jsfcrud_list_form">
-                        <h:panelGroup class="d-none" id="messagePanel" layout="block">
-                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>
+                        <div class="col-sm-12 mx-auto mt-2">
+                            <p:messages id="messages" closable="true">
+                                <p:autoUpdate />
+                            </p:messages>
+                        </div>
                         <h:outputText escape="false" value="#{bundle.ListDayEmpty}" rendered="#{dayController.items.rowCount == 0}"/>
                         <h:panelGroup rendered="#{dayController.items.rowCount > 0}">
                             <h:outputText value="#{dayController.pagination.pageFirstItem + 1}..#{dayController.pagination.pageLastItem + 1}/#{dayController.pagination.itemsCount}"/>&nbsp;

@@ -3,49 +3,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewTeacherHasMaterialTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_id}"/>
-                    <h:outputText value="#{teacherHasMaterialController.selected.id}" title="#{bundle.ViewTeacherHasMaterialTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_approval}"/>
-                    <h:outputText value="#{teacherHasMaterialController.selected.approval}" title="#{bundle.ViewTeacherHasMaterialTitle_approval}"/>
-                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_createTime}"/>
-                    <h:outputText value="#{teacherHasMaterialController.selected.createTime}" title="#{bundle.ViewTeacherHasMaterialTitle_createTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_updateTime}"/>
-                    <h:outputText value="#{teacherHasMaterialController.selected.updateTime}" title="#{bundle.ViewTeacherHasMaterialTitle_updateTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_materialId}"/>
-                    <h:outputText value="#{teacherHasMaterialController.selected.materialId}" title="#{bundle.ViewTeacherHasMaterialTitle_materialId}"/>
-                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_userId}"/>
-                    <h:outputText value="#{teacherHasMaterialController.selected.userId}" title="#{bundle.ViewTeacherHasMaterialTitle_userId}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{teacherHasMaterialController.destroyAndView}" value="#{bundle.ViewTeacherHasMaterialDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTeacherHasMaterialEditLink}"/>
-                <br />
-                <h:commandLink action="#{teacherHasMaterialController.prepareCreate}" value="#{bundle.ViewTeacherHasMaterialCreateLink}" />
-                <br />
-                <h:commandLink action="#{teacherHasMaterialController.prepareList}" value="#{bundle.ViewTeacherHasMaterialShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewTeacherHasMaterialIndexLink}"/>
+        <ui:define name="content">
+            <div class="row mx-0">
+                <div class="col-sm-12 mx-auto mt-2">
+                    <p:messages id="messages" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                </div>
+                <div class="col-sm-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-center" align="">Materiales de profesores</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form>
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_id}" class="d-none"/>
+                                    <h:outputText value="#{teacherHasMaterialController.selected.id}" title="#{bundle.ViewTeacherHasMaterialTitle_id}"/>
+                                    <h:outputText value="Aprobación:"/>
+                                    <h:outputText value="#{teacherHasMaterialController.selected.approval}" title="#{bundle.ViewTeacherHasMaterialTitle_approval}"/>
+                                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_createTime}"/>
+                                    <h:outputText value="#{teacherHasMaterialController.selected.createTime}" title="#{bundle.ViewTeacherHasMaterialTitle_createTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                    <h:outputText value="#{bundle.ViewTeacherHasMaterialLabel_updateTime}"/>
+                                    <h:outputText value="#{teacherHasMaterialController.selected.updateTime}" title="#{bundle.ViewTeacherHasMaterialTitle_updateTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                    <h:outputText value="Material:"/>
+                                    <h:outputText value="#{teacherHasMaterialController.selected.materialId}" title="#{bundle.ViewTeacherHasMaterialTitle_materialId}"/>
+                                    <h:outputText value="Usuario:"/>
+                                    <h:outputText value="#{teacherHasMaterialController.selected.userId}" title="#{bundle.ViewTeacherHasMaterialTitle_userId}"/>
+                                </h:panelGrid>
+                                <div class="col-md-12 text-left ">
+                                    <div class="d-flex justify-content-around">
+                                        <h:link class="btn btn-primary" outcome="Edit" value="Editar"/>
+                                        <h:commandLink class="btn btn-secondary" action="#{teacherHasMaterialController.prepareList}" value="Cancelar"/>
+                                    </div>
+                                </div>
 
-            </h:form>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
