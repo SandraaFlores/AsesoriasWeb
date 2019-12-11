@@ -193,7 +193,7 @@ public class Material implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Material[ id=" + id + " ]";
+        return name;
     }
     
 }

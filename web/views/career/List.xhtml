@@ -11,7 +11,6 @@
             | <h:outputText value="#{bundle.ListCareerTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
-            <p:growl id="growl" life="3000" />
             <div class="row mx-0" id="content">
                 <div class="col-10">
                 </div>
@@ -22,9 +21,11 @@
                 </div>
                 <div class="col-12 text-center">
                     <h:form styleClass="jsfcrud_list_form" id="form">
-                        <h:panelGroup id="messagePanel" layout="block">
-                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>
+                        <div class="col-sm-12 mx-auto mt-2">
+                            <p:messages id="messages" closable="true">
+                                <p:autoUpdate />
+                            </p:messages>
+                        </div>
                         <h:outputText escape="false" value="#{bundle.ListCareerEmpty}" rendered="#{careerController.items.rowCount == 0}"/>
                         <h:panelGroup rendered="#{careerController.items.rowCount > 0}">
                             <h:outputText value="#{careerController.pagination.pageFirstItem + 1}..#{careerController.pagination.pageLastItem + 1}/#{careerController.pagination.itemsCount}"/>&nbsp;
@@ -37,9 +38,9 @@
                                     </f:facet>
                                     <h:inputText id="name"
                                          a:placeholder="Nombre"
-                                         class="form-control" 
+                                         class="form-control"
                                          value="#{item.name}"
-                                         required="true" 
+                                         required="true"
                                          requiredMessage="#{bundle.CreateCareerRequiredMessage_name}" />
                                 </h:column>
                                 <h:column>
@@ -48,9 +49,9 @@
                                     </f:facet>
                                     <h:inputText id="acronym"
                                          a:placeholder="Acrónimo"
-                                         class="form-control" 
+                                         class="form-control"
                                          value="#{item.acronym}"
-                                         required="true" 
+                                         required="true"
                                          requiredMessage="#{bundle.CreateCareerRequiredMessage_acronym}">
                                         #{item.acronym}
                                     </h:inputText>

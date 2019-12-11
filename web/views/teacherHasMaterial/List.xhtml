@@ -3,23 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListTeacherHasMaterialTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
+        <ui:define name="content">
             <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
+                <div class="col-sm-12 mx-auto mt-2">
+                    <p:messages id="messages" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                </div>
                 <h:outputText escape="false" value="#{bundle.ListTeacherHasMaterialEmpty}" rendered="#{teacherHasMaterialController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{teacherHasMaterialController.items.rowCount > 0}">
                     <h:outputText value="#{teacherHasMaterialController.pagination.pageFirstItem + 1}..#{teacherHasMaterialController.pagination.pageLastItem + 1}/#{teacherHasMaterialController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{teacherHasMaterialController.previous}" value="#{bundle.Previous} #{teacherHasMaterialController.pagination.pageSize}" rendered="#{teacherHasMaterialController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{teacherHasMaterialController.next}" value="#{bundle.Next} #{teacherHasMaterialController.pagination.pageSize}" rendered="#{teacherHasMaterialController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{teacherHasMaterialController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable class="table" value="#{teacherHasMaterialController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTeacherHasMaterialTitle_id}"/>
@@ -28,11 +31,11 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTeacherHasMaterialTitle_approval}"/>
+                                <h:outputText value="Aprobación"/>
                             </f:facet>
                             <h:outputText value="#{item.approval}"/>
                         </h:column>
-                        <h:column>
+                        <!--<h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTeacherHasMaterialTitle_createTime}"/>
                             </f:facet>
@@ -47,36 +50,30 @@
                             <h:outputText value="#{item.updateTime}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
-                        </h:column>
+                        </h:column>-->
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTeacherHasMaterialTitle_materialId}"/>
+                                <h:outputText value="Material"/>
                             </f:facet>
-                            <h:outputText value="#{item.materialId}"/>
+                            <h:outputText value="#{item.getMaterialId().getName()}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTeacherHasMaterialTitle_userId}"/>
+                                <h:outputText value="Usuario"/>
                             </f:facet>
                             <h:outputText value="#{item.userId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
+                                <h:outputText value="Opciones"/>
                             </f:facet>
-                            <h:commandLink action="#{teacherHasMaterialController.prepareView}" value="#{bundle.ListTeacherHasMaterialViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{teacherHasMaterialController.prepareEdit}" value="#{bundle.ListTeacherHasMaterialEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{teacherHasMaterialController.destroy}" value="#{bundle.ListTeacherHasMaterialDestroyLink}"/>
+                            <h:commandLink class="fas fa-eye color-black mx-1" action="#{teacherHasMaterialController.prepareView}" />
+                            <h:commandLink class="fas fa-pencil-alt color-blue mx-1" action="#{teacherHasMaterialController.prepareEdit}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{teacherHasMaterialController.prepareCreate}" value="#{bundle.ListTeacherHasMaterialCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTeacherHasMaterialIndexLink}"/>
+                <h:commandLink class="btn btn-primary" action="#{teacherHasMaterialController.prepareCreate}" value="Crear nuevo"/>
             </h:form>
         </ui:define>
     </ui:composition>

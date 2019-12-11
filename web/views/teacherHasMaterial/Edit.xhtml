@@ -3,49 +3,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/admin/templates/main.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.EditTeacherHasMaterialTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditTeacherHasMaterialLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{teacherHasMaterialController.selected.id}" title="#{bundle.EditTeacherHasMaterialTitle_id}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditTeacherHasMaterialLabel_approval}" for="approval" />
-                    <h:inputText id="approval" value="#{teacherHasMaterialController.selected.approval}" title="#{bundle.EditTeacherHasMaterialTitle_approval}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_approval}"/>
-                    <h:outputLabel value="#{bundle.EditTeacherHasMaterialLabel_createTime}" for="createTime" />
-                    <h:inputText id="createTime" value="#{teacherHasMaterialController.selected.createTime}" title="#{bundle.EditTeacherHasMaterialTitle_createTime}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_createTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditTeacherHasMaterialLabel_updateTime}" for="updateTime" />
-                    <h:inputText id="updateTime" value="#{teacherHasMaterialController.selected.updateTime}" title="#{bundle.EditTeacherHasMaterialTitle_updateTime}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_updateTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditTeacherHasMaterialLabel_materialId}" for="materialId" />
-                    <h:selectOneMenu id="materialId" value="#{teacherHasMaterialController.selected.materialId}" title="#{bundle.EditTeacherHasMaterialTitle_materialId}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_materialId}">
-                        <f:selectItems value="#{materialController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditTeacherHasMaterialLabel_userId}" for="userId" />
-                    <h:selectOneMenu id="userId" value="#{teacherHasMaterialController.selected.userId}" title="#{bundle.EditTeacherHasMaterialTitle_userId}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_userId}">
-                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{teacherHasMaterialController.update}" value="#{bundle.EditTeacherHasMaterialSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditTeacherHasMaterialViewLink}"/>
-                <br />
-                <h:commandLink action="#{teacherHasMaterialController.prepareList}" value="#{bundle.EditTeacherHasMaterialShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditTeacherHasMaterialIndexLink}" />
-            </h:form>
+        <ui:define name="content">
+            <div class="row pt-4">
+                <div class="col-sm-12 mx-auto mt-2">
+                    <p:messages id="messages" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                </div>
+                <div class="col-sm-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-center">Editar material del profesor</h4>
+                        </div>
+                        <div class="card-body">
+                            <h:form class="form" role="form">
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel value="Id" class="col-lg-3 col-form-label form-control-label" for="id" />
+                                    <h:inputText id="id" value="#{teacherHasMaterialController.selected.id}" class="form-control col-lg-6" title="#{bundle.EditTeacherHasMaterialTitle_id}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_id}"/>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Aprobación:" class="col-lg-3 col-form-label form-control-label" for="approval" />
+                                    <h:inputText id="approval" value="#{teacherHasMaterialController.selected.approval}" class="form-control col-lg-6" title="#{bundle.EditTeacherHasMaterialTitle_approval}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_approval}"/>
+                                </div>
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel  for="createTime" />
+                                    <h:inputText id="createTime" value="#{teacherHasMaterialController.selected.createTime}" title="#{bundle.EditTeacherHasMaterialTitle_createTime}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_createTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group row mx-0 d-none">
+                                    <h:outputLabel  for="updateTime" />
+                                    <h:inputText id="updateTime" value="#{teacherHasMaterialController.selected.updateTime}" title="#{bundle.EditTeacherHasMaterialTitle_updateTime}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_updateTime}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Material:" class="col-lg-3 col-form-label form-control-label" for="materialId" />
+                                    <h:selectOneMenu id="materialId" value="#{teacherHasMaterialController.selected.getMaterialId().getName()}" class="form-control col-lg-6" title="#{bundle.EditTeacherHasMaterialTitle_materialId}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_materialId}">
+                                        <f:selectItems value="#{materialController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group row mx-0">
+                                    <h:outputLabel value="Usuario:" class="col-lg-3 col-form-label form-control-label" for="userId" />
+                                    <h:selectOneMenu id="userId" value="#{teacherHasMaterialController.selected.userId}" class="form-control col-lg-6" title="#{bundle.EditTeacherHasMaterialTitle_userId}" required="true" requiredMessage="#{bundle.EditTeacherHasMaterialRequiredMessage_userId}">
+                                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-12 text-left ">
+                                    <div class="d-flex justify-content-around">
+                                        <h:commandLink class="btn btn-primary" action="#{teacherHasMaterialController.update}" value="Guardar"/>
+                                        <h:commandLink class="btn btn-secondary" action="#{teacherHasMaterialController.prepareList}" value="Cancelar" immediate="true"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
