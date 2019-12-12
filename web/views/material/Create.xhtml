@@ -35,14 +35,6 @@
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Archivo:" for="url" />
                                     <p:fileUpload id="url" allowTypes="/(\.|\/)(doc|docx|txt|xls|xlsx|pdf|jpg|gif|jpe?g|png)$/" class="form-control col-lg-6" value="#{materialController.file}" required="true" requiredMessage="El campo Archivo es obligatorio." mode="simple"/>
                                 </div>
-                                <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Aprobado:" for="check" />
-                                    <h:inputText id="check" class="form-control col-lg-6" value="#{materialController.selected.checkin}" required="true" requiredMessage="El campo Aprobado es obligatorio."/>
-                                </div>
-                                <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Activo:" for="active" />
-                                    <h:inputText id="active" class="form-control col-lg-6" value="#{materialController.selected.active}" required="true" requiredMessage="El campo Activo es obligatorio."/>
-                                </div>
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="#{bundle.CreateMaterialLabel_createTime}" for="createTime" />
                                     <h:inputText id="createTime" class="form-control col-lg-6" value="#{materialController.selected.createTime}" required="false" requiredMessage="#{bundle.CreateMaterialRequiredMessage_createTime}">

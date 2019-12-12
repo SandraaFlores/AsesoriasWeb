@@ -39,11 +39,6 @@
                                     <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Imagen:" for="urlImage" />
                                     <p:fileUpload id="urlImage" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="form-control col-lg-6" value="#{subjectController.file}" required="true" requiredMessage="El campo Imagen es obligatorio." mode="simple"/>
                                 </div>
-                                
-                                <div class="form-group row mx-0">
-                                    <h:outputLabel class="col-lg-3 col-form-label form-control-label" value="Activo:" for="active" />
-                                    <h:inputText id="active" class="form-control col-lg-6" value="#{subjectController.selected.active}" title="#{bundle.EditSubjectTitle_active}" required="true" requiredMessage="El campo Activo es obligatorio."/>
-                                </div>
                                 <div class="form-group row mx-0 d-none">
                                     <h:outputLabel value="#{bundle.EditSubjectLabel_createTime}" for="createTime" />
                                     <h:inputText id="createTime" value="#{subjectController.selected.createTime}" title="#{bundle.EditSubjectTitle_createTime}" required="false">

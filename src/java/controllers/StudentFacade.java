@@ -5,10 +5,13 @@
  */
 package controllers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import models.Student;
+import models.Topic;
 
 /**
  *
@@ -27,6 +30,12 @@ public class StudentFacade extends AbstractFacade<Student> {
 
     public StudentFacade() {
         super(Student.class);
+    }
+    
+    public List<Student> getAssistants() {
+        Query query = em.createNamedQuery("Student.findAllAsistant", Topic.class);
+        List<Student> list = query.getResultList();
+        return list;
     }
     
 }

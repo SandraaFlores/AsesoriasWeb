@@ -87,17 +87,22 @@ public class SubjectController implements Serializable {
     }
 
     public String create() throws IOException {
-        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
-        current.setUrlImage("/images/" + file.getFileName());
-        InputStream input = file.getInputstream();
-        Path folder = Paths.get(ruta);
-        Path fileToCreatePath = folder.resolve(file.getFileName());
-        Path newFilePath = Files.createFile(fileToCreatePath);
-
-        Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        if (file != null) {
+            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            current.setUrlImage("/images/" + file.getFileName());
+            InputStream input = file.getInputstream();
+            Path folder = Paths.get(ruta);
+            Path fileToCreatePath = folder.resolve(file.getFileName());
+            Path newFilePath = Files.createFile(fileToCreatePath);
+            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        } else {
+            JsfUtil.addErrorMessage("Se requiere imagen");
+            return null;
+        }
 
         getFacade().create(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SubjectCreated"));
+        items = null;
         return prepareCreate();
 
     }
@@ -122,6 +127,7 @@ public class SubjectController implements Serializable {
         }
         getFacade().edit(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SubjectUpdated"));
+        items = null;
         return "View";
 
     }

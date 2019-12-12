@@ -63,7 +63,25 @@
                                     <h:outputText value="#{topicController.selected.getTopicId().getName()}" title="#{bundle.ViewTopicTitle_topicId}"/>
                                 </div>
                                 <div class="form-group  col-md-12">
-                                    <b><h:outputText value="Materiales Disponibles: "/></b>  
+                                    <b><h:outputText value="Materiales Disponibles: "/></b>
+                                    <div class="row">
+                                            <div class="col-12">
+                                                <p:commandButton value="Ver materiales" >
+                                                    <f:ajax event="click"
+                                                            render="display"
+                                                            listener="#{topicHasMaterials.getMaterialsOfTopic(topicController.selected.getId())}"/>
+                                                </p:commandButton>
+                                            </div>
+                                            <div class="col-12">
+                                                <h:panelGroup id="display">
+                                                    <ui:repeat value="#{topicHasMaterials.list}" var="material">
+                                                        <li>
+                                                            <span class="fas fa-file-alt">  #{material.name}</span>
+                                                        </li>
+                                                    </ui:repeat>
+                                                </h:panelGroup>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="col-md-12 text-left ">
                                     <div class="d-flex justify-content-around">

@@ -3,10 +3,14 @@ package controllers;
 import models.Material;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import java.io.Serializable;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -78,6 +82,11 @@ public class MaterialController implements Serializable {
         recreateModel();
         return "List_1?faces-redirect=true";
     }
+    
+    public String prepareList3() {
+        recreateModel();
+        return "List_1_1?faces-redirect=true";
+    }
 
     public String prepareView() {
         current = (Material) getItems().getRowData();
@@ -90,6 +99,11 @@ public class MaterialController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View_1?faces-redirect=true";
     }
+    public String prepareView3() {
+        current = (Material) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View_1_1?faces-redirect=true";
+    }
 
     public String prepareCreate() {
         current = new Material();
@@ -98,18 +112,46 @@ public class MaterialController implements Serializable {
     }
 
     public String create() throws IOException {
-
-        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
-        current.setUrl("/images/" + file.getFileName());
-        InputStream input = file.getInputstream();
-        Path folder = Paths.get(ruta);
-        Path fileToCreatePath = folder.resolve(file.getFileName());
-        Path newFilePath = Files.createFile(fileToCreatePath);
-
-        Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        /*if (file != null) {
+            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            current.setUrl("/images/" + file.getFileName());
+            InputStream input = file.getInputstream();
+            Path folder = Paths.get(ruta);
+            Path fileToCreatePath = folder.resolve(file.getFileName());
+            try {
+                Path newFilePath = Files.createFile(fileToCreatePath);
+                
+                Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (FileAlreadyExistsException e) {
+                
+            }
+        } else {
+            JsfUtil.addErrorMessage("Se requiere archivo");
+            return null;
+        }*/
+        
+        if (file != null) {
+            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            current.setUrl("/images/" + file.getFileName());
+            InputStream input = file.getInputstream();
+            Path folder = Paths.get(ruta);
+            Path fileToCreatePath = folder.resolve(file.getFileName());
+            
+            try {
+                Path newFilePath = Files.createFile(fileToCreatePath);
+                
+                Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (FileAlreadyExistsException e) {
+                
+            }
+        } else {
+            JsfUtil.addErrorMessage("Se requiere archivo");
+            return null;
+        }
 
         getFacade().create(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("MaterialCreated"));
+        items = null;
         return prepareCreate();
 
     }
@@ -122,22 +164,51 @@ public class MaterialController implements Serializable {
 
     public String update() throws IOException {
 
-        if (file != null) {
+        /*if (file != null) {
             String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
             current.setUrl("/images/" + file.getFileName());
             InputStream input = file.getInputstream();
 
             Path folder = Paths.get(ruta);
             Path fileToCreatePath = folder.resolve(file.getFileName());
-            Path newFilePath = Files.createFile(fileToCreatePath);
-
-            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+            
+            try {
+                Path newFilePath = Files.createFile(fileToCreatePath);
+                
+                Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (FileAlreadyExistsException e) {
+                
+            }
+        }*/
+        if (file != null) {
+            String path = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            
+            String fileName = "material-" + current.getId() + "." + extention(file.getFileName());
+            current.setUrl("/images/" + fileName);
+            File newFile = new File(path, fileName);
+            InputStream input = file.getInputstream();
+            OutputStream output = new FileOutputStream(newFile);
+            byte[] bytes = new byte[1024];
+            int read;
+            while ((read = input.read(bytes)) != (-1)) {
+                output.write(bytes, 0, read);
+            }
         }
 
         getFacade().edit(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("MaterialUpdated"));
+        items = null;
         return "View";
 
+    }
+    
+    public String extention(String fileName) {
+        String extention = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extention = fileName.substring(i + 1);
+        }
+        return extention;
     }
 
     public String destroy() {

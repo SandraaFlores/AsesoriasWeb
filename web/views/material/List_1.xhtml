@@ -35,9 +35,10 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Imagen"/>
+                                    <h:outputText value="Archivo"/>
                                 </f:facet>
-                                <img src="/AsesoriasWeb#{item.url}" alt="sin imagen" style="width:80px; height: auto;"/>
+                                <a href="/AsesoriasWeb#{item.url}" target="_blank" class="fa fa-file-alt text-center" style="font-size: 40px"/>
+                                
                             </h:column>
                             <!--<h:column>
                                 <f:facet name="header">

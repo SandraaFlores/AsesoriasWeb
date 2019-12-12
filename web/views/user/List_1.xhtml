@@ -23,28 +23,29 @@
                             <h:outputText value="#{userController.pagination.pageFirstItem + 1}..#{userController.pagination.pageLastItem + 1}/#{userController.pagination.itemsCount}"/>&nbsp;
                             <h:commandLink action="#{userController.previous}" value="#{bundle.Previous} #{userController.pagination.pageSize}" rendered="#{userController.pagination.hasPreviousPage}"/>&nbsp;
                             <h:commandLink action="#{userController.next}" value="#{bundle.Next} #{userController.pagination.pageSize}" rendered="#{userController.pagination.hasNextPage}"/>&nbsp;
-                            <p:dataGrid value="#{userController.getItemsProf()}"
+                            <p:dataGrid value="#{userController.getItemsAssistant()}"
                                         var="item"
                                         columns="4" 
                                         rows="12" 
                                         paginator="true"
                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                         rowsPerPageTemplate="6,12,16">
-
                                 <f:facet name="header">
                                     Asesores Disponibles
                                 </f:facet>                                
-
-
                                 <h:panelGrid columns="1">
-                                    <p:panel header="#{item.controlNumber}">
-                                        <img src="/AsesoriasWeb#{item.getUrlImage()}" alt="Foto de perfil" style="max-height: 100px"></img>
+                                    <p:panel header="#{item.userId.controlNumber}">
+                                        <img src="/AsesoriasWeb#{item.userId.getUrlImage()}" alt="Foto de perfil" style="max-height: 100px"></img>
                                         <br/>
-                                        <h:outputText value="#{item.firstName}" />
+                                        <h:outputText value="#{item.userId.firstName}" />
                                         <br/>
-                                        <h:outputText value="#{item.lastName}" />
+                                        <h:outputText value="#{item.userId.lastName}" />
                                         <br/>
-                                        <h:outputText value="#{item.email}" />
+                                        <h:outputText value="#{item.userId.email}" />
+                                        <br/>
+                                        <h:outputText value="#{item.phone}" />
+                                        <br/>
+                                        <h:outputText value="#{item.getCareerId().getName()}" />
                                     </p:panel>
                                 </h:panelGrid>
                             </p:dataGrid>

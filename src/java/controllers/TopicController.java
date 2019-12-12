@@ -73,7 +73,7 @@ public class TopicController implements Serializable {
         recreateModel();
         return "List?faces-redirect=true";
     }
-    
+
     public String prepareList2() {
         recreateModel();
         return "List_1?faces-redirect=true";
@@ -84,7 +84,8 @@ public class TopicController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View?faces-redirect=true";
     }
-     public String prepareView2() {
+
+    public String prepareView2() {
         current = (Topic) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View_1?faces-redirect=true";
@@ -98,17 +99,21 @@ public class TopicController implements Serializable {
 
     public String create() throws IOException {
         //try {
-
-        String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
-        current.setUrlImage("/images/" + file.getFileName());
-        InputStream input = file.getInputstream();
-        Path folder = Paths.get(ruta);
-        Path fileToCreatePath = folder.resolve(file.getFileName());
-        Path newFilePath = Files.createFile(fileToCreatePath);
-        Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
-        
+        if (file != null) {
+            String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
+            current.setUrlImage("/images/" + file.getFileName());
+            InputStream input = file.getInputstream();
+            Path folder = Paths.get(ruta);
+            Path fileToCreatePath = folder.resolve(file.getFileName());
+            Path newFilePath = Files.createFile(fileToCreatePath);
+            Files.copy(input, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+        } else {
+            JsfUtil.addErrorMessage("Se requiere imagen");
+            return null;
+        }
         getFacade().create(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicCreated"));
+        items = null;
         return prepareCreate();
         /* } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -129,7 +134,7 @@ public class TopicController implements Serializable {
             String ruta = "C:/Users/sandr/Documents/GitHub/AsesoriasWeb/web/images/";
             current.setUrlImage("/images/" + file.getFileName());
             InputStream input = file.getInputstream();
-            
+
             Path folder = Paths.get(ruta);
             Path fileToCreatePath = folder.resolve(file.getFileName());
             Path newFilePath = Files.createFile(fileToCreatePath);
@@ -139,6 +144,7 @@ public class TopicController implements Serializable {
 
         getFacade().edit(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicUpdated"));
+        items = null;
         return "View";
         /*      } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
